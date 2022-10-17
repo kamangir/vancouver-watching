@@ -18,6 +18,7 @@ function watching_vancouver() {
 
     if [[ $(type -t watching_vancouver_$task) == "function" ]] ; then
         watching_vancouver_$task ${@:2}
+        return
     fi
 
     abcli_log_error "-watching_vancouver: $task: command not found."
