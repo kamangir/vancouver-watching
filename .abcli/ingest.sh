@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 
 function watching_vancouver_ingest() {
-    local task=$(abcli_unpack_keyword $1 web-cam-url-links)
+    local task=$(abcli_unpack_keyword $1)
 
     if [ "$task" == "help" ] ; then
         abcli_show_usage "vanwatch ingest$ABCUL[web-cam-url-links]" \
@@ -13,12 +13,10 @@ function watching_vancouver_ingest() {
         return
     fi
 
-    local data_source=$1
+    local data_source=$(abcli_unpack_keyword $1 web-cam-url-links)
 
     if [ "$data_source" == "web-cam-url-links" ] ; then
-        abcli_select
-
-        echo "wip"
+        curl https://opendata.vancouver.ca/explore/dataset/web-cam-url-links/download/?format=json > web_cam_url_links.json
 
         return
     fi
