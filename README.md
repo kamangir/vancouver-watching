@@ -18,4 +18,4 @@ abcli select
 vanwatch ingest
 ```
 
-![image](https://user-images.githubusercontent.com/1007567/196069933-ed28ff5e-0a21-4c0f-b981-2efdd2b09cc6.png)
+Now, you have downloaded [web_cam_url_links.geojson](https://github.com/kamangir/Vancouver-Watching/blob/main/data/web_cam_url_links.geojson).
