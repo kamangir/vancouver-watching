@@ -16,7 +16,10 @@ function vancouver_watching_ingest() {
     local data_source=$(abcli_unpack_keyword $1 web-cam-url-links)
 
     if [ "$data_source" == "web-cam-url-links" ] ; then
-        curl https://opendata.vancouver.ca/explore/dataset/web-cam-url-links/download/?format=json > web_cam_url_links.json
+        local format
+        for format in json geojson ; do
+            curl https://opendata.vancouver.ca/explore/dataset/web-cam-url-links/download/?format=$format > web_cam_url_links.$format
+        done
 
         return
     fi
