@@ -6,7 +6,7 @@ Idea: run [YOLOv5 🚀](https://github.com/kamangir/yolov5) on [traffic images i
 ## install
 
 ```bash
-abcli git clone watching-vancouver install
+abcli git clone vancouver-watching install
 vanwatch help verbose
 ```
 
