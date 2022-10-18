@@ -23,7 +23,7 @@ function vancouver_watching_ingest() {
 
         python3 -m vancouver_watching.ingest \
             geojson \
-            $abcli_object_path/web_cam_url_links.geojson
+            --filename $abcli_object_path/web_cam_url_links.geojson
 
         return
     fi
