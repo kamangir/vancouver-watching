@@ -17,6 +17,7 @@ def ingest_geojson(filename):
 
     list_of_images = []
     list_of_labels = []
+    camera_count = 0
     err_count = 0
     for index, row in tqdm(gdf.iterrows()):
         list_of_images_ = []
@@ -37,6 +38,8 @@ def ingest_geojson(filename):
             err_count += 1
             logger.error(f"-vancouver_watching: ingest: {row['url']} failed.")
 
+        camera_count += len(list_of_images_)
+
         list_of_images += [",".join(list_of_images_)]
         list_of_labels += [
             '<a href="{}">{}</a><br/> {}'.format(
@@ -55,5 +58,7 @@ def ingest_geojson(filename):
     gdf["label"] = list_of_labels
 
     gdf.to_file(filename, driver="GeoJSON")
+
+    logger.info(f"total number of cameras: {camera_count}")
 
     return True
