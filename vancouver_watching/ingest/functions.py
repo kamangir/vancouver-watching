@@ -42,7 +42,12 @@ def ingest_geojson(filename):
             '<a href="{}">{}</a><br/> {}'.format(
                 row["url"],
                 row["name"],
-                "<br/> ".join([f'<img src="{image}">' for image in list_of_images_]),
+                "<br/> ".join(
+                    [
+                        f'<img src="https://trafficcams.vancouver.ca/{image}">'
+                        for image in list_of_images_
+                    ]
+                ),
             )
         ]
 
