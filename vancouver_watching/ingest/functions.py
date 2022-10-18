@@ -38,11 +38,13 @@ def ingest_geojson(filename):
             logger.error(f"-vancouver_watching: ingest: {row['url']} failed.")
 
         list_of_images += [",".join(list_of_images_)]
-        list_of_labels += ['<a href="{}">{}</a><br/> {}'].format(
-            row("url"),
-            row("name"),
-            "<br/> ".join([f'<img src="{image}">' for image in list_of_images_]),
-        )
+        list_of_labels += [
+            '<a href="{}">{}</a><br/> {}'.format(
+                row("url"),
+                row("name"),
+                "<br/> ".join([f'<img src="{image}">' for image in list_of_images_]),
+            )
+        ]
 
     gdf["images"] = list_of_images
     gdf["label"] = list_of_labels
