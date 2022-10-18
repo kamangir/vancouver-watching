@@ -1,5 +1,5 @@
 NAME = "vancouver_watching"
 
-VERSION = "2.5.1"
+VERSION = "2.6.1"
 
 from .functions import *

@@ -1,11 +1,11 @@
 from setuptools import setup
 
-from blue_plugin import NAME, VERSION
+from vancouver_watching import NAME, VERSION
 
 setup(
     name=NAME,
-    author="kamangir",
+    author="arash@kamangir.net",
     version=VERSION,
-    description="template for an abcli plugin",
+    description="running object detection on traffic images in Vancouver. 🌈",
     packages=[NAME],
 )
