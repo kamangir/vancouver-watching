@@ -21,6 +21,10 @@ function vancouver_watching_ingest() {
             curl https://opendata.vancouver.ca/explore/dataset/web-cam-url-links/download/?format=$format > web_cam_url_links.$format
         done
 
+        python3 -m vancouver_watching.ingest \
+            geojson \
+            $abcli_object_path/web_cam_url_links.geojson
+
         return
     fi
 
