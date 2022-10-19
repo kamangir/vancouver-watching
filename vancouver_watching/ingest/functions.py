@@ -75,6 +75,7 @@ def ingest_from_cameras(filename):
     )
 
     for camera in tqdm(list_of_cameras):
-        logger.info(camera)
+        # logger.info(camera)
+        ...
 
     return True
