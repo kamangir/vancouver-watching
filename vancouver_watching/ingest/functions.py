@@ -1,5 +1,7 @@
 from bs4 import BeautifulSoup
 import geopandas
+import os
+import os.path
 import requests
 from tqdm import tqdm
 from abcli import file
@@ -60,7 +62,9 @@ def get_list_of_cameras(filename):
 
         gdf.to_file(filename, driver="GeoJSON")
 
-    list_of_cameras = (",".join(list_of_cameras)).split(",")
+    list_of_cameras = [
+        camera for camera in (",".join(list_of_cameras)).split(",") if camera
+    ]
 
     logger.info(f"found {len(list_of_cameras)} camera(s)")
 
@@ -74,8 +78,15 @@ def ingest_from_cameras(filename):
         f"{NAME}.ingest_geojson({filename}): ingesting from {len(list_of_cameras)} cameras(s)."
     )
 
+    success = True
     for camera in tqdm(list_of_cameras):
-        # logger.info(camera)
-        ...
+        if not file.download(
+            f"https://trafficcams.vancouver.ca/{camera}",
+            os.path.join(
+                os.getenv("abcli_object_path"),
+                file.name_and_extension(camera),
+            ),
+        ):
+            success = False
 
-    return True
+    return success
