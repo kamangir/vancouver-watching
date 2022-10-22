@@ -40,7 +40,7 @@ To discover the available cameras in an area type in,
 vanwatch discover vancouver
 ```
 
-You have generated a `geojson` of [traffic images in the City of Vancouver](./data/vancouver.geojson). Now, you can ingest the traffic images from this area,
+You have generated a `geojson` of [traffic images in the City of Vancouver](./areas/vancouver.geojson). Now, you can ingest the traffic images from this area,
 
 ```bash
 vanwatch ingest vancouver upload
