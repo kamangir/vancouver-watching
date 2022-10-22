@@ -31,7 +31,7 @@ function vancouver_watching_discover() {
 
     cp -v \
         $abcli_object_path/$area.geojson \
-        $abcli_path_git/Vancouver-Watching/data/
+        $abcli_path_git/Vancouver-Watching/areas/
 
     if [ "$do_push" == 1 ] ; then
         abcli_git push \

@@ -14,7 +14,7 @@ function vancouver_watching_ingest() {
     fi
     local area=$1
 
-    local geojson=$abcli_path_git/Vancouver-Watching/data/$area.json
+    local geojson=$abcli_path_git/Vancouver-Watching/areas/$area.json
     if [ ! -f "$geojson" ] ; then
         abcli_log_error "-vancouver_watching: ingest: $area: area not found."
         return
