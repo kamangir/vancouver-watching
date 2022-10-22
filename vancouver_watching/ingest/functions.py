@@ -3,6 +3,7 @@ import os.path
 from tqdm import tqdm
 from abcli import file
 from . import NAME
+from vancouver_watching.discover import discover_cameras
 from abcli import logging
 import logging
 
