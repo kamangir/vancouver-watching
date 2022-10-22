@@ -8,7 +8,20 @@
 abcli git clone \
     vancouver-watching \
     install
+```
+
+## Help
+
+To receive a list of `vanwatch` commands type in,
+
+```bash
 vanwatch help verbose
+```
+
+To receive instructions about a specific command type in,
+
+```bash
+vanwatch <command> help
 ```
 
 ## Discover and Ingest and Area
