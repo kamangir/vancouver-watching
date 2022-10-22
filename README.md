@@ -1,6 +1,6 @@
 # Watching Vancouver (`vanwatch`) 🌈
 
-`vanwatch` discovers and ingests images from traffic cameras in an area and then runs [YOLOv5 🚀](https://github.com/kamangir/yolov5) and other vision algo to extract information about urban activity at scale. 
+`vanwatch` 🌈 discovers and ingests images from traffic cameras in an area and then runs [YOLOv5 🚀](https://github.com/kamangir/yolov5) and other vision algo to extract information about urban activity at scale. 
 
 ## install
 
