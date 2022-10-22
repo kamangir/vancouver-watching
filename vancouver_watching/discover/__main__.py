@@ -9,15 +9,18 @@ parser = argparse.ArgumentParser(NAME)
 parser.add_argument(
     "task",
     type=str,
-    help="TBA",
+    help="discover_cameras",
+)
+parser.add_argument(
+    "--filename",
+    type=str,
+    default="",
 )
 args = parser.parse_args()
 
-delim = " " if args.delim == "space" else args.delim
-
 success = False
-if args.task == "TBA":
-    success = True
+if args.task == "discover_cameras":
+    success = discover_cameras(args.filename)
 else:
     logger.error(f"-{NAME}: {args.task}: command not found.")
 
