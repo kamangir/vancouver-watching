@@ -23,6 +23,8 @@ function vancouver_watching_ingest() {
     local options=$2
     local do_upload=$(abcli_option_int "$options" upload 0)
 
+    abcli_select
+
     cp -v \
         $geojson \
         $abcli_object_path/$area.geojson

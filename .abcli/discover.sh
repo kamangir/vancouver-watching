@@ -15,14 +15,14 @@ function vancouver_watching_discover() {
 
     local area=$1
 
-    local options=$2
-    local do_push=$(abcli_option_int "$options" push 0)
-
     local function_name=vancouver_watching_discover_$area
     if [[ $(type -t $function_name) != "function" ]] ; then
         abcli_log_error "-vancouver_watching: discover: $area: area not found."
         return
     fi
+
+    local options=$2
+    local do_push=$(abcli_option_int "$options" push 0)
 
     abcli_log "discovering $area [$options]"
 
