@@ -44,7 +44,9 @@ def digest_geojson(filename, prefix):
             '<a href="{}">{}</a><br/> {}'.format(
                 row["url"],
                 row["name"],
-                "<br/> ".join([f'<img src="{camera}">' for camera in list_of_cameras_]),
+                f'<img src="{list_of_cameras_[0]}">'
+                if list_of_cameras_
+                else "camera not found.",
             )
         ]
 
@@ -56,7 +58,7 @@ def digest_geojson(filename, prefix):
     list_of_cameras = [
         camera for camera in (",".join(list_of_cameras)).split(",") if camera
     ]
-    logger.info(f"found {len(list_of_cameras)} camera(s)")
+    logger.info(f"found {len(list_of_cameras)} camera(s) in {len(gdf)} location(s).")
 
     return True
 
