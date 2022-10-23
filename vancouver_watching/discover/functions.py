@@ -3,6 +3,7 @@ import geopandas
 import requests
 from tqdm import tqdm
 from abcli import file
+from vancouver_watching.QGIS import label_of_camera
 from . import NAME
 from abcli import logging
 import logging
@@ -41,12 +42,10 @@ def discover_cameras_vancouver_style(filename, prefix):
 
         list_of_cameras += [",".join(list_of_cameras_)]
         list_of_labels += [
-            '<a href="{}">{}</a><br/> {}'.format(
+            label_of_camera(
                 row["url"],
                 row["name"],
-                f'<img src="{list_of_cameras_[0]}">'
-                if list_of_cameras_
-                else "camera not found.",
+                list_of_cameras_,
             )
         ]
     if failed_locations:
