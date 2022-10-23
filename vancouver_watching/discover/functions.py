@@ -51,11 +51,14 @@ def discover_cameras_vancouver_style(filename, prefix):
         ]
     if failed_locations:
         logger.error(f"{len(failed_locations)} location(s) failed.")
-
-    list_of_cameras = [
-        camera for camera in (",".join(list_of_cameras)).split(",") if camera
-    ]
-    logger.info(f"found {len(list_of_cameras)} camera(s) in {len(gdf)} location(s).")
+    logger.info(
+        "found {} camera(s) in {} location(s).".format(
+            len(
+                [camera for camera in (",".join(list_of_cameras)).split(",") if camera]
+            ),
+            len(gdf),
+        )
+    )
 
     gdf["cameras"] = list_of_cameras
     gdf["label"] = list_of_labels
