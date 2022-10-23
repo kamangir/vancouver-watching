@@ -17,7 +17,7 @@ function vancouver_watching_list() {
 
         abcli_tag search \
             $area,vancouver_watching,$stage \
-            ${@:3}
+            ${@:4}
 
         return
     fi
