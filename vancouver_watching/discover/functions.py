@@ -16,7 +16,7 @@ def digest_geojson(filename, prefix):
 
     list_of_cameras = []
     list_of_labels = []
-    failed_cameras = []
+    failed_locations = []
     for _, row in tqdm(gdf.iterrows()):
         list_of_cameras_ = []
 
@@ -33,11 +33,8 @@ def digest_geojson(filename, prefix):
                 ).findAll("img")
             ]
         except:
-            failed_cameras += [row["url"]]
+            failed_locations += [row["url"]]
             logger.error(f"failed: {row['url']}")
-
-        if failed_cameras:
-            logger.error(f"{len(failed_cameras)} error(s): {', '.join(failed_cameras)}")
 
         list_of_cameras += [",".join(list_of_cameras_)]
         list_of_labels += [
@@ -49,6 +46,8 @@ def digest_geojson(filename, prefix):
                 else "camera not found.",
             )
         ]
+    if failed_locations:
+        logger.error(f"{len(failed_locations)} location(s) failed.")
 
     gdf["cameras"] = list_of_cameras
     gdf["label"] = list_of_labels
