@@ -6,7 +6,7 @@ function vancouver_watching_discover_vancouver() {
         > $abcli_object_path/vancouver.geojson
 
     python3 -m vancouver_watching.discover \
-        digest_geojson \
+        discover_cameras_vancouver_style \
         --filename $abcli_object_path/vancouver.geojson \
         --prefix https://trafficcams.vancouver.ca/ \
         $@

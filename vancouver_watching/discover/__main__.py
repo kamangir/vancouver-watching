@@ -9,7 +9,7 @@ parser = argparse.ArgumentParser(NAME)
 parser.add_argument(
     "task",
     type=str,
-    help="digest_geojson",
+    help="discover_cameras_vancouver_style",
 )
 parser.add_argument(
     "--filename",
@@ -24,8 +24,8 @@ parser.add_argument(
 args = parser.parse_args()
 
 success = False
-if args.task == "digest_geojson":
-    success = digest_geojson(
+if args.task == "discover_cameras_vancouver_style":
+    success = discover_cameras_vancouver_style(
         args.filename,
         args.prefix,
     )

@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 import geopandas
 import requests
 from tqdm import tqdm
+from abcli import file
 from . import NAME
 from abcli import logging
 import logging
@@ -9,10 +10,12 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-def digest_geojson(filename, prefix):
-    logger.info(f"{NAME}.digest_geojson({filename})")
+def discover_cameras_vancouver_style(filename, prefix):
+    logger.info(f"{NAME}.discover_cameras({filename}): vancouver-style")
 
-    gdf = geopandas.read_file(filename)
+    success, gdf = file.load_geodataframe(filename)
+    if not success:
+        return False
 
     list_of_cameras = []
     list_of_labels = []
@@ -49,17 +52,15 @@ def digest_geojson(filename, prefix):
     if failed_locations:
         logger.error(f"{len(failed_locations)} location(s) failed.")
 
-    gdf["cameras"] = list_of_cameras
-    gdf["label"] = list_of_labels
-
-    gdf.to_file(filename, driver="GeoJSON")
-
     list_of_cameras = [
         camera for camera in (",".join(list_of_cameras)).split(",") if camera
     ]
     logger.info(f"found {len(list_of_cameras)} camera(s) in {len(gdf)} location(s).")
 
-    return True
+    gdf["cameras"] = list_of_cameras
+    gdf["label"] = list_of_labels
+
+    return file.save_geojson(filename, gdf)
 
 
 def get_list_of_cameras(filename, log=True):
