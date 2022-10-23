@@ -4,7 +4,7 @@ function vancouver_watching_discover() {
     local task=$(abcli_unpack_keyword $1 help)
 
     if [ "$task" == "help" ] ; then
-        abcli_show_usage "vancouver_watching discover$ABCUL<area>$ABCUL[~upload]" \
+        abcli_show_usage "vancouver_watching discover$ABCUL<area>$ABCUL[~upload]$ABCUL[--validate 1]" \
             "discover <area>."
         return
     fi
