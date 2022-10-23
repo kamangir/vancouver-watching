@@ -34,10 +34,6 @@ function vancouver_watching_discover() {
     abcli_tag set \
         $abcli_object_name \
         $area,vancouver_watching,discovery
-
-    abcli_cache write \
-        $area.discovery \
-        $abcli_object_name
 }
 
 abcli_source_path \

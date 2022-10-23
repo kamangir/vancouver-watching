@@ -17,7 +17,11 @@ function vancouver_watching_ingest() {
     local options=$2
     local do_upload=$(abcli_option_int "$options" upload 0)
 
-    local discovery_object=$(abcli_cache read $area.discovery)
+    local discovery_object=$(\
+        abcli_tag search \
+        $area,vancouver_watching,discovery \
+        --count 1 \
+        --log 0)
     if [ ! -f "$discovery_object" ] ; then
         abcli_log_error "-vancouver_watching: ingest: $area: area not found."
         return
