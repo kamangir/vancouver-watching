@@ -4,12 +4,8 @@ function vancouver_watching_discover() {
     local task=$(abcli_unpack_keyword $1 help)
 
     if [ "$task" == "help" ] ; then
-        abcli_show_usage "vanwatch discover$ABCUL<area>$ABCUL[push]" \
+        abcli_show_usage "vancouver_watching discover$ABCUL<area>$ABCUL[~upload]" \
             "discover <area>."
-
-        if [ "$(abcli_keyword_is $2 verbose)" == true ] ; then
-            python3 -m vancouver_watching.discover --help
-        fi
         return
     fi
 
@@ -22,22 +18,26 @@ function vancouver_watching_discover() {
     fi
 
     local options=$2
-    local do_push=$(abcli_option_int "$options" push 0)
+    local do_upload=$(abcli_option_int "$options" upload 1)
 
     abcli_log "discovering $area [$options]"
 
     abcli_select
     $function_name ${@:2}
 
-    cp -v \
-        $abcli_object_path/$area.geojson \
-        $abcli_path_git/Vancouver-Watching/areas/
-
-    if [ "$do_push" == 1 ] ; then
-        abcli_git push \
-            Vancouver-Watching \
-            accept_no_issue
+    if [ "$do_upload" == 0 ] ; then
+        return
     fi
+
+    abcli_upload
+
+    abcli_git set \
+        $abcli_object_name \
+        $area,vancouver_watching,discovery
+
+    abcli_cache write
+        $area.discovery \
+        $abcli_object_name
 }
 
 abcli_source_path \

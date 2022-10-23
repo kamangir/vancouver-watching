@@ -9,18 +9,26 @@ parser = argparse.ArgumentParser(NAME)
 parser.add_argument(
     "task",
     type=str,
-    help="discover_cameras",
+    help="digest_geojson",
 )
 parser.add_argument(
     "--filename",
     type=str,
     default="",
 )
+parser.add_argument(
+    "--prefix",
+    type=str,
+    default="",
+)
 args = parser.parse_args()
 
 success = False
-if args.task == "discover_cameras":
-    success = discover_cameras(args.filename)
+if args.task == "digest_geojson":
+    success = digest_geojson(
+        args.filename,
+        args.prefix,
+    )
 else:
     logger.error(f"-{NAME}: {args.task}: command not found.")
 
