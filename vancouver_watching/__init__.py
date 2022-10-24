@@ -1,6 +1,6 @@
 NAME = "vancouver_watching"
 
-VERSION = "3.28.1"
+VERSION = "3.29.1"
 
 from .discover import *
 from .ingest import *
