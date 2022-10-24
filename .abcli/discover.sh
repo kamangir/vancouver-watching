@@ -29,11 +29,11 @@ function vancouver_watching_discover() {
         return
     fi
 
-    abcli_upload
-
     abcli_tag set \
         $abcli_object_name \
         $area,vancouver_watching,discovery
+
+    abcli_upload
 }
 
 abcli_source_path \
