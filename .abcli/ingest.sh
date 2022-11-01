@@ -4,7 +4,7 @@ function vancouver_watching_ingest() {
     local task=$(abcli_unpack_keyword $1 help)
 
     if [ "$task" == "help" ] ; then
-        abcli_show_usage "vancouver_watching ingest$ABCUL<area>$ABCUL[upload]" \
+        abcli_show_usage "vancouver_watching ingest$ABCUL<area>$ABCUL[~upload]" \
             "ingest <area>."
 
         if [ "$(abcli_keyword_is $2 verbose)" == true ] ; then
@@ -15,7 +15,7 @@ function vancouver_watching_ingest() {
     local area=$1
 
     local options=$2
-    local do_upload=$(abcli_option_int "$options" upload 0)
+    local do_upload=$(abcli_option_int "$options" upload 1)
 
     local discovery_object=$(\
         abcli_tag search \
