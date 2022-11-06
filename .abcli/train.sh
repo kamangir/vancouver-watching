@@ -4,7 +4,7 @@ function vancouver_watching_train() {
     local task=$(abcli_unpack_keyword $1)
 
     if [ "$task" == "help" ] ; then
-        abcli_show_usage "vancouver_watching train$ABCUL[dryrun,epochs=10,gpu_count=2,size=$YOLOV5_MODEL_SIZES,~upload]" \
+        abcli_show_usage "vancouver_watching train$ABCUL[dryrun,epochs=10,gpu_count=2,image_size=<640>,size=$YOLOV5_MODEL_SIZES,~upload]" \
             "train a model."
         return
     fi
