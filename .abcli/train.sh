@@ -4,7 +4,7 @@ function vancouver_watching_train() {
     local task=$(abcli_unpack_keyword $1 help)
 
     if [ "$task" == "help" ] ; then
-        abcli_show_usage "vancouver_watching train$ABCUL[-]" \
+        abcli_show_usage "vancouver_watching train$ABCUL[dryrun,epochs=10,gpu_count=2,size=$YOLOV5_MODEL_SIZES,~upload]" \
             "train a model."
         return
     fi
@@ -16,4 +16,8 @@ function vancouver_watching_train() {
         coco128 \
         "$options" \
         ${@:2}
+
+    abcli_tag set \
+        $abcli_object_name \
+        vancouver_watching
 }
