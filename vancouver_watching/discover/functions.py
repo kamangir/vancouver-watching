@@ -1,9 +1,7 @@
 from bs4 import BeautifulSoup
-import geopandas
 import requests
 from tqdm import tqdm
 from abcli import file
-from vancouver_watching.QGIS import label_of_camera
 from . import NAME
 from abcli import logging
 import logging
@@ -12,6 +10,8 @@ logger = logging.getLogger(__name__)
 
 
 def discover_cameras_vancouver_style(filename, prefix):
+    from vancouver_watching.QGIS import label_of_camera
+
     logger.info(f"{NAME}.discover_cameras({filename}): vancouver-style")
 
     success, gdf = file.load_geodataframe(filename)
@@ -66,6 +66,8 @@ def discover_cameras_vancouver_style(filename, prefix):
 
 
 def get_list_of_cameras(filename, log=True):
+    import geopandas
+
     gdf = geopandas.read_file(filename)
 
     if "cameras" not in gdf.columns:
