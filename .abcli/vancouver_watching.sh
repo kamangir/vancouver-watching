@@ -21,7 +21,7 @@ function vancouver_watching() {
 
     local function_name=vancouver_watching_$task
     if [[ $(type -t $function_name) == "function" ]] ; then
-        $function_name ${@:2}
+        $function_name "${@:2}"
         return
     fi
 
