@@ -4,7 +4,7 @@ function vancouver_watching_ingest() {
     local task=$(abcli_unpack_keyword $1 help)
 
     if [ "$task" == "help" ] ; then
-        abcli_show_usage "vancouver_watching ingest$ABCUL<area>$ABCUL[~upload]" \
+        abcli_show_usage "vancouver_watching ingest$ABCUL<area>$ABCUL[dryrun,~upload]" \
             "ingest <area>."
 
         if [ "$(abcli_keyword_is $2 verbose)" == true ] ; then
@@ -15,7 +15,8 @@ function vancouver_watching_ingest() {
     local area=$1
 
     local options=$2
-    local do_upload=$(abcli_option_int "$options" upload 1)
+    local do_dryrun=$(abcli_option_int "$options" dryrun 0)
+    local do_upload=$(abcli_option_int "$options" upload $(abcli_not $do_dryrun))
 
     local discovery_object=$(\
         abcli_tag search \
@@ -27,7 +28,7 @@ function vancouver_watching_ingest() {
         return
     fi
 
-    abcli_download $discovery_object
+    abcli_download object $discovery_object
 
     cp -v \
         $abcli_object_root/$discovery_object/$area.geojson \
@@ -35,6 +36,7 @@ function vancouver_watching_ingest() {
     
     python3 -m vancouver_watching.ingest \
         from_cameras \
+        --do_dryrun $do_dryrun \
         --filename $abcli_object_path/$area.geojson
 
     abcli_tag set \

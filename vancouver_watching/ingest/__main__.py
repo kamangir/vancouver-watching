@@ -16,11 +16,17 @@ parser.add_argument(
     type=str,
     default="",
 )
+parser.add_argument(
+    "--do_dryrun",
+    type=int,
+    default=0,
+    help="0|1",
+)
 args = parser.parse_args()
 
 success = False
 if args.task == "from_cameras":
-    success = ingest_from_cameras(args.filename)
+    success = ingest_from_cameras(args.filename, args.do_dryrun)
 else:
     logger.error(f"-{NAME}: {args.task}: command not found.")
 

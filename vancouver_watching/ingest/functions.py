@@ -11,7 +11,10 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-def ingest_from_cameras(filename):
+def ingest_from_cameras(
+    filename: str,
+    do_dryrun: bool = False,
+):
     success, list_of_cameras = get_list_of_cameras(filename)
     if not success:
         return False
@@ -35,7 +38,9 @@ def ingest_from_cameras(filename):
             failed_urls += [url]
             continue
 
-        if not file.download(
+        if do_dryrun:
+            logger.info(url)
+        elif not file.download(
             url,
             os.path.join(
                 os.getenv("abcli_object_path"),
