@@ -13,11 +13,15 @@ logger = logging.getLogger(__name__)
 
 def ingest_from_cameras(
     filename: str,
+    count: int,
     do_dryrun: bool = False,
 ):
     success, list_of_cameras = get_list_of_cameras(filename)
     if not success:
         return False
+
+    if count != -1:
+        list_of_cameras = list_of_cameras[:count]
 
     success = True
     failed_urls = []

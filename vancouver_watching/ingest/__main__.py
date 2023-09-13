@@ -22,11 +22,20 @@ parser.add_argument(
     default=0,
     help="0|1",
 )
+parser.add_argument(
+    "--count",
+    type=int,
+    default=-1,
+)
 args = parser.parse_args()
 
 success = False
 if args.task == "from_cameras":
-    success = ingest_from_cameras(args.filename, args.do_dryrun)
+    success = ingest_from_cameras(
+        args.filename,
+        args.count,
+        args.do_dryrun,
+    )
 else:
     logger.error(f"-{NAME}: {args.task}: command not found.")
 
