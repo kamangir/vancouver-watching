@@ -15,7 +15,27 @@ abcli git clone \
 To receive a list of `vanwatch` commands type in,
 
 ```bash
-vanwatch help verbose
+vanwatch help
+```
+```bash
+vancouver_watching discover \
+	<area> \
+	[~upload] \
+	[--validate 1]
+ . discover <area>.
+vancouver_watching ingest \
+	<area> \
+	[dryrun,~upload] \
+	[--count <-1>]
+ . ingest <area>.
+vancouver_watching list <area> \
+	<discovery|ingest>
+ . list <area>.
+vancouver_watching list areas
+ . list areas.
+vancouver_watching train \
+	[dryrun,epochs=10,gpu_count=2,image_size=<640>,size=,~upload]
+ . train a model.
 ```
 
 To receive instructions about a specific command type in,
