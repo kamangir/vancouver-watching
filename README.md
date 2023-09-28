@@ -44,7 +44,7 @@ To receive instructions about a specific command type in,
 vanwatch <command> help
 ```
 
-## Discover and Ingest and Area
+## Discover and Ingest an Area
 
 To see the list of areas supported by `vanwatch` type in,
 
