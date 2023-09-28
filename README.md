@@ -49,7 +49,7 @@ vanwatch <command> help
 To see the list of areas supported by `vanwatch` type in,
 
 ```bash
-vanwatch list_areas
+vanwatch list areas
 ```
 
 As of revision `3.3.1` you should see `iran` 🚧 and [`vancouver`](https://opendata.vancouver.ca/explore/dataset/web-cam-url-links/map/)
