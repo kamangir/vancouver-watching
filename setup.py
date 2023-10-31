@@ -1,11 +1,11 @@
 from setuptools import setup
 
-from vancouver_watching import NAME, VERSION
+from vancouver_watching import NAME, VERSION, DESCRIPTION
 
 setup(
     name=NAME,
     author="arash@kamangir.net",
     version=VERSION,
-    description="running object detection on traffic images in Vancouver. 🌈",
+    description=DESCRIPTION,
     packages=[NAME],
 )

@@ -1,11 +1,12 @@
 import argparse
-from . import *
+from vancouver_watching import VERSION
+from vancouver_watching.discover import NAME, discover_cameras_vancouver_style
 from abcli import logging
 import logging
 
 logger = logging.getLogger(__name__)
 
-parser = argparse.ArgumentParser(NAME)
+parser = argparse.ArgumentParser(NAME, description=f"{NAME}-{VERSION}")
 parser.add_argument(
     "task",
     type=str,

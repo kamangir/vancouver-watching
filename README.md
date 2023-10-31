@@ -1,6 +1,6 @@
 # Vancouver Watching (`vanwatch`) 🌈
 
-`vanwatch` 🌈 discovers and ingests images from traffic cameras in an area and then runs [YOLOv5 🚀](https://github.com/kamangir/yolov5) and other vision algo to extract information about urban activity at scale. 
+`vanwatch` 🌈 discovers and ingests images from traffic cameras in an area and then runs [YOLO 🚀](https://github.com/ultralytics/ultralytics) and other vision algo to extract information about urban activity at scale. 
 
 ## install
 
@@ -15,9 +15,10 @@ abcli git clone \
 To receive a list of `vanwatch` commands type in,
 
 ```bash
-vanwatch help
-```
-```bash
+ > vanwatch help
+🌈 vancouver_watching-3.47.1
+🌈 bird watching in downtown Vancouver with AI.
+
 vancouver_watching discover \
 	<area> \
 	[~upload] \
@@ -26,16 +27,14 @@ vancouver_watching discover \
 vancouver_watching ingest \
 	<area> \
 	[dryrun,~upload] \
+	[<object-name>] \
 	[--count <-1>]
- . ingest <area>.
+ . ingest <area> -> <object-name>.
 vancouver_watching list <area> \
-	<discovery|ingest>
+	[discovery|ingest]
  . list <area>.
 vancouver_watching list areas
  . list areas.
-vancouver_watching train \
-	[dryrun,epochs=10,gpu_count=2,image_size=<640>,size=,~upload]
- . train a model.
 ```
 
 To receive instructions about a specific command type in,

@@ -1,7 +1,5 @@
 NAME = "vancouver_watching"
 
-VERSION = "3.45.1"
+VERSION = "3.47.1"
 
-from .discover import *
-from .ingest import *
-from .QGIS import *
+DESCRIPTION = "🌈 bird watching in downtown Vancouver with AI."

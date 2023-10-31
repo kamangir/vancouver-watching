@@ -3,49 +3,53 @@
 function vancouver_watching_ingest() {
     local task=$(abcli_unpack_keyword $1 help)
 
-    if [ "$task" == "help" ] ; then
+    if [ "$task" == "help" ]; then
         local args="[--count <-1>]"
-        abcli_show_usage "vancouver_watching ingest$ABCUL<area>$ABCUL[dryrun,~upload]$ABCUL$args" \
-            "ingest <area>."
+        abcli_show_usage "vancouver_watching ingest$ABCUL<area>$ABCUL[dryrun,~upload]$ABCUL[<object-name>]$ABCUL$args" \
+            "ingest <area> -> <object-name>."
 
-        if [ "$(abcli_keyword_is $2 verbose)" == true ] ; then
+        if [ "$(abcli_keyword_is $2 verbose)" == true ]; then
             python3 -m vancouver_watching.ingest --help
         fi
         return
     fi
-    local area=$1
+    local area=$(abcli_clarify_input $1 vancouver)
 
     local options=$2
     local do_dryrun=$(abcli_option_int "$options" dryrun 0)
     local do_upload=$(abcli_option_int "$options" upload $(abcli_not $do_dryrun))
 
-    local discovery_object=$(\
+    local object_name=$(abcli_clarify_object $3 $(abcli_string_timestamp))
+    local object_path=$abcli_object_root/$object_name
+    mkdir -pv $object_path
+
+    local discovery_object=$(
         abcli_tag search \
-        $area,vancouver_watching,discovery \
-        --count 1 \
-        --log 0)
-    if [ -z "$discovery_object" ] ; then
+            $area,vancouver_watching,discovery \
+            --count 1 \
+            --log 0
+    )
+    if [ -z "$discovery_object" ]; then
         abcli_log_error "-vancouver_watching: ingest: $area: area not found."
-        return
+        return 1
     fi
 
     abcli_download object $discovery_object
 
     cp -v \
         $abcli_object_root/$discovery_object/$area.geojson \
-        $abcli_object_path/
-    
+        $object_path/
+
     python3 -m vancouver_watching.ingest \
         from_cameras \
         --do_dryrun $do_dryrun \
-        --filename $abcli_object_path/$area.geojson \
-        "${@:3}"
+        --filename $object_path/$area.geojson \
+        "${@:4}"
 
     abcli_tag set \
-        $abcli_object_name \
+        $object_name \
         $area,vancouver_watching,ingest
 
-    if [ "$do_upload" == 1 ] ; then
-        abcli_upload
-    fi
+    [[ "$do_upload" == 1 ]] &&
+        abcli_upload $object_name
 }

@@ -1,22 +1,33 @@
 import argparse
-from . import *
+from vancouver_watching import NAME, VERSION, DESCRIPTION
 from abcli import logging
 import logging
 
 logger = logging.getLogger(__name__)
 
-parser = argparse.ArgumentParser(NAME)
+parser = argparse.ArgumentParser(NAME, description=f"{NAME}-{VERSION}")
 parser.add_argument(
     "task",
     type=str,
-    help="TBA",
+    help="version",
+)
+parser.add_argument(
+    "--show_description",
+    type=bool,
+    default=0,
+    help="0|1",
 )
 args = parser.parse_args()
 
-delim = " " if args.delim == "space" else args.delim
-
 success = False
-if args.task == "TBA":
+if args.task == "version":
+    print(
+        "{}-{}{}".format(
+            NAME,
+            VERSION,
+            "\\n{}".format(DESCRIPTION) if args.show_description else "",
+        )
+    )
     success = True
 else:
     logger.error(f"-{NAME}: {args.task}: command not found.")
