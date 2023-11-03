@@ -51,7 +51,7 @@ To see the list of areas supported by `vanwatch` type in,
 vanwatch list areas
 ```
 
-As of revision `3.3.1` you should see `iran` 🚧 and [`vancouver`](https://opendata.vancouver.ca/explore/dataset/web-cam-url-links/map/)
+-> [list of areas](./data/)
 
 To discover the available cameras in an area type in,
 
