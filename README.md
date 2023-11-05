@@ -32,6 +32,9 @@ vancouver_watching list areas
 
 ## Discover and Ingest an Area
 
+![image](https://user-images.githubusercontent.com/1007567/196573547-b1c71b3b-7fac-4d2c-bba0-a87b063830da.png)
+
+
 To see the list of areas supported by `vanwatch` type in,
 
 ```bash
@@ -52,9 +55,13 @@ You have generated a `geojson` of [traffic images in the City of Vancouver](./da
 vanwatch ingest vancouver count=2,detect,~upload
 ```
 
+| | |
+|---|---|
+| ![image](./assets/georgiaE.jpg) | ![image](./assets/georgiaE-inference.jpg) |
+
+
 model: https://hub.ultralytics.com/models/R6nMlK6kQjSsQ76MPqQM?tab=preview
 
-<img width="1552" alt="image" src="https://user-images.githubusercontent.com/1007567/196573547-b1c71b3b-7fac-4d2c-bba0-a87b063830da.png">
 
 ## set-up
 
