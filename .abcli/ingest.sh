@@ -7,8 +7,8 @@ function vancouver_watching_ingest() {
     local task=$(abcli_unpack_keyword $1 help)
 
     if [ "$task" == "help" ]; then
-        local options="detect,dryrun,model=<$vancouver_watching_default_model>,~upload"
-        local args="[--count <-1>]"
+        local options="count=<-1>,detect,dryrun,model=<$vancouver_watching_default_model>,~upload"
+        local args="<args>"
         abcli_show_usage "vancouver_watching ingest$ABCUL<area>$ABCUL[$options]$ABCUL[<object-name>]$ABCUL$args" \
             "ingest <area> -> <object-name>."
 
@@ -20,6 +20,7 @@ function vancouver_watching_ingest() {
     local area=$(abcli_clarify_input $1 vancouver)
 
     local options=$2
+    local count=$(abcli_option_int "$options" count -1)
     local do_detect=$(abcli_option_int "$options" detect 0)
     local do_dryrun=$(abcli_option_int "$options" dryrun 0)
     local do_upload=$(abcli_option_int "$options" upload $(abcli_not $do_dryrun))
@@ -47,6 +48,7 @@ function vancouver_watching_ingest() {
 
     python3 -m vancouver_watching.ingest \
         from_cameras \
+        --count $count \
         --do_dryrun $do_dryrun \
         --filename $object_path/$area.geojson \
         "${@:4}"
