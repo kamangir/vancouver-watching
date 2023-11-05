@@ -4,10 +4,14 @@
 
 
 ```bash
- > vanwatch help
-🌈 vancouver_watching-3.87.1
+🌈 vancouver_watching-3.88.1
 🌈 bird watching in downtown Vancouver with AI.
 
+vancouver_watching analyze \
+	[~download,~upload] \
+	[.|<object-name>] \
+	[<args>]
+ . analyze <object-name>.
 vancouver_watching conda create_env [validate]
  . create conda environmnt.
 vancouver_watching conda validate

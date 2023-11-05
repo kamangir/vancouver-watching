@@ -10,6 +10,7 @@ function vancouver_watching() {
     if [ $task == "help" ]; then
         vancouver_watching version \\n
 
+        vancouver_watching_analyze "$@"
         vancouver_watching_conda "$@"
         vancouver_watching_discover "$@"
         vancouver_watching_ingest "$@"
