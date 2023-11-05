@@ -29,6 +29,7 @@ function vancouver_watching() {
 
     if [ "$task" == "init" ]; then
         abcli_init Vancouver_Watching "${@:2}"
+        conda activate Vancouver_Watching
         return
     fi
 
