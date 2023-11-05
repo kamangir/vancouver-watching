@@ -1,4 +1,5 @@
 from abcli import file
+import os
 from tqdm import tqdm
 from abcli.modules.cookie import cookie
 import json
@@ -46,8 +47,12 @@ def run_model(
         "confidence": 0.25,
         "iou": 0.45,
     }
+    path_to_images = file.path(metadata_filename)
     for image_filename in tqdm(metadata):
-        with open("path/to/image.jpg", "rb") as f:
+        if do_dryrun:
+            continue
+
+        with open(os.path.join(path_to_images, image_filename), "rb") as f:
             response = requests.post(
                 url,
                 headers=headers,
@@ -55,10 +60,8 @@ def run_model(
                 files={"image": f},
             )
 
-        # Check for successful response
         response.raise_for_status()
 
-        # Print inference results
         print(json.dumps(response.json(), indent=2))
 
     return True
