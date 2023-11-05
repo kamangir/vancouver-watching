@@ -62,6 +62,12 @@ You have downloaded a folder of ~600 images.
 abcli git clone Vancouver-Watching install
 ```
 
+To use the [Ultralytics API](https://hub.ultralytics.com/models), browse [this page](https://hub.ultralytics.com/settings?tab=api+keys) and copy your API key, then run,
+
+```bash
+@cookie write ultralytics.api.key <api-key>
+```
+
 To use on [AWS SageMaker](https://aws.amazon.com/sagemaker/), generate the seed 🌱,
 
 ```bash
