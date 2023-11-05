@@ -46,13 +46,13 @@ vanwatch list areas
 To discover the available cameras in an area type in,
 
 ```bash
-vanwatch discover vancouver
+vanwatch discover area=vancouver
 ```
 
-You have generated a `geojson` of [traffic images in the City of Vancouver](./data/vancouver.geojson). Now, you can ingest the traffic images from this area,
+You have generated a `geojson` of [traffic images in the City of Vancouver](./data/vancouver.geojson). Now, you can ingest the traffic images from this area and detect people and cars in them,
 
 ```bash
-vanwatch ingest vancouver count=2,detect,~upload
+vanwatch ingest area=vancouver,count=2,detect
 ```
 
 ![image](./assets/georgiaE-inference.jpg)

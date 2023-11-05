@@ -1,39 +1,38 @@
 #! /usr/bin/env bash
 
 function vancouver_watching_discover() {
-    local task=$(abcli_unpack_keyword $1 help)
+    local options=$1
 
-    if [ "$task" == "help" ] ; then
-        abcli_show_usage "vancouver_watching discover$ABCUL<area>$ABCUL[~upload]$ABCUL[--validate 1]" \
-            "discover <area>."
+    if [ $(abcli_option_int "$options" help 0) == 1 ]; then
+        local options="area=$(vancouver_watching_list_of_areas \|),~upload"
+        abcli_show_usage "vancouver_watching discover$ABCUL[$options]$ABCUL[-|<object-name>]$ABCUL[<args>]" \
+            "discover area."
         return
     fi
 
-    local area=$1
+    local area=$(abcli_option "$options" area vancouver)
+    local do_upload=$(abcli_option_int "$options" upload 1)
+
+    local object_name=$(abcli_clarify_object $2 $(abcli_string_timestamp))
 
     local function_name=vancouver_watching_discover_$area
-    if [[ $(type -t $function_name) != "function" ]] ; then
+    if [[ $(type -t $function_name) != "function" ]]; then
         abcli_log_error "-vancouver_watching: discover: $area: area not found."
         return
     fi
 
-    local options=$2
-    local do_upload=$(abcli_option_int "$options" upload 1)
+    abcli_log "discovering $area -> $object_name"
+    $function_name \
+        $abcli_object_root/$object_name \
+        "${@:3}"
 
-    abcli_log "discovering $area [$options]"
-
-    abcli_select
-    $function_name ${@:2}
-
-    if [ "$do_upload" == 0 ] ; then
-        return
-    fi
+    [[ "$do_upload" == 0 ]] && return
 
     abcli_tag set \
-        $abcli_object_name \
+        $object_name \
         $area,vancouver_watching,discovery
 
-    abcli_upload
+    abcli_upload object $object_name
 }
 
 abcli_source_path \
