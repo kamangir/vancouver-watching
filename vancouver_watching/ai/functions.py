@@ -1,3 +1,4 @@
+from collections import Counter
 from abcli import file
 import os
 from tqdm import tqdm
@@ -63,9 +64,22 @@ def run_model(
 
         response.raise_for_status()
 
-        if verbose:
-            print(json.dumps(response.json(), indent=2))
+        response_dict = response.json()
 
-        metadata[image_filename]["response"] = response.json()
+        if verbose:
+            print(json.dumps(response_dict, indent=2))
+
+        metadata[image_filename]["response"] = response_dict
+
+        logger.info(
+            ", ".join(
+                [
+                    "{}: {}".format(thing, count)
+                    for thing, count in Counter(
+                        [thing["name"] for thing in response_dict["data"]]
+                    ).items()
+                ]
+            )
+        )
 
     return file.save_json(metadata_filename, metadata)
