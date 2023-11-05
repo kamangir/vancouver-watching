@@ -55,10 +55,7 @@ You have generated a `geojson` of [traffic images in the City of Vancouver](./da
 vanwatch ingest vancouver count=2,detect,~upload
 ```
 
-| | |
-|---|---|
-| ![image](./assets/georgiaE.jpg) | ![image](./assets/georgiaE-inference.jpg) |
-
+![image](./assets/georgiaE-inference.jpg)
 
 model: https://hub.ultralytics.com/models/R6nMlK6kQjSsQ76MPqQM?tab=preview
 
