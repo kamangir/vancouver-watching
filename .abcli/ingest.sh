@@ -66,5 +66,5 @@ function vancouver_watching_ingest() {
         $area,vancouver_watching,ingest
 
     [[ "$do_upload" == 1 ]] &&
-        abcli_upload $object_name
+        abcli_upload object $object_name
 }
