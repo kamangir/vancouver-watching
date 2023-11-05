@@ -1,5 +1,5 @@
 NAME = "vancouver_watching"
 
-VERSION = "3.49.1"
+VERSION = "3.50.1"
 
 DESCRIPTION = "🌈 bird watching in downtown Vancouver with AI."
