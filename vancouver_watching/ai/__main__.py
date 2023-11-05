@@ -24,6 +24,12 @@ parser.add_argument(
     help="0|1",
 )
 parser.add_argument(
+    "--verbose",
+    type=int,
+    default=0,
+    help="0|1",
+)
+parser.add_argument(
     "--model_id",
     type=str,
     default="",
@@ -36,6 +42,7 @@ if args.task == "run_model":
         args.filename,
         args.model_id,
         args.do_dryrun,
+        args.verbose,
     )
 else:
     logger.error(f"-{NAME}: {args.task}: command not found.")

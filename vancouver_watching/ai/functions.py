@@ -15,6 +15,7 @@ def run_model(
     metadata_filename: str,
     model_id: str,
     do_dryrun: bool = False,
+    verbose: bool = False,
 ):
     success, metadata = file.load_json(metadata_filename)
     if not success:
@@ -47,12 +48,12 @@ def run_model(
         "confidence": 0.25,
         "iou": 0.45,
     }
-    path_to_images = file.path(metadata_filename)
+    object_path = file.path(metadata_filename)
     for image_filename in tqdm(metadata):
         if do_dryrun:
             continue
 
-        with open(os.path.join(path_to_images, image_filename), "rb") as f:
+        with open(os.path.join(object_path, image_filename), "rb") as f:
             response = requests.post(
                 url,
                 headers=headers,
@@ -62,6 +63,9 @@ def run_model(
 
         response.raise_for_status()
 
-        print(json.dumps(response.json(), indent=2))
+        if verbose:
+            print(json.dumps(response.json(), indent=2))
 
-    return True
+        metadata[image_filename]["response"] = response.json()
+
+    return file.save_json(metadata_filename, metadata)
