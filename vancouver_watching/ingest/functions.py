@@ -57,7 +57,7 @@ def ingest_from_cameras(
             failed_urls += [url]
             continue
 
-        metadata[filename(filename)] = {"url": url}
+        metadata[file.name(filename)] = {"url": url}
     if failed_urls:
         logger.error("{} url(s) failed.".format(len(failed_urls)))
 
