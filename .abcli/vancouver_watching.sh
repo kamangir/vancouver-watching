@@ -28,7 +28,7 @@ function vancouver_watching() {
     fi
 
     if [ "$task" == "init" ]; then
-        abcli_init vancouver_watching "${@:2}"
+        abcli_init Vancouver_Watching "${@:2}"
         return
     fi
 
