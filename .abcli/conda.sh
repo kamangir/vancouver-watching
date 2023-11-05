@@ -15,10 +15,13 @@ function vancouver_watching_conda() {
         local options=$2
         local do_validate=$(abcli_option_int "$options" validate 0)
 
-        abcli_conda create_env clone=base,name=vancouver_watching
+        abcli_conda create_env clone=base,name=Vancouver_Watching
 
         pip3 install pymysql==0.10.1
-        # pip3 install ...
+        pip3 install geojson
+        pip3 install beautifulsoup4
+        pip3 install geopandas
+        pip3 install tqdm
 
         [[ "$do_validate" == 1 ]] && vancouver_watching_conda validate
 
