@@ -1,4 +1,5 @@
 from bs4 import BeautifulSoup
+import os
 import requests
 from tqdm import tqdm
 from abcli import file
@@ -63,6 +64,18 @@ def discover_cameras_vancouver_style(filename, prefix):
     gdf["label"] = list_of_labels
 
     return file.save_geojson(filename, gdf)
+
+
+def get_list_of_areas():
+    return [
+        file.name(filename)
+        for filename in file.list_of(
+            os.path.join(
+                os.getenv("abcli_path_git", ""),
+                "Vancouver-Watching/.abcli/discovery/*.sh",
+            )
+        )
+    ]
 
 
 def get_list_of_cameras(filename, log=True):
