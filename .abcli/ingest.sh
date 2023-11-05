@@ -55,7 +55,7 @@ function vancouver_watching_ingest() {
 
     [[ "$do_detect" == 1 ]] &&
         python3 -m vancouver_watching.ai \
-            run_model \
+            infer \
             --do_dryrun $do_dryrun \
             --model_id $model_id \
             --filename $object_path/$area.json \

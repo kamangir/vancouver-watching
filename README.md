@@ -49,10 +49,8 @@ vanwatch discover vancouver
 You have generated a `geojson` of [traffic images in the City of Vancouver](./data/vancouver.geojson). Now, you can ingest the traffic images from this area,
 
 ```bash
-vanwatch ingest vancouver upload
+vanwatch ingest vancouver count=2,detect,~upload
 ```
-
-You have downloaded a folder of ~600 images.
 
 <img width="1552" alt="image" src="https://user-images.githubusercontent.com/1007567/196573547-b1c71b3b-7fac-4d2c-bba0-a87b063830da.png">
 

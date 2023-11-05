@@ -1,6 +1,6 @@
 import argparse
 from vancouver_watching import VERSION
-from vancouver_watching.ai import NAME, run_model
+from vancouver_watching.ai import NAME, infer
 from abcli import logging
 import logging
 
@@ -10,7 +10,7 @@ parser = argparse.ArgumentParser(NAME, description=f"{NAME}-{VERSION}")
 parser.add_argument(
     "task",
     type=str,
-    help="run_model",
+    help="infer",
 )
 parser.add_argument(
     "--filename",
@@ -37,8 +37,8 @@ parser.add_argument(
 args = parser.parse_args()
 
 success = False
-if args.task == "run_model":
-    success = run_model(
+if args.task == "infer":
+    success = infer(
         args.filename,
         args.model_id,
         args.do_dryrun,
