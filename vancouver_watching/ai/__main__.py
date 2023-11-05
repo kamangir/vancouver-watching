@@ -31,7 +31,7 @@ parser.add_argument(
 args = parser.parse_args()
 
 success = False
-if args.task == "from_cameras":
+if args.task == "run_model":
     success = run_model(
         args.filename,
         args.model_id,
