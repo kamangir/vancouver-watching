@@ -53,10 +53,10 @@ function vancouver_watching_ingest() {
 
     [[ "$do_detect" == 1 ]] &&
         python3 -m vancouver_watching.ai \
-            detect \
+            run_model \
             --do_dryrun $do_dryrun \
             --model_id $model_id \
-            --filename $object_path/summary.json \
+            --filename $object_path/$area.json \
             "${@:4}"
 
     abcli_tag set \

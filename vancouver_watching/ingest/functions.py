@@ -4,6 +4,7 @@ import re
 from tqdm import tqdm
 from abcli import file
 from vancouver_watching.discover import get_list_of_cameras
+from vancouver_watching.ingest import NAME
 from abcli import logging
 import logging
 
@@ -22,7 +23,8 @@ def ingest_from_cameras(
     if count != -1:
         list_of_cameras = list_of_cameras[:count]
     logger.info(
-        "ingest_from_cameras: loaded {} camera(s) from {}.".format(
+        "{}.ingest_from_cameras: loaded {} camera(s) from {}.".format(
+            NAME,
             len(list_of_cameras),
             cameras_filename,
         )
