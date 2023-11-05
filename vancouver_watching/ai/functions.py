@@ -15,7 +15,7 @@ def run_model(
     if not success:
         return False
     logger.info(
-        "{}.run_model({}): {} image(s) from {} -{}->".format(
+        "{}.run_model({}): {} image(s) from {}".format(
             NAME,
             model_id,
             len(metadata),
