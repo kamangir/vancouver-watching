@@ -15,11 +15,11 @@ def run_model(
     if not success:
         return False
     logger.info(
-        "{}.ingest_from_cameras: {} image(s) from {} -{}->".format(
+        "{}.run_model({}): {} image(s) from {} -{}->".format(
             NAME,
+            model_id,
             len(metadata),
             metadata_filename,
-            model_id,
         )
     )
 
