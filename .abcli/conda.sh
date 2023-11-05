@@ -15,7 +15,7 @@ function vancouver_watching_conda() {
         local options=$2
         local do_validate=$(abcli_option_int "$options" validate 0)
 
-        abcli_conda create_env clone=base,name=Vancouver_Watching
+        abcli_conda create_env name=Vancouver_Watching
 
         pip3 install pymysql==0.10.1
         pip3 install geojson
