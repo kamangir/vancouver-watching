@@ -2,17 +2,6 @@
 
 `vanwatch` 🌈 discovers and ingests images from traffic cameras in an area and then runs [YOLO 🚀](https://github.com/ultralytics/ultralytics) and other vision algo to extract information about urban activity at scale. 
 
-## install
-
-```bash
-abcli git clone \
-    vancouver-watching \
-    install
-```
-
-## Help
-
-To receive a list of `vanwatch` commands type in,
 
 ```bash
  > vanwatch help
@@ -35,12 +24,6 @@ vancouver_watching list <area> \
  . list <area>.
 vancouver_watching list areas
  . list areas.
-```
-
-To receive instructions about a specific command type in,
-
-```bash
-vanwatch <command> help
 ```
 
 ## Discover and Ingest an Area
@@ -69,12 +52,15 @@ You have downloaded a folder of ~600 images.
 
 <img width="1552" alt="image" src="https://user-images.githubusercontent.com/1007567/196573547-b1c71b3b-7fac-4d2c-bba0-a87b063830da.png">
 
-## SageMaker set-up
+## set-up
+
+```bash
+abcli git clone Vancouver-Watching install
+```
 
 To use on [AWS SageMaker](https://aws.amazon.com/sagemaker/), generate the seed 🌱,
 
 ```bash
-abcli git clone Vancouver-Watching install
 @seed sagemaker
 ```
 
