@@ -9,7 +9,7 @@ function vancouver_watching_ingest() {
     if [ $(abcli_option_int "$options" help 0) == 1 ]; then
         local options="area=$(vancouver_watching_list_of_areas \|),count=<-1>,detect,dryrun,model=<$vancouver_watching_default_model>,~upload"
         local args="<args>"
-        abcli_show_usage "vancouver_watching ingest$ABCUL[$options]$ABCUL[<object-name>]$ABCUL$args" \
+        abcli_show_usage "vancouver_watching ingest$ABCUL[$options]$ABCUL[-|<object-name>]$ABCUL$args" \
             "ingest <area> -> <object-name>."
 
         if [ "$(abcli_keyword_is $2 verbose)" == true ]; then
