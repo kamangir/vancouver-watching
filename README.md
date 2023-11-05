@@ -4,8 +4,7 @@
 
 
 ```bash
- > vanwatch help
-🌈 vancouver_watching-3.53.1
+🌈 vancouver_watching-3.85.1
 🌈 bird watching in downtown Vancouver with AI.
 
 vancouver_watching conda create_env [validate]
@@ -13,19 +12,17 @@ vancouver_watching conda create_env [validate]
 vancouver_watching conda validate
  . validate conda environmnt.
 vancouver_watching discover \
-	<area> \
-	[~upload] \
-	[--validate 1]
- . discover <area>.
+	[area=vancouver|iran,~upload] \
+	[-|<object-name>] \
+	[<args>]
+ . discover area.
 vancouver_watching ingest \
-	<area> \
-	[dryrun,~upload] \
+	[area=vancouver|iran,count=<-1>,detect,dryrun,model=<R6nMlK6kQjSsQ76MPqQM>,~upload] \
 	[<object-name>] \
-	[--count <-1>]
+	<args>
  . ingest <area> -> <object-name>.
-vancouver_watching list <area> \
-	[discovery|ingest]
- . list <area>.
+vancouver_watching list [area=vancouver|iran,discovery|ingest]
+ . list objects from area.
 vancouver_watching list areas
  . list areas.
 ```
