@@ -1,3 +1,5 @@
+import cv2
+from abcli import file
 from abcli.modules.cookie import cookie
 import requests
 from collections import Counter
@@ -14,10 +16,12 @@ class Ultralytics_API(object):
         model_id: str,
         do_dryrun: bool = False,
         verbose: bool = False,
+        render_inference: bool = True,
     ):
         self.model_id = model_id
         self.do_dryrun = do_dryrun
         self.verbose = verbose
+        self.render_inference = render_inference
 
         # https://hub.ultralytics.com/models/R6nMlK6kQjSsQ76MPqQM?tab=preview
         self.url = f"https://api.ultralytics.com/v1/predict/{self.model_id}"
@@ -73,4 +77,45 @@ class Ultralytics_API(object):
             )
         )
 
+        if self.render_inference:
+            file.save_image(
+                file.add_postfix(
+                    file.set_extension(image_filename, "jpg"), "inference"
+                ),
+                self.render(
+                    file.load_image(image_filename)[1].copy(),
+                    response_dict,
+                ),
+                log=True,
+            )
+
         return response_dict
+
+    @staticmethod
+    def render(
+        image,
+        response_dict,
+        fontFace=cv2.FONT_HERSHEY_SIMPLEX,
+        fontScale=0.5,
+    ):
+        image = image.copy()
+        for thing in response_dict["data"]:
+            x1 = int(thing["box"]["x1"])
+            y1 = int(thing["box"]["y1"])
+            x2 = int(thing["box"]["x2"])
+            y2 = int(thing["box"]["y2"])
+            text = "{}: {:.2f}".format(thing["name"], thing["confidence"])
+
+            image[y1:y2, x1:x2, :] = 255 - image[y1:y2, x1:x2, :]
+            for thickness, color in zip([4, 1], [0, 255]):
+                image = cv2.putText(
+                    image,
+                    text=text,
+                    org=(x2, y2),
+                    fontFace=fontFace,
+                    fontScale=fontScale,
+                    color=3 * (color,),
+                    thickness=thickness,
+                )
+
+        return image

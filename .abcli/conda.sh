@@ -23,6 +23,7 @@ function vancouver_watching_conda() {
         pip3 install geopandas
         pip3 install tqdm
         pip3 install requests
+        pip3 install opencv-python
 
         [[ "$do_validate" == 1 ]] && vancouver_watching_conda validate
 
