@@ -22,6 +22,7 @@ function vancouver_watching_conda() {
         pip3 install beautifulsoup4
         pip3 install geopandas
         pip3 install tqdm
+        pip3 install requests
 
         [[ "$do_validate" == 1 ]] && vancouver_watching_conda validate
 
