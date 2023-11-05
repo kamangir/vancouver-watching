@@ -16,6 +16,8 @@ def ingest_from_cameras(
     count: int,
     do_dryrun: bool = False,
 ):
+    object_path = file.path(cameras_filename)
+
     success, list_of_cameras = get_list_of_cameras(cameras_filename)
     if not success:
         return False
@@ -53,13 +55,13 @@ def ingest_from_cameras(
             logger.info(url)
         elif not file.download(
             url,
-            os.path.join(os.getenv("abcli_object_path"), filename),
+            os.path.join(object_path, filename),
         ):
             logger.error(f"bad url: {url}.")
             failed_urls += [url]
             continue
 
-        metadata[file.name(filename)] = {"url": url}
+        metadata[file.name_and_extension(filename)] = {"url": url}
     if failed_urls:
         logger.error("{} url(s) failed.".format(len(failed_urls)))
 
