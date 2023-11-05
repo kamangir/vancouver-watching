@@ -39,8 +39,6 @@ To see the list of areas supported by `vanwatch` type in,
 vanwatch list areas
 ```
 
--> [list of areas](./data/)
-
 To discover the available cameras in an area type in,
 
 ```bash
