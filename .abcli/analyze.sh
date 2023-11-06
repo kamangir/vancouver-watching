@@ -5,7 +5,7 @@ function vancouver_watching_analyze() {
 
     if [ $(abcli_option_int "$options" help 0) == 1 ]; then
         local options="~download,~upload"
-        abcli_show_usage "vancouver_watching analyze$ABCUL[$options]$ABCUL[.|<object-name>]$ABCUL[<args>]" \
+        abcli_show_usage "vanwatch analyze$ABCUL[$options]$ABCUL[.|<object-name>]$ABCUL[<args>]" \
             "analyze <object-name>."
         return
     fi

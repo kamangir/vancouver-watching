@@ -5,7 +5,7 @@ function vancouver_watching_discover() {
 
     if [ $(abcli_option_int "$options" help 0) == 1 ]; then
         local options="area=$(vancouver_watching_list_of_areas \|),~upload"
-        abcli_show_usage "vancouver_watching discover$ABCUL[$options]$ABCUL[-|<object-name>]$ABCUL[<args>]" \
+        abcli_show_usage "vanwatch discover$ABCUL[$options]$ABCUL[-|<object-name>]$ABCUL[<args>]" \
             "discover area -> <object-name>."
         return
     fi

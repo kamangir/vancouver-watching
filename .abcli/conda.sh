@@ -4,9 +4,9 @@ function vancouver_watching_conda() {
     local task=$(abcli_unpack_keyword $1 help)
 
     if [ "$task" == "help" ]; then
-        abcli_show_usage "vancouver_watching conda create_env [validate]" \
+        abcli_show_usage "vanwatch conda create_env [validate]" \
             "create conda environmnt."
-        abcli_show_usage "vancouver_watching conda validate" \
+        abcli_show_usage "vanwatch conda validate" \
             "validate conda environmnt."
         return
     fi

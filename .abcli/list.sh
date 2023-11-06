@@ -5,9 +5,9 @@ function vancouver_watching_list() {
 
     if [ $(abcli_option_int "$options" help 0) == 1 ]; then
         local options="area=$(vancouver_watching_list_of_areas \|),discovery|ingest"
-        abcli_show_usage "vancouver_watching list [$options]" \
+        abcli_show_usage "vanwatch list [$options]" \
             "list objects from area."
-        abcli_show_usage "vancouver_watching list areas" \
+        abcli_show_usage "vanwatch list areas" \
             "list areas."
         return
     fi
