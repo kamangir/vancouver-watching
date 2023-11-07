@@ -1,6 +1,6 @@
 import argparse
 from vancouver_watching import VERSION
-from vancouver_watching.ai import NAME, infer
+from vancouver_watching.ai import NAME, process
 from abcli import logging
 import logging
 
@@ -10,10 +10,15 @@ parser = argparse.ArgumentParser(NAME, description=f"{NAME}-{VERSION}")
 parser.add_argument(
     "task",
     type=str,
-    help="infer",
+    help="process",
 )
 parser.add_argument(
-    "--filename",
+    "--area",
+    type=str,
+    default="",
+)
+parser.add_argument(
+    "--object_path",
     type=str,
     default="",
 )
@@ -37,12 +42,13 @@ parser.add_argument(
 args = parser.parse_args()
 
 success = False
-if args.task == "infer":
-    success = infer(
-        args.filename,
-        args.model_id,
-        args.do_dryrun,
-        args.verbose,
+if args.task == "process":
+    success = process(
+        area=args.area,
+        model_id=args.model_id,
+        object_path=args.object_path,
+        do_dryrun=args.do_dryrun,
+        verbose=args.verbose,
     )
 else:
     logger.error(f"-{NAME}: {args.task}: command not found.")

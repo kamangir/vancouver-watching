@@ -4,32 +4,33 @@
 
 
 ```bash
-🌈 vancouver_watching-3.88.1
+ > vanwatch help
+🌈 vancouver_watching-3.89.1
 🌈 bird watching in downtown Vancouver with AI.
 
-vancouver_watching analyze \
-	[~download,~upload] \
-	[.|<object-name>] \
-	[<args>]
- . analyze <object-name>.
-vancouver_watching conda create_env [validate]
+vanwatch conda create_env [validate]
  . create conda environmnt.
-vancouver_watching conda validate
+vanwatch conda validate
  . validate conda environmnt.
-vancouver_watching discover \
+vanwatch discover \
 	[area=vancouver|iran,~upload] \
 	[-|<object-name>] \
 	[<args>]
  . discover area -> <object-name>.
-vancouver_watching ingest \
-	[area=vancouver|iran,count=<-1>,detect,dryrun,model=<R6nMlK6kQjSsQ76MPqQM>,~upload] \
+vanwatch ingest \
+	[area=vancouver|iran,count=<-1>,dryrun,~upload] \
 	[-|<object-name>] \
 	<args>
  . ingest <area> -> <object-name>.
-vancouver_watching list [area=vancouver|iran,discovery|ingest]
+vanwatch list [area=vancouver|iran,discovery|ingest]
  . list objects from area.
-vancouver_watching list areas
+vanwatch list areas
  . list areas.
+vanwatch process \
+	[~download,model=<R6nMlK6kQjSsQ76MPqQM>,~upload] \
+	[.|<object-name>] \
+	[<args>]
+ . process <object-name>.
 ```
 
 ## Discover and Ingest an Area
@@ -52,7 +53,7 @@ vanwatch discover area=vancouver
 You have generated a `geojson` of [traffic images in the City of Vancouver](./data/vancouver.geojson). Now, you can ingest the traffic images from this area and detect people and cars in them,
 
 ```bash
-vanwatch ingest area=vancouver,count=2,detect
+vanwatch ingest area=vancouver,count=2,process
 ```
 
 ![image](./assets/georgiaE-inference.jpg)

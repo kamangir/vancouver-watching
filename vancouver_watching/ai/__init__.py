@@ -1,3 +1,3 @@
 NAME = "vancouver_watching.ai"
 
-from vancouver_watching.ai.functions import infer
+from vancouver_watching.ai.functions import infer, process
