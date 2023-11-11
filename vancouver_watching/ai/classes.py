@@ -1,8 +1,11 @@
 import cv2
-from typing import Dict, Tuple
-from abcli import file
+from typing import Dict, Tuple, List
+from abcli import file, path
 from abcli.modules.cookie import cookie
-from vancouver_watching.ai import NAME
+from abcli.plugins.graphics import add_signature
+from abcli.modules.objects import signature as object_signature
+from abcli.modules.host import signature as host_signature
+from vancouver_watching.ai import NAME, VERSION
 import requests
 from collections import Counter
 import json
@@ -84,16 +87,15 @@ class Ultralytics_API(object):
         if self.verbose:
             print(json.dumps(response_dict, indent=2))
 
-        logger.info(
-            ", ".join(
-                [
-                    "{}: {}".format(thing, count)
-                    for thing, count in Counter(
-                        [thing["name"] for thing in response_dict["data"]]
-                    ).items()
-                ]
-            )
+        summary = ", ".join(
+            [
+                "{}: {}".format(thing, count)
+                for thing, count in Counter(
+                    [thing["name"] for thing in response_dict["data"]]
+                ).items()
+            ]
         )
+        logger.info(summary)
 
         if self.render_inference:
             file.save_image(
@@ -101,8 +103,19 @@ class Ultralytics_API(object):
                     file.set_extension(image_filename, "jpg"), "inference"
                 ),
                 self.render(
-                    file.load_image(image_filename)[1].copy(),
-                    response_dict,
+                    image=file.load_image(image_filename)[1].copy(),
+                    inference=response_dict,
+                    header=[
+                        " | ".join(
+                            [
+                                object_signature(
+                                    object_name=path.name(file.path(image_filename)),
+                                    info=file.name(image_filename),
+                                ),
+                                summary,
+                            ]
+                        )
+                    ],
                 ),
                 log=True,
             )
@@ -112,12 +125,13 @@ class Ultralytics_API(object):
     @staticmethod
     def render(
         image,
-        response_dict,
+        inference,
+        header: List = [],
         fontFace=cv2.FONT_HERSHEY_SIMPLEX,
         fontScale=0.5,
     ):
         image = image.copy()
-        for thing in response_dict["data"]:
+        for thing in inference["data"]:
             x1 = int(thing["box"]["x1"])
             y1 = int(thing["box"]["y1"])
             x2 = int(thing["box"]["x2"])
@@ -136,4 +150,10 @@ class Ultralytics_API(object):
                     thickness=thickness,
                 )
 
-        return image
+        return add_signature(
+            image,
+            header=header,
+            footer=[
+                " | ".join([f"{NAME}-{VERSION}"] + host_signature()),
+            ],
+        )
