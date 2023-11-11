@@ -1,4 +1,3 @@
-from bs4 import BeautifulSoup
 import os
 import requests
 from tqdm import tqdm
@@ -12,6 +11,7 @@ logger = logging.getLogger(__name__)
 
 def discover_cameras_vancouver_style(filename, prefix):
     from vancouver_watching.QGIS import label_of_camera
+    from bs4 import BeautifulSoup
 
     logger.info(f"{NAME}.discover_cameras({filename}): vancouver-style")
 
