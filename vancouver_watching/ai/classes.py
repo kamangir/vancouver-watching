@@ -54,8 +54,8 @@ class Ultralytics_API(object):
 
         signature = [f"{NAME}-{VERSION}"] + host_signature()
         self.footer = [
-            " | ".join(signature[: len(signature // 2)]),
-            " | ".join(signature[len(signature // 2) :]),
+            " | ".join(signature[: len(signature) // 2]),
+            " | ".join(signature[len(signature) // 2 :]),
         ]
 
     def infer(
