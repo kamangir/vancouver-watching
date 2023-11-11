@@ -7,7 +7,7 @@ function vancouver_watching_process() {
     local options=$1
 
     if [ $(abcli_option_int "$options" help 0) == 1 ]; then
-        local options="~download,model=<$vancouver_watching_default_model>,~upload"
+        local options="~download,model=<model-id>,~upload"
         abcli_show_usage "vanwatch process$ABCUL[$options]$ABCUL[.|<object-name>]$ABCUL[<args>]" \
             "process <object-name>."
         return
