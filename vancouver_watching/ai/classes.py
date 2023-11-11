@@ -1,5 +1,6 @@
 import cv2
 from typing import Dict, Tuple, List
+import numpy as np
 from abcli import file, path
 from abcli.modules.cookie import cookie
 from abcli.plugins.graphics import add_signature
@@ -51,12 +52,6 @@ class Ultralytics_API(object):
             "confidence": 0.25,
             "iou": 0.45,
         }
-
-        signature = [f"{NAME}-{VERSION}"] + host_signature()
-        self.footer = [
-            " | ".join(signature[: len(signature) // 2]),
-            " | ".join(signature[len(signature) // 2 :]),
-        ]
 
     def infer(
         self,
@@ -158,5 +153,11 @@ class Ultralytics_API(object):
         return add_signature(
             image,
             header=header,
-            footer=self.footer,
+            footer=[
+                list(thing)
+                for thing in np.array_split(
+                    [f"{NAME}-{VERSION}"] + host_signature(),
+                    2,
+                )
+            ],
         )
