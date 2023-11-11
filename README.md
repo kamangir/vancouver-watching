@@ -60,29 +60,6 @@ vanwatch ingest area=vancouver,count=2,process
 
 model: https://hub.ultralytics.com/models/R6nMlK6kQjSsQ76MPqQM?tab=preview
 
+---
 
-## set-up
-
-```bash
-abcli git clone Vancouver-Watching install
-```
-
-To use the [Ultralytics API](https://hub.ultralytics.com/models), browse [this page](https://hub.ultralytics.com/settings?tab=api+keys) and copy your API key, then run,
-
-```bash
-@cookie write ultralytics.api.key <api-key>
-```
-
-To use on [AWS SageMaker](https://aws.amazon.com/sagemaker/), generate the seed 🌱,
-
-```bash
-@seed sagemaker
-```
-
-Then change the environment to a `PyTorch 2` image, `Python3` kernel, `ml.g4dn.xlarge` instance, and "open image terminal". Then, type in `bash` and paste the seed 🌱. Then, run,
-
-```bash
-vanwatch conda create_env validate
-```
-
-![image](./assets/sagemaker.png)
+To use on [AWS SageMaker](https://aws.amazon.com/sagemaker/) replace `<plugin-name>` with `vanwatch` and follow [these instructions](https://github.com/kamangir/blue-plugin/blob/main/SageMaker.md).
