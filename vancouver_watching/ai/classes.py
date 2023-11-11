@@ -5,7 +5,8 @@ from abcli.modules.cookie import cookie
 from abcli.plugins.graphics import add_signature
 from abcli.modules.objects import signature as object_signature
 from abcli.modules.host import signature as host_signature
-from vancouver_watching.ai import NAME, VERSION
+from vancouver_watching.ai import NAME
+from vancouver_watching import VERSION
 import requests
 from collections import Counter
 import json
