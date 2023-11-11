@@ -15,6 +15,7 @@ def infer_object(
     area: str,
     object_path: str,
     model_id: str,
+    overwrite: bool = False,
     do_dryrun: bool = False,
     verbose: bool = False,
 ):
@@ -33,6 +34,9 @@ def infer_object(
     ultralytics_api = Ultralytics_API(model_id, do_dryrun, verbose)
 
     for image_filename in tqdm(metadata):
+        if not overwrite and "inference" in metadata[image_filename]:
+            continue
+
         success, metadata[image_filename]["inference"] = ultralytics_api.infer(
             os.path.join(object_path, image_filename)
         )
