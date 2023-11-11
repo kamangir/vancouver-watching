@@ -108,13 +108,11 @@ class Ultralytics_API(object):
                     inference=response_dict,
                     header=[
                         " | ".join(
-                            [
-                                object_signature(
-                                    object_name=path.name(file.path(image_filename)),
-                                    info=file.name(image_filename),
-                                ),
-                                summary,
-                            ]
+                            object_signature(
+                                object_name=path.name(file.path(image_filename)),
+                                info=file.name(image_filename),
+                            )
+                            + [summary]
                         )
                     ],
                 ),
