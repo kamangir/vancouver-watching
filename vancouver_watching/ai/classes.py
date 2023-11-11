@@ -1,6 +1,8 @@
 import cv2
+from typing import Dict, Tuple
 from abcli import file
 from abcli.modules.cookie import cookie
+from vancouver_watching.ai import NAME
 import requests
 from collections import Counter
 import json
@@ -22,6 +24,8 @@ class Ultralytics_API(object):
         self.do_dryrun = do_dryrun
         self.verbose = verbose
         self.render_inference = render_inference
+
+        self.timeout = None
 
         # https://hub.ultralytics.com/models/R6nMlK6kQjSsQ76MPqQM?tab=preview
         self.url = f"https://api.ultralytics.com/v1/predict/{self.model_id}"
@@ -47,7 +51,7 @@ class Ultralytics_API(object):
     def infer(
         self,
         image_filename: str,
-    ):
+    ) -> Tuple[bool, Dict]:
         if self.do_dryrun:
             return {}
 
@@ -57,9 +61,23 @@ class Ultralytics_API(object):
                 headers=self.headers,
                 data=self.data,
                 files={"image": f},
+                timeout=self.timeout,
             )
 
-        response.raise_for_status()
+        # https://chat.openai.com/c/6deb94d0-826a-48de-b5ef-f7d8da416c82
+        # response.raise_for_status()
+        if (
+            response.status_code // 100 != 2
+        ):  # Check if status code is not in the 2xx range
+            logger.info(
+                "{}.infer({}) failed, status_code: {}, reason: {}.".format(
+                    NAME,
+                    image_filename,
+                    response.status_code,
+                    response.reason,
+                )
+            )
+            return False, {}
 
         response_dict = response.json()
 
@@ -89,7 +107,7 @@ class Ultralytics_API(object):
                 log=True,
             )
 
-        return response_dict
+        return True, response_dict
 
     @staticmethod
     def render(

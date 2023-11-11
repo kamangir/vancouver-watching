@@ -11,7 +11,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-def infer(
+def infer_object(
     area: str,
     object_path: str,
     model_id: str,
@@ -33,9 +33,11 @@ def infer(
     ultralytics_api = Ultralytics_API(model_id, do_dryrun, verbose)
 
     for image_filename in tqdm(metadata):
-        metadata[image_filename]["response"] = ultralytics_api.infer(
+        success, metadata[image_filename]["inference"] = ultralytics_api.infer(
             os.path.join(object_path, image_filename)
         )
+        if not success:
+            break
 
     return file.save_json(metadata_filename, metadata)
 
@@ -54,7 +56,7 @@ def process(
         )
     )
 
-    if not infer(
+    if not infer_object(
         area=area,
         object_path=object_path,
         model_id=model_id,
