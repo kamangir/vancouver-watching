@@ -4,20 +4,21 @@
 
 
 ```bash
-🌈 vancouver_watching-3.135.1
+ > vanwatch help
+🌈 vancouver_watching-3.140.1
 🌈 bird watching in downtown Vancouver with AI.
 
 vanwatch conda create_env [validate]
- . create conda environmnt.
+ . create conda environment.
 vanwatch conda validate
- . validate conda environmnt.
+ . validate conda environment.
 vanwatch discover \
 	[area=<area>,~upload] \
 	[-|<object-name>] \
 	[<args>]
  . discover area -> <object-name>.
 vanwatch ingest \
-	[area=<area>,count=<-1>,dryrun,model=<model-id>,~process,~upload] \
+	[area=<area>,count=<-1>,dryrun,model=<model-id>,~process,publish,~upload] \
 	[-|<object-name>] \
 	<args>
  . ingest <area> -> <object-name>.
@@ -31,7 +32,10 @@ vanwatch process \
 	[.|<object-name>] \
 	[<args>]
  . process <object-name>.
-vancouver_watching test [dryrun,~ingest,~list,~process,upload]
+vanwatch update_QGIS [area=<area>,push]
+ . update <area> in QGIS.
+vancouver_watching test \
+	[dryrun,~ingest,~list,~process,upload]
  . test vancouver_watching.
 ```
 

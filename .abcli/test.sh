@@ -4,7 +4,7 @@ function vancouver_watching_test() {
     local options=$1
 
     if [ $(abcli_option_int "$options" help 0) == 1 ]; then
-        abcli_show_usage "vancouver_watching test [dryrun,~ingest,~list,~process,upload]" \
+        abcli_show_usage "vancouver_watching test$ABCUL[dryrun,~ingest,~list,~process,upload]" \
             "test vancouver_watching."
         return
     fi
