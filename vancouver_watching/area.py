@@ -163,7 +163,7 @@ class Area(object):
                     continue
 
                 for thing, count in Counter(
-                    [thing["name"] for thing in metadata["inference"]["data"]]
+                    [thing["name"] for thing in metadata["inference"].get("data", {})]
                 ).items():
                     detections[thing] = detections.get(thing, 0) + count
 
