@@ -74,7 +74,7 @@ function vancouver_watching() {
             abcli_git push \
                 Vancouver-Watching \
                 accept_no_issue \
-                $(python3 -m vancouver_watching version)-$area-$object_name
+                $(python3 -m vancouver_watching version)-$area
         else
             abcli_git Vancouver-Watching status
         fi
