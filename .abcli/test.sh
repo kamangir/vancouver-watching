@@ -16,31 +16,31 @@ function vancouver_watching_test() {
     local do_upload=$(abcli_option_int "$options" upload 0)
 
     if [ "$test_ingest" == 1 ]; then
-        abcli_eval dryrun=$dryrun \
+        abcli_eval dryrun=$do_dryrun \
             vanwatch ingest \
             area=vancouver,count=3,upload=$do_upload
     fi
 
     if [ "$test_list" == 1 ]; then
-        abcli_eval dryrun=$dryrun \
+        abcli_eval dryrun=$do_dryrun \
             vanwatch list area=vancouver,discovery
 
-        abcli_eval dryrun=$dryrun \
+        abcli_eval dryrun=$do_dryrun \
             vanwatch list area=vancouver,ingest
 
-        abcli_eval dryrun=$dryrun \
+        abcli_eval dryrun=$do_dryrun \
             vanwatch list areas
     fi
 
     if [ "$test_process" == 1 ]; then
         local ingest_object_name=$(abcli_timestamp)
 
-        abcli_eval dryrun=$dryrun \
+        abcli_eval dryrun=$do_dryrun \
             vanwatch ingest \
             area=vancouver,count=3,~process,upload=$do_upload \
             $ingest_object_name
 
-        abcli_eval dryrun=$dryrun \
+        abcli_eval dryrun=$do_dryrun \
             vanwatch process \
             upload=$do_upload \
             $ingest_object_name
