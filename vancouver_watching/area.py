@@ -108,7 +108,7 @@ class Area(object):
                 success, inference = ultralytics_api.infer(full_filename)
                 if success:
                     metadata["inference"] = inference
-                    list_of_images += inference.get("render_filename", "")
+                    list_of_images += [inference.get("render_filename", "")]
 
         generate_animated_gif(
             [filename for filename in list_of_images if filename],
