@@ -83,7 +83,7 @@ class Area(object):
     def detect_objects(
         self,
         model_id: str,
-        generate_animated_gif: bool = False,
+        animated_gif: bool = False,
         overwrite: bool = False,
     ) -> bool:
         ultralytics_api = Ultralytics_API(
@@ -114,7 +114,7 @@ class Area(object):
         if not self.save_metadata():
             return False
 
-        return not generate_animated_gif or generate_animated_gif(
+        return not animated_gif or generate_animated_gif(
             [filename for filename in list_of_images if filename],
             os.path.join(self.object_path, f"{self.object_name}.gif"),
             frame_duration=500,

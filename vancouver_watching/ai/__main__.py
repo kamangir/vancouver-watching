@@ -37,7 +37,7 @@ parser.add_argument(
     help="0|1",
 )
 parser.add_argument(
-    "--generate_animated_gif",
+    "--animated_gif",
     type=int,
     default=0,
     help="0|1",
@@ -61,7 +61,7 @@ if args.task == "process":
     if success:
         success = area.detect_objects(
             model_id=args.model_id,
-            generate_animated_gif=args.generate_animated_gif,
+            animated_gif=args.animated_gif,
             overwrite=args.overwrite,
         )
 

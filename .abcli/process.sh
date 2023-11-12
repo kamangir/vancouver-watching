@@ -32,7 +32,7 @@ function vancouver_watching_process() {
     python3 -m vancouver_watching.ai \
         process \
         --do_dryrun $do_dryrun \
-        --generate_animated_gif $(abcli_option_int "$options" gif 0) \
+        --animated_gif $(abcli_option_int "$options" gif 0) \
         --model_id $model_id \
         --geojson $abcli_object_root/$object_name/$area.geojson \
         "${@:3}"
