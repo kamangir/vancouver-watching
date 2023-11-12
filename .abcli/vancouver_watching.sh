@@ -15,6 +15,7 @@ function vancouver_watching() {
         vancouver_watching_ingest "$@"
         vancouver_watching_list "$@"
         vancouver_watching_process "$@"
+        vancouver_watching_test "$@"
 
         if [ "$(abcli_keyword_is $2 verbose)" == true ]; then
             python3 -m vancouver_watching --help

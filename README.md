@@ -5,7 +5,7 @@
 
 ```bash
  > vanwatch help
-🌈 vancouver_watching-3.110.1
+🌈 vancouver_watching-3.132.1
 🌈 bird watching in downtown Vancouver with AI.
 
 vanwatch conda create_env [validate]
@@ -32,6 +32,8 @@ vanwatch process \
 	[.|<object-name>] \
 	[<args>]
  . process <object-name>.
+vancouver_watching test [dryrun,~ingest,~list,~process,upload]
+ . test vancouver_watching.
 ```
 
 ## Discover and Ingest an Area
