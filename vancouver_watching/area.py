@@ -89,7 +89,6 @@ class Area(object):
             self.verbose,
         )
 
-        success = True
         for mapid in tqdm(self.metadata):
             for filename, metadata in self.metadata[mapid]["cameras"].items():
                 full_filename = os.path.join(self.object_path, filename)
@@ -103,11 +102,9 @@ class Area(object):
                 if not overwrite and "inference" in metadata:
                     continue
 
-                success, metadata["inference"] = ultralytics_api.infer(full_filename)
-                if not success:
-                    break
-            if not success:
-                break
+                success, inference = ultralytics_api.infer(full_filename)
+                if success:
+                    metadata["inference"] = inference
 
         return self.save_metadata()
 
