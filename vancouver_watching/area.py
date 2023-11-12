@@ -110,13 +110,14 @@ class Area(object):
                     metadata["inference"] = inference
                     list_of_images += [inference.get("render_filename", "")]
 
-        generate_animated_gif(
+        if not self.save_metadata():
+            return False
+
+        return generate_animated_gif(
             [filename for filename in list_of_images if filename],
             os.path.join(self.object_path, f"{self.object_name}.gif"),
             frame_duration=500,
         )
-
-        return self.save_metadata()
 
     def ingest(
         self,
