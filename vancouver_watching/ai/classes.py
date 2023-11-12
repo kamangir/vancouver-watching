@@ -60,6 +60,8 @@ class Ultralytics_API(object):
         if self.do_dryrun:
             return {}
 
+        logger.info("{}.infer({})".format(self.__class__.__name__, image_filename))
+
         with open(image_filename, "rb") as f:
             response = requests.post(
                 self.url,
