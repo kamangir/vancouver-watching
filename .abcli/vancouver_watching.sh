@@ -34,6 +34,12 @@ function vancouver_watching() {
         return
     fi
 
+    if [ "$task" == "pytest" ]; then
+        abcli_pytest plugin=Vancouver-Watching,$2 \
+            "${@:3}"
+        return
+    fi
+
     if [ "$task" == "version" ]; then
         abcli_log "🌈 $(python3 -m vancouver_watching version --show_description 1)${@:2}"
         return

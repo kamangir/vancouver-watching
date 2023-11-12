@@ -24,6 +24,7 @@ function vancouver_watching_conda() {
         pip3 install tqdm
         pip3 install requests
         pip3 install opencv-python
+        pip3 install pytest
 
         if [ "$abcli_is_mac" == true ]; then
             pip3 install folium
