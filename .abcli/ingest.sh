@@ -56,5 +56,8 @@ function vancouver_watching_ingest() {
         abcli_upload object $object_name
 
     [[ "$do_process" == 1 ]] &&
-        vancouver_watching_process "$@"
+        vancouver_watching_process \
+            "$options" \
+            "$object_name" \
+            "${@:3}"
 }
