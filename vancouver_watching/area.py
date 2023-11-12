@@ -1,8 +1,10 @@
 import os
 import os.path
+from typing import List
 import re
 from collections import Counter
 from tqdm import tqdm
+from abcli.plugins.graphics.gif import generate_animated_gif
 from vancouver_watching.ai.classes import Ultralytics_API
 from abcli import file, path
 from abcli import logging
@@ -89,6 +91,7 @@ class Area(object):
             self.verbose,
         )
 
+        list_of_images: List[str] = []
         for mapid in tqdm(self.metadata):
             for filename, metadata in self.metadata[mapid]["cameras"].items():
                 full_filename = os.path.join(self.object_path, filename)
@@ -105,6 +108,12 @@ class Area(object):
                 success, inference = ultralytics_api.infer(full_filename)
                 if success:
                     metadata["inference"] = inference
+                    list_of_images += inference.get("render_filename", "")
+
+        generate_animated_gif(
+            [filename for filename in list_of_images if filename],
+            os.path.join(self.object_path, "objects.gif"),
+        )
 
         return self.save_metadata()
 

@@ -100,10 +100,12 @@ class Ultralytics_API(object):
         logger.info(summary)
 
         if self.render_inference:
+            render_filename = file.add_postfix(
+                file.set_extension(image_filename, "jpg"), "inference"
+            )
+
             file.save_image(
-                file.add_postfix(
-                    file.set_extension(image_filename, "jpg"), "inference"
-                ),
+                render_filename,
                 self.render(
                     image=file.load_image(image_filename)[1].copy(),
                     inference=response_dict,
@@ -119,6 +121,8 @@ class Ultralytics_API(object):
                 ),
                 log=True,
             )
+
+            response_dict["render_filename"] = render_filename
 
         return True, response_dict
 
