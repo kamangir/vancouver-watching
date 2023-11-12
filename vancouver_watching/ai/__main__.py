@@ -53,7 +53,7 @@ if args.task == "process":
     success = area.valid
 
     if success:
-        area.detect_objects(
+        success = area.detect_objects(
             model_id=args.model_id,
             overwrite=args.overwrite,
         )
