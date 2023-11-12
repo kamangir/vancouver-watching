@@ -1,6 +1,7 @@
 import os
 import os.path
 import re
+from collections import Counter
 from tqdm import tqdm
 from vancouver_watching.ai.classes import Ultralytics_API
 from abcli import file, path
@@ -147,5 +148,38 @@ class Area(object):
 
         return output
 
+    def save_gdf(self):
+        return file.save_geojson(self.map_filename, self.gdf, log=True)
+
     def save_metadata(self):
         return file.save_json(self.metadata_filename, self.metadata, log=True)
+
+    def summarize(self):
+        all_things = {}
+        for mapid in tqdm(self.metadata):
+            detections = {}
+            for metadata in self.metadata[mapid]["cameras"].values():
+                if not "inference" in metadata:
+                    continue
+
+                for thing, count in Counter(
+                    [thing["name"] for thing in metadata["inference"]["data"]]
+                ).items():
+                    detections[thing] = detections.get(thing, 0) + count
+
+            for thing, count in detections.items():
+                all_things[thing] = all_things.get(thing, 0) + count
+
+                if thing not in self.gdf.columns:
+                    self.gdf[thing] = 0
+                    logger.info("+= {}".format(thing))
+
+                self.gdf.loc[self.gdf["mapid"] == mapid, thing] += count
+
+        logger.info(
+            ", ".join(
+                ["{}: {}".format(thing, count) for thing, count in all_things.items()]
+            )
+        )
+
+        return self.save_gdf()
