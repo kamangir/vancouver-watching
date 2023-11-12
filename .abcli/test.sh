@@ -33,7 +33,7 @@ function vancouver_watching_test() {
     fi
 
     if [ "$test_process" == 1 ]; then
-        local ingest_object_name=$(abcli_timestamp)
+        local ingest_object_name=$(abcli_string_timestamp)
 
         abcli_eval dryrun=$do_dryrun \
             vanwatch ingest \
