@@ -113,7 +113,7 @@ class Area(object):
         generate_animated_gif(
             [filename for filename in list_of_images if filename],
             os.path.join(self.object_path, f"{self.object_name}.gif"),
-            frame_duration=250,
+            frame_duration=500,
         )
 
         return self.save_metadata()
