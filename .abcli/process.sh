@@ -7,7 +7,7 @@ function vancouver_watching_process() {
     local options=$1
 
     if [ $(abcli_option_int "$options" help 0) == 1 ]; then
-        local options="~download,model=<model-id>,publish,~upload"
+        local options="~download,gif,model=<model-id>,publish,~upload"
         abcli_show_usage "vanwatch process$ABCUL[$options]$ABCUL[.|<object-name>]$ABCUL[<args>]" \
             "process <object-name>."
         return
@@ -32,6 +32,7 @@ function vancouver_watching_process() {
     python3 -m vancouver_watching.ai \
         process \
         --do_dryrun $do_dryrun \
+        --generate_animated_gif $(abcli_option_int "$options" gif 0) \
         --model_id $model_id \
         --geojson $abcli_object_root/$object_name/$area.geojson \
         "${@:3}"
