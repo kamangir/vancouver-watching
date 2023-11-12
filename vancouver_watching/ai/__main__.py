@@ -57,7 +57,6 @@ if args.task == "process":
             model_id=args.model_id,
             overwrite=args.overwrite,
         )
-
 else:
     logger.error(f"-{NAME}: {args.task}: command not found.")
 

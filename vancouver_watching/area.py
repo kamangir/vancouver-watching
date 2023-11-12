@@ -148,4 +148,4 @@ class Area(object):
         return output
 
     def save_metadata(self):
-        file.save_json(self.metadata_filename, self.metadata, log=True)
+        return file.save_json(self.metadata_filename, self.metadata, log=True)
