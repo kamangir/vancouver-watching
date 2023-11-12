@@ -1,7 +1,7 @@
 import argparse
 from vancouver_watching import VERSION
-from vancouver_watching.discover import (
-    NAME,
+from vancouver_watching.discover import NAME
+from vancouver_watching.discover.functions import (
     discover_cameras_vancouver_style,
     get_list_of_areas,
 )

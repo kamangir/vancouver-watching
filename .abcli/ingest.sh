@@ -18,7 +18,6 @@ function vancouver_watching_ingest() {
     local area=$(abcli_option "$options" area vancouver)
     local count=$(abcli_option_int "$options" count -1)
     local do_dryrun=$(abcli_option_int "$options" dryrun 0)
-    local model_id=$(abcli_option "$options" model $vancouver_watching_default_model)
     local do_process=$(abcli_option_int "$options" process 1)
     local do_upload=$(abcli_option_int "$options" upload $(abcli_not $do_dryrun))
 
@@ -43,10 +42,9 @@ function vancouver_watching_ingest() {
         $object_path/
 
     python3 -m vancouver_watching.ingest \
-        from_cameras \
         --count $count \
         --do_dryrun $do_dryrun \
-        --filename $object_path/$area.geojson \
+        --geojson $object_path/$area.geojson \
         "${@:3}"
 
     abcli_tag set \
@@ -54,15 +52,9 @@ function vancouver_watching_ingest() {
         $area,vancouver_watching,ingest
     abcli_cache write $object_name.area $area
 
-    [[ "$do_process" == 1 ]] &&
-        python3 -m vancouver_watching.ai \
-            process \
-            --area $area \
-            --model_id $model_id \
-            --object_path $abcli_object_root/$object_name \
-            --do_dryrun $do_dryrun \
-            "${@:3}"
-
     [[ "$do_upload" == 1 ]] &&
         abcli_upload object $object_name
+
+    [[ "$do_process" == 1 ]] &&
+        vancouver_watching_process "$@"
 }

@@ -30,10 +30,9 @@ function vancouver_watching_process() {
 
     python3 -m vancouver_watching.ai \
         process \
-        --area $area \
-        --model_id $model_id \
-        --object_path $abcli_object_root/$object_name \
         --do_dryrun $do_dryrun \
+        --model_id $model_id \
+        --geojson $abcli_object_root/$object_name/$area.geojson \
         "${@:3}"
 
     [[ "$do_upload" == 1 ]] &&

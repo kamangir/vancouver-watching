@@ -1,6 +1,7 @@
 import argparse
 from vancouver_watching import VERSION
-from vancouver_watching.ai import NAME, process
+from vancouver_watching.area import Area
+from vancouver_watching.ai import NAME
 from abcli import logging
 import logging
 
@@ -13,12 +14,7 @@ parser.add_argument(
     help="process",
 )
 parser.add_argument(
-    "--area",
-    type=str,
-    default="",
-)
-parser.add_argument(
-    "--object_path",
+    "--geojson",
     type=str,
     default="",
 )
@@ -35,6 +31,12 @@ parser.add_argument(
     help="0|1",
 )
 parser.add_argument(
+    "--overwrite",
+    type=int,
+    default=0,
+    help="0|1",
+)
+parser.add_argument(
     "--model_id",
     type=str,
     default="",
@@ -43,13 +45,19 @@ args = parser.parse_args()
 
 success = False
 if args.task == "process":
-    success = process(
-        area=args.area,
-        model_id=args.model_id,
-        object_path=args.object_path,
+    area = Area(
+        args.geojson,
         do_dryrun=args.do_dryrun,
         verbose=args.verbose,
     )
+    success = area.valid
+
+    if success:
+        area.detect_objects(
+            model_id=args.model_id,
+            overwrite=args.overwrite,
+        )
+
 else:
     logger.error(f"-{NAME}: {args.task}: command not found.")
 

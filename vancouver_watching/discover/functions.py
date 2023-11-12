@@ -76,21 +76,3 @@ def get_list_of_areas():
             )
         )
     ]
-
-
-def get_list_of_cameras(filename, log=True):
-    import geopandas
-
-    gdf = geopandas.read_file(filename)
-
-    if "cameras" not in gdf.columns:
-        return False, []
-
-    output = [
-        camera for camera in (",".join(list(gdf["cameras"]))).split(",") if camera
-    ]
-
-    if log:
-        logger.info(f"found {len(output)} camera(s)")
-
-    return True, output

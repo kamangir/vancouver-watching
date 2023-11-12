@@ -25,6 +25,11 @@ function vancouver_watching_conda() {
         pip3 install requests
         pip3 install opencv-python
 
+        if [ "$abcli_is_mac" == true ]; then
+            pip3 install folium
+            pip3 install boto3
+        fi
+
         [[ "$do_validate" == 1 ]] && vancouver_watching_conda validate
 
         return

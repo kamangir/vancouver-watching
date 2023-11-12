@@ -154,7 +154,7 @@ class Ultralytics_API(object):
             image,
             header=header,
             footer=[
-                list(thing)
+                " | ".join(thing)
                 for thing in np.array_split(
                     [f"{NAME}-{VERSION}"] + host_signature(),
                     2,
