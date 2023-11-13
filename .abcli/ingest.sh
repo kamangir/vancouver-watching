@@ -5,7 +5,7 @@ function vancouver_watching_ingest() {
 
     if [ $(abcli_option_int "$options" help 0) == 1 ]; then
         local options="area=<area>,count=<-1>,dryrun,gif,model=<model-id>,~process,publish,~upload"
-        local args="<args>"
+        local args="[<args>]"
         abcli_show_usage "vanwatch ingest$ABCUL[$options]$ABCUL[-|<object-name>]$ABCUL$args" \
             "ingest <area> -> <object-name>."
 
