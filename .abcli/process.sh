@@ -41,5 +41,5 @@ function vancouver_watching_process() {
         abcli_upload object $object_name
 
     [[ "$do_publish" == 1 ]] &&
-        abcli_tag set $object_name published
+        abcli_publish - $object_name
 }
