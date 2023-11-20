@@ -48,7 +48,7 @@ function vancouver_watching() {
         local options=$2
 
         if [ $(abcli_option_int "$options" help 0) == 1 ]; then
-            local options="area=<area>,push,rm"
+            local options="area=<area>,process,push,rm"
             abcli_show_usage "vanwatch update_QGIS [$options]" \
                 "update <area> in QGIS."
             return
@@ -56,6 +56,7 @@ function vancouver_watching() {
 
         local area=$(abcli_option "$options" area vancouver)
         local do_rm=$(abcli_option_int "$options" rm 0)
+        local do_process=$(abcli_option_int "$options" process 0)
         local do_push=$(abcli_option_int "$options" push 0)
 
         [[ "$do_rm" == 1 ]] &&
@@ -67,7 +68,11 @@ function vancouver_watching() {
             --log 0 \
             --delim space); do
 
-            abcli_download object $object_name $area.geojson
+            if [[ "$do_process" == 1 ]]; then
+                vancouver_watching_process publish $object_name
+            else
+                abcli_download object $object_name $area.geojson
+            fi
 
             cp -v \
                 $abcli_object_root/$object_name/$area.geojson \
