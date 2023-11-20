@@ -5,10 +5,10 @@
 
 ```bash
  > vanwatch help
-🌈 vancouver_watching-3.149.1
+🌈 vancouver_watching-3.155.1
 🌈 bird watching in downtown Vancouver with AI.
 
-vanwatch conda create_env [validate]
+vanwatch conda create_env [validate,~recreate]
  . create conda environment.
 vanwatch conda validate
  . validate conda environment.
@@ -20,9 +20,13 @@ vanwatch discover \
 vanwatch ingest \
 	[area=<area>,count=<-1>,dryrun,gif,model=<model-id>,~process,publish,~upload] \
 	[-|<object-name>] \
-	<args>
+	[<args>]
  . ingest <area> -> <object-name>.
-vanwatch list [area=<area>,discovery|ingest]
+vanwatch list [area=<area>,discovery|ingest,published] \
+	[--count <count>] \
+	[--delim space] \
+	[--log 0] \
+	[--offset <offset>]
  . list objects from area.
 2 area(s): iran,vancouver
 vanwatch list areas
