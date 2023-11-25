@@ -18,6 +18,8 @@ function vancouver_watching() {
 
         vancouver_watching update_QGIS "$@"
 
+        vancouver_watching_openai_vision "$@"
+
         vancouver_watching_test "$@"
 
         if [ "$(abcli_keyword_is $2 verbose)" == true ]; then

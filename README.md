@@ -1,11 +1,11 @@
 # Vancouver Watching (`vanwatch`) 🌈
 
-`vanwatch` 🌈 discovers and ingests images from traffic cameras in an area and then runs [YOLO 🚀](https://github.com/ultralytics/ultralytics) and other vision algo to extract information about urban activity at scale. 
+`vanwatch` 🌈 discovers and ingests images from traffic cameras in an area and then runs [YOLO 🚀](https://github.com/ultralytics/ultralytics), [OpenAI Vision](https://github.com/kamangir/openai#vision), and other vision algo to extract information about urban activity at scale. 
 
 
 ```bash
  > vanwatch help
-🌈 vancouver_watching-3.155.1
+🌈 vancouver_watching-3.161.1
 🌈 bird watching in downtown Vancouver with AI.
 
 vanwatch conda create_env [validate,~recreate]
@@ -36,8 +36,13 @@ vanwatch process \
 	[.|<object-name>] \
 	[<args>]
  . process <object-name>.
-vanwatch update_QGIS [area=<area>,push]
+vanwatch update_QGIS [area=<area>,process,push,rm]
  . update <area> in QGIS.
+vanwatch vision "prompt" \
+	[area=<area>,offset=<1>,auto|low|high,dryrun,~upload] \
+	Davie,Bute \
+	[--verbose 1]
+ . openai vision: prompt @ <area>/intersection.
 vancouver_watching test \
 	[dryrun,~ingest,~list,~process,upload]
  . test vancouver_watching.
@@ -66,11 +71,11 @@ You have generated a `geojson` of [traffic images in the City of Vancouver](./da
 vanwatch ingest area=vancouver,count=2,publish
 ```
 
-![image](./assets/georgiaE-inference.jpg)
+![image](https://github.com/kamangir/assets/blob/main/vanwatch/2023-11-25-openai-vision/DavieWestBute-inference.jpg?raw=true)
 
 model: https://hub.ultralytics.com/models/R6nMlK6kQjSsQ76MPqQM?tab=preview
 
-[![image](./assets/QGIS.png)](./QGIS/vancouver-2023-11-12-12-03-40-85851.geojson)
+[![image](https://github.com/kamangir/assets/blob/main/vanwatch/2023-11-25-openai-vision/QGIS.png?raw=true)](./QGIS/vancouver-2023-11-12-12-03-40-85851.geojson)
 
 ![image](https://github.com/kamangir/assets/blob/main/vanwatch/2023-11-12-14-42-23-96479.gif?raw=true?raw=1)
 
