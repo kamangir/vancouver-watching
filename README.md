@@ -75,7 +75,7 @@ vanwatch ingest area=vancouver,count=2,publish
 
 model: https://hub.ultralytics.com/models/R6nMlK6kQjSsQ76MPqQM?tab=preview
 
-[![image](https://github.com/kamangir/assets/blob/main/vanwatch/2023-11-25-openai-vision/QGIS.png?raw=true)](./QGIS/vancouver-2023-11-12-12-03-40-85851.geojson)
+[![image](https://github.com/kamangir/assets/blob/main/vanwatch/2023-11-25-openai-vision/QGIS.png?raw=true)](./QGIS/2023-11-12-12-03-40-85851.geojson)
 
 ![image](https://github.com/kamangir/assets/blob/main/vanwatch/2023-11-12-14-42-23-96479.gif?raw=true?raw=1)
 
