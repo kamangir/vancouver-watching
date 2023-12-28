@@ -53,7 +53,7 @@ function vancouver_watching_ingest() {
     abcli_cache write $object_name.area $area
 
     [[ "$do_upload" == 1 ]] &&
-        abcli_upload object $object_name
+        abcli_upload - $object_name
 
     [[ "$do_process" == 1 ]] &&
         vancouver_watching_process \

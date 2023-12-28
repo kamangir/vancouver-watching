@@ -32,7 +32,7 @@ function vancouver_watching_discover() {
         $object_name \
         $area,vancouver_watching,discovery
 
-    abcli_upload object $object_name
+    abcli_upload - $object_name
 }
 
 abcli_source_path \

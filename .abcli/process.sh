@@ -38,7 +38,7 @@ function vancouver_watching_process() {
         "${@:3}"
 
     [[ "$do_upload" == 1 ]] &&
-        abcli_upload object $object_name
+        abcli_upload - $object_name
 
     [[ "$do_publish" == 1 ]] &&
         abcli_publish - $object_name
