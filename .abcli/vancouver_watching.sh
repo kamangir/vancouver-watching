@@ -8,8 +8,6 @@ function vancouver_watching() {
     local task=$(abcli_unpack_keyword $1 help)
 
     if [ $task == "help" ]; then
-        vancouver_watching version \\n
-
         vancouver_watching_conda "$@"
         vancouver_watching_discover "$@"
         vancouver_watching_ingest "$@"
@@ -96,7 +94,7 @@ function vancouver_watching() {
     fi
 
     if [ "$task" == "version" ]; then
-        abcli_log "🌈 $(python3 -m vancouver_watching version --show_description 1)${@:2}"
+        python3 -m vancouver_watching version "${@:2}"
         return
     fi
 
