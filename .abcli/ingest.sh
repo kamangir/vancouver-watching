@@ -35,7 +35,7 @@ function vancouver_watching_ingest() {
         return 1
     fi
 
-    abcli_download object $discovery_object
+    abcli_download - $discovery_object
 
     cp -v \
         $abcli_object_root/$discovery_object/$area.geojson \

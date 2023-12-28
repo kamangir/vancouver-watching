@@ -73,7 +73,9 @@ function vancouver_watching() {
             if [[ "$do_process" == 1 ]]; then
                 vancouver_watching_process publish $object_name
             else
-                abcli_download object $object_name $area.geojson
+                abcli_download \
+                    filename=$area.geojson \
+                    $object_name
             fi
 
             cp -v \

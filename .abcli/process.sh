@@ -21,7 +21,7 @@ function vancouver_watching_process() {
 
     local object_name=$(abcli_clarify_object $2 .)
     [[ "$do_download" == 1 ]] &&
-        abcli_download object $object_name
+        abcli_download - $object_name
 
     local area=$(abcli_cache read $object_name.area)
     if [[ -z "$area" ]]; then
