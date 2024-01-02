@@ -1,5 +1,6 @@
 import argparse
 from vancouver_watching import NAME, VERSION, DESCRIPTION
+from vancouver_watching.QGIS import update_cache
 from abcli import logging
 import logging
 
@@ -9,7 +10,7 @@ parser = argparse.ArgumentParser(NAME, description=f"{NAME}-{VERSION}")
 parser.add_argument(
     "task",
     type=str,
-    help="version",
+    help="update_cache|version",
 )
 parser.add_argument(
     "--show_description",
@@ -20,7 +21,9 @@ parser.add_argument(
 args = parser.parse_args()
 
 success = False
-if args.task == "version":
+if args.task == "update_cache":
+    success = update_cache()
+elif args.task == "version":
     print(
         "{}-{}{}".format(
             NAME,
