@@ -1,7 +1,6 @@
 # Vancouver Watching (`vanwatch`) 🌈
 
-`vanwatch` 🌈 discovers and ingests images from traffic cameras in an area and then runs [YOLO 🚀](https://github.com/ultralytics/ultralytics), [OpenAI Vision](https://github.com/kamangir/openai#vision), and other vision algo to extract information about urban activity at scale. 
-
+`vanwatch` 🌈 discovers and ingests images from traffic cameras in an area and then runs [YOLO 🚀](https://github.com/ultralytics/ultralytics), [OpenAI Vision](https://github.com/kamangir/openai#vision), and other vision algo to extract information about urban activity at scale.
 
 ```bash
  > vanwatch help
@@ -36,8 +35,8 @@ vanwatch process \
 	[.|<object-name>] \
 	[<args>]
  . process <object-name>.
-vanwatch update_QGIS [area=<area>,process,push,rm]
- . update <area> in QGIS.
+vanwatch update|update_cache [area=<area>,process,push,rm]
+ . update <area> in QGIS cache.
 vanwatch vision "prompt" \
 	[area=<area>,offset=<1>,auto|low|high,dryrun,~upload] \
 	Davie,Bute \
@@ -51,7 +50,6 @@ vancouver_watching test \
 ## Discover and Ingest an Area
 
 ![image](https://user-images.githubusercontent.com/1007567/196573547-b1c71b3b-7fac-4d2c-bba0-a87b063830da.png)
-
 
 To see the list of areas supported by `vanwatch` type in,
 

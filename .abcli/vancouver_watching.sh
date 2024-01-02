@@ -14,7 +14,7 @@ function vancouver_watching() {
         vancouver_watching_list "$@"
         vancouver_watching_process "$@"
 
-        vancouver_watching update_QGIS "$@"
+        vancouver_watching update_cache "$@"
 
         vancouver_watching_openai_vision "$@"
 
@@ -44,13 +44,13 @@ function vancouver_watching() {
         return
     fi
 
-    if [ "$task" == "update_QGIS" ]; then
+    if [[ ",update,update_cache," == *",$task,"* ]]; then
         local options=$2
 
         if [ $(abcli_option_int "$options" help 0) == 1 ]; then
             local options="area=<area>,process,push,rm"
-            abcli_show_usage "vanwatch update_QGIS [$options]" \
-                "update <area> in QGIS."
+            abcli_show_usage "vanwatch update|update_cache [$options]" \
+                "update <area> in QGIS cache."
             return
         fi
 
