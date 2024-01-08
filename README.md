@@ -77,6 +77,10 @@ model: https://hub.ultralytics.com/models/R6nMlK6kQjSsQ76MPqQM?tab=preview
 
 ![image](https://github.com/kamangir/assets/blob/main/vanwatch/2023-11-12-14-42-23-96479.gif?raw=true?raw=1)
 
+![image](https://github.com/kamangir/assets/blob/main/vanwatch/2024-01-06-20-39-46-73614-QGIS.gif?raw=true?raw=1)
+
+dataset: [vanwatch-cache-2024-01-07-16-18-26-91017.tar.gz](https://kamangir-public.s3.ca-central-1.amazonaws.com/vanwatch-cache-2024-01-07-16-18-26-91017.tar.gz)
+
 ---
 
 To use on [AWS SageMaker](https://aws.amazon.com/sagemaker/) replace `<plugin-name>` with `vanwatch` and follow [these instructions](https://github.com/kamangir/blue-plugin/blob/main/SageMaker.md).
