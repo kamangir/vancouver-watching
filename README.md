@@ -4,9 +4,6 @@
 
 ```bash
  > vanwatch help
-🌈 vancouver_watching-3.161.1
-🌈 bird watching in downtown Vancouver with AI.
-
 vanwatch conda create_env [validate,~recreate]
  . create conda environment.
 vanwatch conda validate
@@ -30,18 +27,19 @@ vanwatch list [area=<area>,discovery|ingest,published] \
 2 area(s): iran,vancouver
 vanwatch list areas
  . list areas.
-vanwatch process \
-	[~download,gif,model=<model-id>,publish,~upload] \
-	[.|<object-name>] \
-	[<args>]
- . process <object-name>.
-vanwatch update|update_cache [area=<area>,process,push,rm]
- . update <area> in QGIS cache.
 vanwatch vision "prompt" \
 	[area=<area>,offset=<1>,auto|low|high,dryrun,~upload] \
 	Davie,Bute \
 	[--verbose 1]
  . openai vision: prompt @ <area>/intersection.
+vanwatch process \
+	[~download,gif,model=<model-id>,publish,~upload] \
+	[.|<object-name>] \
+	[<args>]
+ . process <object-name>.
+vanwatch update|update_cache \
+	[area=<vancouver>,overwrite,process,~publish,refresh,~upload]
+ . update QGIS cache.
 vancouver_watching test \
 	[dryrun,~ingest,~list,~process,upload]
  . test vancouver_watching.
