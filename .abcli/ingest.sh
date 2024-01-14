@@ -1,12 +1,12 @@
 #! /usr/bin/env bash
 
+export vancouver_watching_ingest_options="area=<area>,count=<-1>$EOP,dryrun,gif,model=<model-id>,~process,publish,~upload$EOPE"
+
 function vancouver_watching_ingest() {
     local options=$1
 
     if [ $(abcli_option_int "$options" help 0) == 1 ]; then
-        local options="area=<area>,count=<-1>,dryrun,gif,model=<model-id>,~process,publish,~upload"
-        local args="[<args>]"
-        abcli_show_usage "vanwatch ingest$ABCUL[$options]$ABCUL[-|<object-name>]$ABCUL$args" \
+        abcli_show_usage "vanwatch ingest$ABCUL$vancouver_watching_ingest_options$EOP$ABCUL-|<object-name>$EARGS" \
             "ingest <area> -> <object-name>."
 
         if [ "$(abcli_keyword_is $2 verbose)" == true ]; then
