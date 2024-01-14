@@ -9,7 +9,7 @@ function vancouver_watching_process() {
     local options=$1
 
     if [ $(abcli_option_int "$options" help 0) == 1 ]; then
-        abcli_show_usage "vanwatch process$ABCUL[$vancouver_watching_process_options]$ABCUL[.|<object-name>]$ABCUL[<args>]" \
+        abcli_show_usage "vanwatch process$ABCUL$EOP[$vancouver_watching_process_options]$ABCUL[.|<object-name>]$ABCUL[<args>]$EOPE" \
             "process <object-name>."
         return
     fi
