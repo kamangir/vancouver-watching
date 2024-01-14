@@ -84,8 +84,19 @@ class Area(object):
         self,
         model_id: str,
         animated_gif: bool = False,
+        count: int = -1,
         overwrite: bool = False,
     ) -> bool:
+        logger.info(
+            "{}.detect_objects({},model_id{},count={}{})".format(
+                self.__class__.__name__,
+                model_id,
+                ",animated_gif" if animated_gif else "",
+                count,
+                ",overwrite" if overwrite else "",
+            )
+        )
+
         ultralytics_api = Ultralytics_API(
             model_id,
             self.do_dryrun,
@@ -93,6 +104,7 @@ class Area(object):
         )
 
         list_of_images: List[str] = []
+        counter: int = 0
         for mapid in tqdm(self.metadata):
             for filename, metadata in self.metadata[mapid]["cameras"].items():
                 full_filename = os.path.join(self.object_path, filename)
@@ -110,6 +122,12 @@ class Area(object):
                 if success:
                     metadata["inference"] = inference
                     list_of_images += [inference.get("render_filename", "")]
+
+                    counter += 1
+                    if count != -1 and counter >= count:
+                        break
+            if count != -1 and counter >= count:
+                break
 
         if not self.save_metadata():
             return False

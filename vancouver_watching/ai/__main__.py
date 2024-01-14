@@ -19,6 +19,12 @@ parser.add_argument(
     default="",
 )
 parser.add_argument(
+    "--count",
+    type=int,
+    default=-1,
+    help="-1: all",
+)
+parser.add_argument(
     "--do_dryrun",
     type=int,
     default=0,
@@ -62,6 +68,7 @@ if args.task == "process":
         success = area.detect_objects(
             model_id=args.model_id,
             animated_gif=args.animated_gif,
+            count=args.count,
             overwrite=args.overwrite,
         )
 
