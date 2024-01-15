@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-export vancouver_watching_ingest_options="area=<area>,count=<-1>$EOP,dryrun,gif,model=<model-id>,~process,publish,~upload$EOPE"
+export vancouver_watching_ingest_options="area=<area>,count=<count>$EOP,dryrun,gif,model=<model-id>,~process,publish,~upload$EOPE"
 
 function vancouver_watching_ingest() {
     local options=$1
