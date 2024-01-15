@@ -3,13 +3,13 @@
 # https://hub.ultralytics.com/models/R6nMlK6kQjSsQ76MPqQM?tab=preview
 export vancouver_watching_default_model="R6nMlK6kQjSsQ76MPqQM"
 
-export vancouver_watching_process_options="count=<count>,~download,gif,model=<model-id>,publish,~upload"
+export vancouver_watching_process_options="${EOP}count=<count>,~download,gif,model=<model-id>,${EOPE}publish$EOP,~upload$EOPE"
 
 function vancouver_watching_process() {
     local options=$1
 
     if [ $(abcli_option_int "$options" help 0) == 1 ]; then
-        abcli_show_usage "vanwatch process$ABCUL$EOP[$vancouver_watching_process_options]$ABCUL[.|<object-name>]$ABCUL[<args>]$EOPE" \
+        abcli_show_usage "vanwatch process$ABCUL$vancouver_watching_process_options$ABCUL$EOP.|<object-name>$ABCULEARGS" \
             "process <object-name>."
         return
     fi
