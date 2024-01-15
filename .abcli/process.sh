@@ -3,12 +3,13 @@
 # https://hub.ultralytics.com/models/R6nMlK6kQjSsQ76MPqQM?tab=preview
 export vancouver_watching_default_model="R6nMlK6kQjSsQ76MPqQM"
 
+export vancouver_watching_process_options="${EOP}count=<count>,~download,gif,model=<model-id>,${EOPE}publish$EOP,~upload$EOPE"
+
 function vancouver_watching_process() {
     local options=$1
 
     if [ $(abcli_option_int "$options" help 0) == 1 ]; then
-        export vancouver_watching_process_options="~download,gif,model=<model-id>,publish,~upload"
-        abcli_show_usage "vanwatch process$ABCUL[$vancouver_watching_process_options]$ABCUL[.|<object-name>]$ABCUL[<args>]" \
+        abcli_show_usage "vanwatch process$ABCUL$vancouver_watching_process_options$ABCUL$EOP.|<object-name>$ABCULEARGS" \
             "process <object-name>."
         return
     fi
@@ -33,6 +34,7 @@ function vancouver_watching_process() {
         process \
         --do_dryrun $do_dryrun \
         --animated_gif $(abcli_option_int "$options" gif 0) \
+        --count $(abcli_option "$options" count -1) \
         --model_id $model_id \
         --geojson $abcli_object_root/$object_name/$area.geojson \
         "${@:3}"

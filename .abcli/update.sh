@@ -9,7 +9,7 @@ function vancouver_watching_update_cache() {
 
     if [ $(abcli_option_int "$options" help 0) == 1 ]; then
         local options="area=<vancouver>,overwrite,process,~publish,refresh,~upload"
-        abcli_show_usage "vanwatch update|update_cache$ABCUL$EOP[$options]$EOPE" \
+        abcli_show_usage "vanwatch update|update_cache$ABCUL$EOP$options$EOPE" \
             "update QGIS cache."
         return
     fi
