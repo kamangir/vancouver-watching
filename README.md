@@ -1,6 +1,6 @@
 # Vancouver Watching (`vanwatch`) 🌈
 
-`vanwatch` 🌈 discovers and ingests images from traffic cameras in an area and then runs [YOLO 🚀](https://github.com/ultralytics/ultralytics), [OpenAI Vision](https://github.com/kamangir/openai#vision), and other vision algo to extract information about urban activity at scale.
+`vanwatch` 🌈 discovers and ingests images from traffic cameras in an area and then runs [YOLO 🚀](https://github.com/ultralytics/ultralytics), [OpenAI Vision](https://github.com/kamangir/openai#vision), and other vision algo to extract information about urban activity at scale. Also see [`@vanwatch`](https://github.com/kamangir/notebooks-and-scripts/tree/main/scripts#@vanwatch).
 
 ```bash
  > vanwatch help
