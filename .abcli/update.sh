@@ -8,8 +8,9 @@ function vancouver_watching_update_cache() {
     local options=$1
 
     if [ $(abcli_option_int "$options" help 0) == 1 ]; then
+        local args="[--verbose 1]"
         local options="area=<vancouver>,overwrite,process,~publish,refresh,~upload"
-        abcli_show_usage "vanwatch update|update_cache$ABCUL$EOP$options$EOPE" \
+        abcli_show_usage "vanwatch update|update_cache$ABCUL$EOP$options$ABCUL$args$EOPE" \
             "update QGIS cache."
         return
     fi
@@ -57,7 +58,8 @@ function vancouver_watching_update_cache() {
     abcli_eval - \
         python3 -m vancouver_watching \
         update_cache \
-        --object_name $object_name
+        --object_name $object_name \
+        "${@:2}"
 
     [[ "$do_upload" == 1 ]] &&
         abcli_upload - $object_name

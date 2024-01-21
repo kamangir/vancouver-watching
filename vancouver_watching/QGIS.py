@@ -1,5 +1,6 @@
 import os
 import glob
+from abcli import file
 from abcli.modules import objects
 from abcli import logging
 import logging
@@ -19,11 +20,25 @@ def label_of_camera(
     )
 
 
-def update_cache(object_name: str = ".") -> bool:
+def update_cache(
+    object_name: str = ".",
+    verbose: bool = False,
+) -> bool:
     logger.info(f"update_cache({object_name})")
 
     object_path = objects.object_path(object_name, create=True)
 
-    for filename in glob.glob(os.path.join(object_path, "*.geojson")):
-        logger.info(f"🌀 {filename}")
+    published_object_name = sorted(
+        [
+            file.name(filename)
+            for filename in glob.glob(os.path.join(object_path, "*.geojson"))
+        ]
+    )
+    logger.info(
+        "🌀 {} geojson(s) found{}".format(
+            len(published_object_name),
+            ": {}".format(", ".join(published_object_name)) if verbose else ".",
+        )
+    )
+
     return True

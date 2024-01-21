@@ -13,21 +13,30 @@ parser.add_argument(
     help="update_cache|version",
 )
 parser.add_argument(
+    "--object_name",
+    type=str,
+    default=".",
+)
+parser.add_argument(
     "--show_description",
     type=bool,
     default=0,
     help="0|1",
 )
 parser.add_argument(
-    "--object_name",
-    type=str,
-    default=".",
+    "--verbose",
+    type=bool,
+    default=0,
+    help="0|1",
 )
 args = parser.parse_args()
 
 success = False
 if args.task == "update_cache":
-    success = update_cache(args.object_name)
+    success = update_cache(
+        object_name=args.object_name,
+        verbose=args.verbose,
+    )
 elif args.task == "version":
     print(
         "{}-{}{}".format(
