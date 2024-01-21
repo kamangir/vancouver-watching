@@ -18,11 +18,16 @@ parser.add_argument(
     default=0,
     help="0|1",
 )
+parser.add_argument(
+    "--object_name",
+    type=str,
+    default=".",
+)
 args = parser.parse_args()
 
 success = False
 if args.task == "update_cache":
-    success = update_cache()
+    success = update_cache(args.object_name)
 elif args.task == "version":
     print(
         "{}-{}{}".format(

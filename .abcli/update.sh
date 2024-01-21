@@ -56,7 +56,8 @@ function vancouver_watching_update_cache() {
 
     abcli_eval - \
         python3 -m vancouver_watching \
-        update_cache
+        update_cache \
+        --object_name $object_name
 
     [[ "$do_upload" == 1 ]] &&
         abcli_upload - $object_name
