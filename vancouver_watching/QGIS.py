@@ -52,6 +52,17 @@ def update_cache(
 
     print(acquisition_day)
 
+    for object_name in published_object_name:
+        filename = os.path.join(object_path, f"{object_name}.geojson")
+        logger.info(f"🌀 {filename}")
+
+        success, gdf = file.load_geodataframe(filename)
+        if not success:
+            continue
+
+        print(gdf.columns)
+        break
+
     # TODO: acquisition count per day
 
     # TODO: object count per day
