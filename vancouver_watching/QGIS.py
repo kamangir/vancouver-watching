@@ -1,4 +1,5 @@
 import os
+from datetime import datetime
 import glob
 from abcli import file
 from abcli.modules import objects
@@ -40,5 +41,19 @@ def update_cache(
             ": {}".format(", ".join(published_object_name)) if verbose else ".",
         )
     )
+
+    acquisition_day = {
+        object_name: datetime.strptime(
+            "-".join(object_name.split("-")[:6]),
+            "%Y-%m-%d-%H-%M-%S",
+        )
+        for object_name in published_object_name
+    }
+
+    print(acquisition_day)
+
+    # TODO: acquisition count per day
+
+    # TODO: object count per day
 
     return True
