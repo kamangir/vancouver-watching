@@ -170,11 +170,5 @@ class Ultralytics_API(object):
         return add_signature(
             image,
             header=header,
-            footer=[
-                " | ".join(thing)
-                for thing in np.array_split(
-                    [f"{NAME}-{VERSION}"] + host_signature(),
-                    2,
-                )
-            ],
+            footer=[f"{NAME}-{VERSION}"] + host_signature(),
         )
