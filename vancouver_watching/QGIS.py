@@ -26,9 +26,10 @@ def label_of_camera(
 
 def update_cache(
     object_name: str = ".",
+    category_count: int = 10,
     verbose: bool = False,
 ) -> Tuple[bool, pd.DataFrame]:
-    logger.info(f"update_cache({object_name})")
+    logger.info(f"update_cache({object_name} @ {category_count})")
 
     object_path = objects.object_path(object_name, create=True)
 
@@ -81,8 +82,23 @@ def update_cache(
 
             df.loc[df["object_name"] == object_name_, thing] = np.sum(gdf[thing].values)
 
-    # remove rare objects
+    list_of_things = [item for item in df.columns if item != "object_name"]
+    total_counts = {thing: np.sum(df[thing].values) for thing in list_of_things}
+    list_of_counts = [total_counts[thing] for thing in list_of_things]
+    top_things = [
+        thing for count, thing in reversed(sorted(zip(list_of_counts, list_of_things)))
+    ][:category_count]
+    for index, thing in enumerate(top_things):
+        logger.info(
+            "#{}- {}: {:,g}".format(
+                index,
+                thing,
+                total_counts[thing],
+            )
+        )
 
     # TODO: visualize object count per acquisition
+
+    # TODO: save metadata
 
     return True, df
