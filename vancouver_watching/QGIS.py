@@ -2,6 +2,7 @@ import os
 import numpy as np
 from datetime import datetime
 from typing import Tuple
+from abcli.plugins.metadata import post as post_metadata, MetadataSourceType
 import pandas as pd
 import glob
 from abcli import file
@@ -65,6 +66,7 @@ def update_cache(
         if not success:
             continue
 
+        added_things = []
         for thing in gdf.columns:
             if thing in [
                 "mapid",
@@ -79,14 +81,29 @@ def update_cache(
 
             if thing not in list(df.columns):
                 df[thing] = 0
+                added_things += [thing]
 
             df.loc[df["object_name"] == object_name_, thing] = np.sum(gdf[thing].values)
+        if added_things:
+            logger.info(
+                "+= {} thing(s): {}".format(
+                    len(added_things),
+                    ", ".join(added_things),
+                )
+            )
 
     list_of_things = [item for item in df.columns if item != "object_name"]
-    total_counts = {thing: np.sum(df[thing].values) for thing in list_of_things}
-    list_of_counts = [total_counts[thing] for thing in list_of_things]
+    total_counts = {thing: int(np.sum(df[thing].values)) for thing in list_of_things}
     top_things = [
-        thing for count, thing in reversed(sorted(zip(list_of_counts, list_of_things)))
+        thing
+        for _, thing in reversed(
+            sorted(
+                zip(
+                    [total_counts[thing] for thing in list_of_things],
+                    list_of_things,
+                )
+            )
+        )
     ][:category_count]
     for index, thing in enumerate(top_things):
         logger.info(
@@ -101,4 +118,14 @@ def update_cache(
 
     # TODO: save metadata
 
-    return True, df
+    return (
+        post_metadata(
+            "cache",
+            {
+                "top_things": {thing: total_counts[thing] for thing in top_things},
+            },
+            source=object_name,
+            source_type=MetadataSourceType.OBJECT,
+        ),
+        df,
+    )

@@ -19,13 +19,13 @@ parser.add_argument(
 )
 parser.add_argument(
     "--show_description",
-    type=bool,
+    type=int,
     default=0,
     help="0|1",
 )
 parser.add_argument(
     "--verbose",
-    type=bool,
+    type=int,
     default=0,
     help="0|1",
 )
