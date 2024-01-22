@@ -116,8 +116,6 @@ def update_cache(
 
     # TODO: visualize object count per acquisition
 
-    # TODO: save metadata
-
     return (
         post_metadata(
             "cache",
@@ -126,6 +124,11 @@ def update_cache(
             },
             source=object_name,
             source_type=MetadataSourceType.OBJECT,
+        )
+        and file.save_csv(
+            os.path.join(object_path, "counts.csv"),
+            df,
+            log=True,
         ),
         df,
     )
