@@ -1,6 +1,7 @@
 import os
 import numpy as np
 from datetime import datetime
+from tqdm import tqdm
 from typing import Tuple
 import matplotlib.pyplot as plt
 from abcli.plugins.metadata import post as post_metadata, MetadataSourceType
@@ -51,9 +52,10 @@ def update_cache(
     df = pd.DataFrame(
         [{"object_name": object_name_} for object_name_ in published_object_name]
     )
-    for object_name_ in published_object_name:
+    for object_name_ in tqdm(published_object_name):
         filename = os.path.join(object_path, f"{object_name_}.geojson")
-        logger.info(f"🌀 {filename}")
+        if verbose:
+            logger.info(f"🌀 {filename}")
 
         success, gdf = file.load_geodataframe(filename)
         if not success:
@@ -77,7 +79,7 @@ def update_cache(
                 added_things += [thing]
 
             df.loc[df["object_name"] == object_name_, thing] = np.sum(gdf[thing].values)
-        if added_things:
+        if added_things and verbose:
             logger.info(
                 "+= {} thing(s): {}".format(
                     len(added_things),
@@ -116,34 +118,13 @@ def update_cache(
     }
 
     plt.figure(figsize=(15, 5))
-    df_things = pd.DataFrame(
-        [
-            {
-                "thing": thing,
-                "mean": 0.0,
-                "std": 0.0,
-            }
-            for thing in top_things
-        ]
-    )
     for thing in top_things:
-        thing_counts = df[thing].values
-
-        thing_mean = np.mean(thing_counts)
-        thing_std = np.std(thing_counts)
-
-        df_things.loc[df_things["thing"] == thing, "mean"] = thing_mean
-        df_things.loc[df_things["thing"] == thing, "std"] = thing_std
-
         plt.plot(
             dates.keys(),
-            (thing_counts - thing_mean) / thing_std,
-            label="{} - mean:{:.2f}, std:{:.2f}".format(
-                thing,
-                thing_mean,
-                thing_std,
-            ),
+            df[thing].values,
+            label=thing,
         )
+
     plt.xlabel("acquisition date")
     plt.ylabel("normalized count")
     plt.grid(True)
@@ -165,11 +146,6 @@ def update_cache(
         and file.save_csv(
             os.path.join(object_path, "counts.csv"),
             df,
-            log=True,
-        )
-        and file.save_csv(
-            os.path.join(object_path, "things.csv"),
-            df_things,
             log=True,
         ),
         df,
