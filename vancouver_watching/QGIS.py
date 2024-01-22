@@ -2,6 +2,7 @@ import os
 import numpy as np
 from datetime import datetime
 from typing import Tuple
+import matplotlib.pyplot as plt
 from abcli.plugins.metadata import post as post_metadata, MetadataSourceType
 import pandas as pd
 import glob
@@ -46,14 +47,6 @@ def update_cache(
             ": {}".format(", ".join(published_object_name)) if verbose else ".",
         )
     )
-
-    dates = {
-        object_name: datetime.strptime(
-            "-".join(object_name.split("-")[:6]),
-            "%Y-%m-%d-%H-%M-%S",
-        )
-        for object_name in published_object_name
-    }
 
     df = pd.DataFrame(
         [{"object_name": object_name_} for object_name_ in published_object_name]
@@ -114,7 +107,49 @@ def update_cache(
             )
         )
 
-    # TODO: visualize object count per acquisition
+    dates = {
+        object_name: datetime.strptime(
+            "-".join(object_name.split("-")[:6]),
+            "%Y-%m-%d-%H-%M-%S",
+        )
+        for object_name in published_object_name
+    }
+
+    plt.figure(figsize=(15, 5))
+    df_things = pd.DataFrame(
+        [
+            {
+                "thing": thing,
+                "mean": 0.0,
+                "std": 0.0,
+            }
+            for thing in top_things
+        ]
+    )
+    for thing in top_things:
+        thing_counts = df[thing].values
+
+        thing_mean = np.mean(thing_counts)
+        thing_std = np.std(thing_counts)
+
+        df_things.loc[df_things["thing"] == thing, "mean"] = thing_mean
+        df_things.loc[df_things["thing"] == thing, "std"] = thing_std
+
+        plt.plot(
+            dates.keys(),
+            (thing_counts - thing_mean) / thing_std,
+            label="{} - mean:{:.2f}, std:{:.2f}".format(
+                thing,
+                thing_mean,
+                thing_std,
+            ),
+        )
+    plt.xlabel("acquisition date")
+    plt.ylabel("normalized count")
+    plt.grid(True)
+    plt.title(object_name)
+    plt.legend()
+    file.save_fig(os.path.join(object_path, "counts.png"), log=True)
 
     return (
         post_metadata(
@@ -125,10 +160,16 @@ def update_cache(
             },
             source=object_name,
             source_type=MetadataSourceType.OBJECT,
+            verbose=verbose,
         )
         and file.save_csv(
             os.path.join(object_path, "counts.csv"),
             df,
+            log=True,
+        )
+        and file.save_csv(
+            os.path.join(object_path, "things.csv"),
+            df_things,
             log=True,
         ),
         df,
