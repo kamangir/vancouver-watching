@@ -120,13 +120,13 @@ def update_cache(
     plt.figure(figsize=(15, 5))
     for thing in top_things:
         plt.semilogy(
-            dates.keys(),
+            dates.values(),
             df[thing].values,
             label=thing,
         )
 
     plt.xlabel("acquisition date")
-    plt.ylabel("normalized count")
+    plt.ylabel("count")
     plt.grid(True)
     plt.title(object_name)
     plt.legend()
