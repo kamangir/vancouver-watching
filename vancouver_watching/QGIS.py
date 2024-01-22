@@ -119,7 +119,7 @@ def update_cache(
 
     plt.figure(figsize=(15, 5))
     for thing in top_things:
-        plt.plot(
+        plt.semilogy(
             dates.keys(),
             df[thing].values,
             label=thing,
