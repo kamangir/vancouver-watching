@@ -1,4 +1,5 @@
 import os
+import numpy as np
 from datetime import datetime
 from typing import Tuple
 import pandas as pd
@@ -53,12 +54,8 @@ def update_cache(
     }
 
     df = pd.DataFrame(
-        [
-            {"object_name": object_name_, "total": 0}
-            for object_name_ in published_object_name
-        ]
+        [{"object_name": object_name_} for object_name_ in published_object_name]
     )
-
     for object_name_ in published_object_name:
         filename = os.path.join(object_path, f"{object_name_}.geojson")
         logger.info(f"🌀 {filename}")
@@ -67,11 +64,8 @@ def update_cache(
         if not success:
             continue
 
-        detected_things = [
-            item
-            for item in gdf.columns
-            if item
-            not in [
+        for thing in gdf.columns:
+            if thing in [
                 "mapid",
                 "url",
                 "name",
@@ -79,16 +73,16 @@ def update_cache(
                 "cameras",
                 "label",
                 "geometry",
-            ]
-            + list(df.columns)
-        ]
-        for thing in detected_things:
-            if verbose:
-                logger.info(f"+= {thing}")
-            df[thing] = 0
+            ]:
+                continue
 
-        break
+            if thing not in list(df.columns):
+                df[thing] = 0
 
-    # TODO: object count per acquisition
+            df.loc[df["object_name"] == object_name_, thing] = np.sum(gdf[thing].values)
+
+    # remove rare objects
+
+    # TODO: visualize object count per acquisition
 
     return True, df
