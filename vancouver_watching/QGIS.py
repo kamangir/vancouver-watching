@@ -120,7 +120,8 @@ def update_cache(
         post_metadata(
             "cache",
             {
-                "top_things": {thing: total_counts[thing] for thing in top_things},
+                "counts": total_counts,
+                "published_object_name": published_object_name,
             },
             source=object_name,
             source_type=MetadataSourceType.OBJECT,
