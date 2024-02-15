@@ -129,7 +129,7 @@ def update_cache(
     plt.ylabel("count")
     plt.grid(True)
     plt.title(object_name)
-    plt.legend()
+    plt.legend(loc="upper left", bbox_to_anchor=(1, 1))
     file.save_fig(os.path.join(object_path, "counts.png"), log=True)
 
     return (
