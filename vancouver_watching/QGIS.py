@@ -122,7 +122,7 @@ def update_cache(
         plt.semilogy(
             dates.values(),
             df[thing].values,
-            label=thing,
+            label=f"{thing}: {total_counts[thing]:,g}",
         )
 
     plt.xlabel("acquisition date")
