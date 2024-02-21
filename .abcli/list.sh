@@ -1,11 +1,12 @@
 #! /usr/bin/env bash
 
+export vancouver_watching_list_options="area=<area>,discovery|ingest,published"
+
 function vancouver_watching_list() {
     local options=$1
 
     if [ $(abcli_option_int "$options" help 0) == 1 ]; then
-        local options="area=<area>,discovery|ingest,published"
-        abcli_show_usage "vanwatch list [$options]$ABCUL$abcli_tag_search_args" \
+        abcli_show_usage "vanwatch list [$vancouver_watching_list_options]$ABCUL$abcli_tag_search_args" \
             "list objects from area."
 
         abcli_log_list "$(vancouver_watching_list_of_areas)" , "area(s)"
