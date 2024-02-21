@@ -4,6 +4,8 @@ from datetime import datetime
 from tqdm import tqdm
 from typing import Tuple
 import matplotlib.pyplot as plt
+from vancouver_watching import NAME, VERSION
+from abcli import fullname
 from abcli.plugins.metadata import post as post_metadata, MetadataSourceType
 import pandas as pd
 import glob
@@ -125,10 +127,24 @@ def update_cache(
             label=f"{thing}: {total_counts[thing]:,g}",
         )
 
-    plt.xlabel("acquisition date")
+    plt.xlabel(
+        " | ".join(
+            [
+                f"{len(published_object_name)} acquisition(s)",
+                f"{NAME}-{VERSION}",
+                fullname(),
+            ]
+        )
+    )
     plt.ylabel("count")
     plt.grid(True)
-    plt.title(object_name)
+    plt.title(
+        " | ".join(
+            [
+                object_name,
+            ]
+        )
+    )
     plt.legend(loc="upper left", bbox_to_anchor=(1, 1))
     file.save_fig(os.path.join(object_path, "counts.png"), log=True)
 
