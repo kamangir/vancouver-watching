@@ -14,6 +14,7 @@ function vancouver_watching() {
         vancouver_watching_list "$@"
         vancouver_watching_openai_vision "$@"
         vancouver_watching_process "$@"
+        vancouver_watching pylint "$@"
         vancouver_watching_update_cache "$@"
         vancouver_watching_test "$@"
 
@@ -31,6 +32,19 @@ function vancouver_watching() {
     if [ "$task" == "init" ]; then
         abcli_init Vancouver_Watching "${@:2}"
         conda activate Vancouver-Watching
+        return
+    fi
+
+    if [ "$task" == "pylint" ]; then
+        pip3 install pylint
+
+        pushd $abcli_path_git/vancouver-watching >/dev/null
+        pylint \
+            -d $abcli_pylint_ignored \
+            $(git ls-files '*.py') \
+            "${@:2}"
+        popd >/dev/null
+
         return
     fi
 
