@@ -13,7 +13,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-class Area(object):
+class Area:
     def __init__(
         self,
         map_filename: str,
@@ -168,7 +168,7 @@ class Area(object):
         import folium
 
         if self.gdf.empty:
-            return
+            return None
 
         output = folium.Map(
             location=self.gdf.unary_union.centroid.coords[0][::-1],

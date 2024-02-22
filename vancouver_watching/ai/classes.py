@@ -17,7 +17,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-class Ultralytics_API(object):
+class Ultralytics_API:
     def __init__(
         self,
         model_id: str,
