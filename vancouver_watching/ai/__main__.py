@@ -49,6 +49,12 @@ parser.add_argument(
     help="0|1",
 )
 parser.add_argument(
+    "--detect_objects",
+    type=int,
+    default=1,
+    help="0|1",
+)
+parser.add_argument(
     "--model_id",
     type=str,
     default="",
@@ -64,7 +70,7 @@ if args.task == "process":
     )
     success = area.valid
 
-    if success:
+    if success and args.detect_objects:
         success = area.detect_objects(
             model_id=args.model_id,
             animated_gif=args.animated_gif,

@@ -4,12 +4,13 @@
 export vancouver_watching_default_model="R6nMlK6kQjSsQ76MPqQM"
 
 export vancouver_watching_process_options="${EOP}count=<count>,~download,gif,model=<model-id>,${EOPE}publish$EOP,~upload$EOPE"
+export vancouver_watching_process_args="[--detect_objects 0]$ABCUL[--do_dryrun 1]$ABCUL[--overwrite 1]$ABCUL[--verbose 1]"
 
 function vancouver_watching_process() {
     local options=$1
 
     if [ $(abcli_option_int "$options" help 0) == 1 ]; then
-        abcli_show_usage "vanwatch process$ABCUL$vancouver_watching_process_options$ABCUL$EOP.|<object-name>$ABCULEARGS" \
+        abcli_show_usage "vanwatch process$ABCUL$vancouver_watching_process_options$ABCUL$EOP.|<object-name>$ABCUL$vancouver_watching_process_args" \
             "process <object-name>."
         return
     fi
