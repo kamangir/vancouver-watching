@@ -14,8 +14,8 @@ vanwatch discover \
 	[<args>]
  . discover area -> <object-name>.
 vanwatch ingest \
-	[area=<area>,count=<-1>,dryrun,gif,model=<model-id>,~process,publish,~upload] \
-	[-|<object-name>] \
+	area=<area>,count=<count>,dryrun,gif,model=<model-id>,~process,publish,~upload \
+	-|<object-name> \
 	[<args>]
  . ingest <area> -> <object-name>.
 vanwatch list [area=<area>,discovery|ingest,published] \
@@ -33,12 +33,18 @@ vanwatch vision "prompt" \
 	[--verbose 1]
  . openai vision: prompt @ <area>/intersection.
 vanwatch process \
-	[~download,gif,model=<model-id>,publish,~upload] \
-	[.|<object-name>] \
-	[<args>]
+	count=<count>,~download,gif,model=<model-id>,publish,~upload \
+	.|<object-name> \
+	[--detect_objects 0] \
+	[--do_dryrun 1] \
+	[--overwrite 1] \
+	[--verbose 1]
  . process <object-name>.
+vanwatch pylint
+ . pylint vancouver_watching.
 vanwatch update|update_cache \
-	[area=<vancouver>,overwrite,process,~publish,refresh,~upload]
+	area=<vancouver>,overwrite,process,~publish,refresh,~upload \
+	[--verbose 1]
  . update QGIS cache.
 vancouver_watching test \
 	[dryrun,~ingest,~list,~process,upload]
