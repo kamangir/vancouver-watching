@@ -4,13 +4,10 @@ from typing import List
 import re
 from collections import Counter
 from tqdm import tqdm
+from abcli import file, path
 from abcli.plugins.graphics.gif import generate_animated_gif
 from vancouver_watching.ai.classes import Ultralytics_API
-from abcli import file, path
-from abcli import logging
-import logging
-
-logger = logging.getLogger(__name__)
+from vancouver_watching.logger import logger
 
 
 class Area:

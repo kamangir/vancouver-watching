@@ -2,10 +2,8 @@ import argparse
 from vancouver_watching import VERSION
 from vancouver_watching.area import Area
 from vancouver_watching.ingest import NAME
-from abcli import logging
-import logging
+from vancouver_watching.logger import logger
 
-logger = logging.getLogger(__name__)
 
 parser = argparse.ArgumentParser(NAME, description=f"{NAME}-{VERSION}")
 parser.add_argument(

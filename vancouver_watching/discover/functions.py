@@ -2,11 +2,8 @@ import os
 import requests
 from tqdm import tqdm
 from abcli import file
-from . import NAME
-from abcli import logging
-import logging
-
-logger = logging.getLogger(__name__)
+from vancouver_watching import NAME
+from vancouver_watching.logger import logger
 
 
 def discover_cameras_vancouver_style(filename, prefix):

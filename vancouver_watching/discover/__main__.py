@@ -5,10 +5,8 @@ from vancouver_watching.discover.functions import (
     discover_cameras_vancouver_style,
     get_list_of_areas,
 )
-from abcli import logging
-import logging
+from vancouver_watching.logger import logger
 
-logger = logging.getLogger(__name__)
 
 parser = argparse.ArgumentParser(NAME, description=f"{NAME}-{VERSION}")
 parser.add_argument(

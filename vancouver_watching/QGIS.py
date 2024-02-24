@@ -4,17 +4,14 @@ from datetime import datetime
 from tqdm import tqdm
 from typing import Tuple
 import matplotlib.pyplot as plt
-from vancouver_watching import NAME, VERSION
-from abcli import fullname
-from abcli.plugins.metadata import post as post_metadata, MetadataSourceType
 import pandas as pd
 import glob
+from abcli import fullname
+from abcli.plugins.metadata import post as post_metadata, MetadataSourceType
 from abcli import file
 from abcli.modules import objects
-from abcli import logging
-import logging
-
-logger = logging.getLogger(__name__)
+from vancouver_watching import NAME, VERSION
+from vancouver_watching.logger import logger
 
 
 def label_of_camera(
@@ -34,7 +31,7 @@ def update_cache(
     category_count: int = 10,
     verbose: bool = False,
 ) -> Tuple[bool, pd.DataFrame]:
-    logger.info(f"update_cache({object_name} @ {category_count})")
+    logger.info(f"update_cache({object_name} @ {category_count} categories)")
 
     object_path = objects.object_path(object_name, create=True)
 
@@ -77,10 +74,12 @@ def update_cache(
                 continue
 
             if thing not in list(df.columns):
-                df[thing] = 0
+                df[thing] = 0.0
                 added_things += [thing]
 
-            df.loc[df["object_name"] == object_name_, thing] = np.sum(gdf[thing].values)
+            df.loc[df["object_name"] == object_name_, thing] = np.mean(
+                gdf[thing].values
+            )
         if added_things and verbose:
             logger.info(
                 "+= {} thing(s): {}".format(
@@ -90,13 +89,13 @@ def update_cache(
             )
 
     list_of_things = [item for item in df.columns if item != "object_name"]
-    total_counts = {thing: int(np.sum(df[thing].values)) for thing in list_of_things}
+    mean_counts = {thing: float(np.mean(df[thing].values)) for thing in list_of_things}
     top_things = [
         thing
         for _, thing in reversed(
             sorted(
                 zip(
-                    [total_counts[thing] for thing in list_of_things],
+                    [mean_counts[thing] for thing in list_of_things],
                     list_of_things,
                 )
             )
@@ -104,10 +103,10 @@ def update_cache(
     ][:category_count]
     for index, thing in enumerate(top_things):
         logger.info(
-            "#{}- {}: {:,g}".format(
-                index,
+            "#{} - {}: {:.2f} / intersection".format(
+                index + 1,
                 thing,
-                total_counts[thing],
+                mean_counts[thing],
             )
         )
 
@@ -124,7 +123,7 @@ def update_cache(
         plt.semilogy(
             dates.values(),
             df[thing].values,
-            label=f"{thing}: {total_counts[thing]:,g}",
+            label=f"{thing}: {mean_counts[thing]:.2f}",
         )
 
     plt.xlabel(
@@ -136,7 +135,7 @@ def update_cache(
             ]
         )
     )
-    plt.ylabel("count")
+    plt.ylabel("mean count / intersection")
     plt.grid(True)
     plt.title(
         " | ".join(
@@ -152,7 +151,7 @@ def update_cache(
         post_metadata(
             "cache",
             {
-                "counts": total_counts,
+                "mean_counts": mean_counts,
                 "published_object_name": published_object_name,
             },
             source=object_name,

@@ -1,10 +1,7 @@
 import argparse
 from vancouver_watching import NAME, VERSION, DESCRIPTION
+from vancouver_watching.logger import logger
 from vancouver_watching.QGIS import update_cache
-from abcli import logging
-import logging
-
-logger = logging.getLogger(__name__)
 
 parser = argparse.ArgumentParser(NAME, description=f"{NAME}-{VERSION}")
 parser.add_argument(

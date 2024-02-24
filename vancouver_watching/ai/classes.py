@@ -1,20 +1,16 @@
-import cv2
-from typing import Dict, Tuple, List
-import numpy as np
-from abcli import file, path
-from abcli.modules.cookie import cookie
-from abcli.plugins.graphics import add_signature
-from abcli.modules.objects import signature as object_signature
-from abcli.modules.host import signature as host_signature
-from vancouver_watching.ai import NAME
-from vancouver_watching import VERSION
 import requests
 from collections import Counter
 import json
-from abcli import logging
-import logging
-
-logger = logging.getLogger(__name__)
+import cv2
+from typing import Dict, Tuple, List
+from abcli import file, path
+from abcli.modules.cookie import cookie
+from abcli.plugins.graphics import add_signature
+from abcli.modules.host import signature as host_signature
+from abcli.modules.objects import signature as object_signature
+from vancouver_watching import VERSION
+from vancouver_watching.ai import NAME
+from vancouver_watching.logger import logger
 
 
 class Ultralytics_API:
