@@ -79,7 +79,7 @@ if args.task == "process":
     if success:
         success = area.summarize()
 else:
-    logger.error(f"-{NAME}: {args.task}: command not found.")
+    logger.error(f"{args.task}: command not found.")
 
 if not success:
-    logger.error(f"-{NAME}: {args.task}: failed.")
+    logger.error(f"{args.task}: failed.")

@@ -44,7 +44,7 @@ elif args.task == "version":
     )
     success = True
 else:
-    logger.error(f"-{NAME}: {args.task}: command not found.")
+    logger.error(f"{args.task}: command not found.")
 
 if not success:
-    logger.error(f"-{NAME}: {args.task}: failed.")
+    logger.error(f"{args.task}: failed.")

@@ -34,4 +34,4 @@ if success:
     success = area.ingest(count=args.count)
 
 if not success:
-    logger.error(f"-{NAME}: {args.task}: failed.")
+    logger.error(f"{args.task}: failed.")
