@@ -36,14 +36,13 @@ function vancouver_watching() {
     fi
 
     if [ "$task" == "pylint" ]; then
-        local task=$2
-        if [[ "$task" == "help" ]]; then
-            abcli_show_usage "vanwatch pylint" \
+        if [[ "$2" == "help" ]]; then
+            abcli_show_usage "vanwatch pylint <args>" \
                 "pylint vancouver_watching."
             return
         fi
 
-        pip3 install pylint
+        abcli_pip install pylint
 
         pushd $abcli_path_git/vancouver-watching >/dev/null
         pylint \
