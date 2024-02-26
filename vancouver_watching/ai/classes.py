@@ -28,7 +28,6 @@ class Ultralytics_API:
 
         self.timeout = None
 
-        # https://hub.ultralytics.com/models/R6nMlK6kQjSsQ76MPqQM?tab=preview
         self.url = f"https://api.ultralytics.com/v1/predict/{self.model_id}"
         logger.info(f"{self.__class__.__name__}.url: {self.url}")
 
