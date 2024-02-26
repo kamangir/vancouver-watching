@@ -25,15 +25,7 @@ function vancouver_watching_conda() {
 
         abcli_conda create_env name=$environment_name
 
-        pip3 install pymysql==0.10.1
-        pip3 install geojson
-        pip3 install beautifulsoup4
-        pip3 install geopandas
-        pip3 install tqdm
-        pip3 install requests
-        pip3 install opencv-python
-        pip3 install pytest
-        pip3 install matplotlib
+        pip3 install -r requirements.txt
 
         if [ "$abcli_is_mac" == true ]; then
             pip3 install folium

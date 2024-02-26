@@ -1,0 +1,9 @@
+pymysql==0.10.1
+geojson
+beautifulsoup4
+geopandas
+tqdm
+requests
+opencv-python
+pytest
+matplotlib
