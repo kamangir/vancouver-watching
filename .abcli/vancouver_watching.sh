@@ -15,6 +15,7 @@ function vancouver_watching() {
         vancouver_watching_openai_vision "$@"
         vancouver_watching_process "$@"
         vancouver_watching pylint "$@"
+        vancouver_watching pytest "$@"
         vancouver_watching_update_cache "$@"
         vancouver_watching_test "$@"
 
