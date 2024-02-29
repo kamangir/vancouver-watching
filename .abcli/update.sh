@@ -27,6 +27,10 @@ function vancouver_watching_update_cache() {
     if [[ -z "$object_name" ]] || [[ "$do_refresh" == 1 ]]; then
         object_name=vanwatch-cache-$(abcli_string_timestamp)
 
+        abcli_clone \
+            vanwatch-QGIS-template-v5 \
+            $object_name
+
         [[ "$do_dryrun" == 0 ]] &&
             abcli_cache write \
                 vanwatch.cache $object_name
