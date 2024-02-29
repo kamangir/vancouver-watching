@@ -9,25 +9,30 @@ function vancouver_watching_update_cache() {
 
     if [ $(abcli_option_int "$options" help 0) == 1 ]; then
         local args="[--verbose 1]"
-        local options="area=<vancouver>,overwrite,process,~publish,refresh,~upload"
+        local options="area=<vancouver>,dryrun,overwrite,process,~publish,refresh,~upload"
         abcli_show_usage "vanwatch update|update_cache$ABCUL$EOP$options$ABCUL$args$EOPE" \
             "update QGIS cache."
         return
     fi
 
     local area=$(abcli_option "$options" area vancouver)
+    local do_dryrun=$(abcli_option_int "$options" dryrun 0)
     local do_overwrite=$(abcli_option_int "$options" overwrite 0)
     local do_process=$(abcli_option_int "$options" process 0)
-    local do_publish=$(abcli_option_int "$options" publish 1)
+    local do_publish=$(abcli_option_int "$options" publish $(abcli_not $do_dryrun))
     local do_refresh=$(abcli_option_int "$options" refresh 0)
-    local do_upload=$(abcli_option_int "$options" upload 1)
+    local do_upload=$(abcli_option_int "$options" upload $(abcli_not $do_dryrun))
 
     local object_name=$(abcli_cache read vanwatch.cache)
     if [[ -z "$object_name" ]] || [[ "$do_refresh" == 1 ]]; then
         object_name=vanwatch-cache-$(abcli_string_timestamp)
-        abcli_cache write \
-            vanwatch.cache $object_name
+
+        [[ "$do_dryrun" == 0 ]] &&
+            abcli_cache write \
+                vanwatch.cache $object_name
     fi
+
+    abcli_log "cache: $object_name"
 
     local object_path=$abcli_object_root/$object_name
     mkdir -pv $object_path
@@ -41,6 +46,8 @@ function vancouver_watching_update_cache() {
         local local_filename=$object_path/$published_object_name.geojson
         abcli_log "🌀 $published_object_name"
         [[ -f "$local_filename" ]] && [[ "$do_overwrite" == 0 ]] && continue
+
+        [[ "$do_dryrun" == 1 ]] && continue
 
         if [[ "$do_process" == 1 ]]; then
             vancouver_watching_process publish $published_object_name
