@@ -7,3 +7,4 @@ requests
 opencv-python
 pytest
 matplotlib
+git+https://github.com/kamangir/awesome-bash-cli.git@current#egg=abcli
