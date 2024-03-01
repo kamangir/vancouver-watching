@@ -17,5 +17,5 @@ from vancouver_watching.ai.classes import Ultralytics_API
 def test_ultralytics_api(model_id, object_name, filename):
     ultralytics_api = Ultralytics_API(model_id)
 
-    success, _ = ultralytics_api.infer(objects.path_of(filename, object_name))
+    _, _ = ultralytics_api.infer(objects.path_of(filename, object_name))
     assert True  # success # Ultralytics API is unstable.
