@@ -1,5 +1,4 @@
 import pytest
-import abcli
 from abcli.modules import objects
 from vancouver_watching.ai import DEFAULT_MODEL, TEST_OBJECT
 from vancouver_watching.area import Area
