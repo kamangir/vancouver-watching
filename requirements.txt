@@ -7,5 +7,6 @@ matplotlib
 opencv-python
 pymysql==0.10.1
 pytest
+python-dotenv[cli]
 requests
 tqdm
