@@ -110,11 +110,17 @@ def update_cache(
             )
         )
 
+    def date_of_object(object_name: str) -> datetime:
+        try:
+            return datetime.strptime(
+                "-".join(object_name.split("-")[:6]),
+                "%Y-%m-%d-%H-%M-%S",
+            )
+        except:
+            return None
+
     dates = {
-        object_name: datetime.strptime(
-            "-".join(object_name.split("-")[:6]),
-            "%Y-%m-%d-%H-%M-%S",
-        )
+        object_name: date_of_object(object_name)
         for object_name in published_object_name
     }
 
