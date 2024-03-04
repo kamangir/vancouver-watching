@@ -1,5 +1,7 @@
 NAME = "vancouver_watching"
 
-VERSION = "3.283.1"
+ICON = "🌈"
 
-DESCRIPTION = "🌈 Vancouver Watching with AI."
+DESCRIPTION = f"{ICON} Vancouver Watching with AI."
+
+VERSION = "3.284.1"
