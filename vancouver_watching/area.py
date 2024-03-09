@@ -175,13 +175,13 @@ class Area:
 
         return output
 
-    def save_gdf(self):
+    def save_gdf(self) -> bool:
         return file.save_geojson(self.map_filename, self.gdf, log=True)
 
-    def save_metadata(self):
+    def save_metadata(self) -> bool:
         return file.save_json(self.metadata_filename, self.metadata, log=True)
 
-    def summarize(self):
+    def summarize(self) -> bool:
         all_things = {}
         for mapid in tqdm(self.metadata):
             detections = {}

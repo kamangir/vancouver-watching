@@ -1,7 +1,7 @@
 import os
 import requests
 from tqdm import tqdm
-from abcli import file
+from abcli import env, file
 from vancouver_watching import NAME
 from vancouver_watching.logger import logger
 
@@ -68,7 +68,7 @@ def get_list_of_areas():
         file.name(filename)
         for filename in file.list_of(
             os.path.join(
-                os.getenv("abcli_path_git", ""),
+                env.abcli_path_git,
                 "Vancouver-Watching/.abcli/discovery/*.sh",
             )
         )

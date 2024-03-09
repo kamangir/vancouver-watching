@@ -1,4 +1,4 @@
-from abcli import logging
-import logging
+from abcli.logger import logging
+from vancouver_watching import ICON
 
-logger = logging.getLogger("vanwatch")
+logger = logging.getLogger(f"{ICON} ")

@@ -3,8 +3,8 @@ from collections import Counter
 import json
 import cv2
 from typing import Dict, Tuple, List
+from abcli import env
 from abcli import file, path
-from abcli.modules.cookie import cookie
 from abcli.plugins.graphics import add_signature
 from abcli.modules.host import signature as host_signature
 from abcli.modules.objects import signature as object_signature
@@ -28,16 +28,13 @@ class Ultralytics_API:
 
         self.timeout = None
 
-        # https://hub.ultralytics.com/models/R6nMlK6kQjSsQ76MPqQM?tab=preview
         self.url = f"https://api.ultralytics.com/v1/predict/{self.model_id}"
         logger.info(f"{self.__class__.__name__}.url: {self.url}")
 
         self.valid = True
-        self.api_key = cookie.get("ultralytics.api.key", "")
+        self.api_key = env.abcli_ultralytics_api_key
         if not self.api_key:
-            logger.error(
-                'ultralytics.api.key not found, visit https://hub.ultralytics.com/settings?tab=api+keys, copy your API key, and then run "@cookie write ultralytics.api.key <api-key>."'
-            )
+            logger.error('abcli_ultralytics_api_key not found, update .env."')
             self.valid = False
 
         self.headers = {

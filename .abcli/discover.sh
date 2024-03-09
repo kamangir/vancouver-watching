@@ -36,5 +36,4 @@ function vancouver_watching_discover() {
 }
 
 abcli_source_path \
-    $abcli_path_git/Vancouver-Watching/.abcli/discovery \
-    log
+    $abcli_path_git/Vancouver-Watching/.abcli/discovery
