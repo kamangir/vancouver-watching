@@ -3,13 +3,13 @@ from collections import Counter
 import json
 import cv2
 from typing import Dict, Tuple, List
-from abcli import env
 from abcli import file, path
 from abcli.plugins.graphics import add_signature
 from abcli.modules.host import signature as host_signature
 from abcli.modules.objects import signature as object_signature
 from vancouver_watching import VERSION
 from vancouver_watching.ai import NAME
+from vancouver_watching import env
 from vancouver_watching.logger import logger
 
 
@@ -32,13 +32,12 @@ class Ultralytics_API:
         logger.info(f"{self.__class__.__name__}.url: {self.url}")
 
         self.valid = True
-        self.api_key = env.abcli_ultralytics_api_key
-        if not self.api_key:
-            logger.error('abcli_ultralytics_api_key not found, update .env."')
+        if not env.ULTRALYTICS_API_KEY:
+            logger.error('ULTRALYTICS_API_KEY not found, update .env."')
             self.valid = False
 
         self.headers = {
-            "x-api-key": self.api_key,
+            "x-api-key": env.ULTRALYTICS_API_KEY,
         }
         self.data = {
             "size": 640,
