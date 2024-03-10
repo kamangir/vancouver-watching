@@ -22,7 +22,7 @@ jobs:
         pip install -r requirements.txt
     - name: Run tests
       env: 
-        super_secret: ${{ secrets.ULTRALYTICS_API_KEY }}
+        ULTRALYTICS_API_KEY: ${{ secrets.ULTRALYTICS_API_KEY }}
       run: |
         echo "ULTRALYTICS_API_KEY: $ULTRALYTICS_API_KEY"
         pytest
