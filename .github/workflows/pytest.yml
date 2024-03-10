@@ -20,10 +20,11 @@ jobs:
         pip install -e .
         pip install pytest
         pip install -r requirements.txt
-    - name: Use ULTRALYTICS API Key
-      run: echo "Using ULTRALYTICS API Key"
+    - name: Secrets
+      run: echo "reading ULTRALYTICS_API_KEY"
       env:
         ULTRALYTICS_API_KEY: ${{ secrets.ULTRALYTICS_API_KEY }}
     - name: Run tests
       run: |
+        echo "ULTRALYTICS_API_KEY: $ULTRALYTICS_API_KEY"
         pytest
