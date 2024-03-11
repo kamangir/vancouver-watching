@@ -1,6 +1,6 @@
 import pytest
 from abcli.modules import objects
-from vancouver_watching.ai import DEFAULT_MODEL, TEST_OBJECT
+from vancouver_watching import env
 from vancouver_watching.area import Area
 
 
@@ -11,8 +11,8 @@ from vancouver_watching.area import Area
     ],
     [
         (
-            objects.path_of("vancouver.geojson", TEST_OBJECT),
-            DEFAULT_MODEL,
+            objects.path_of("vancouver.geojson", env.VANWATCH_TEST_OBJECT),
+            env.VANWATCH_DEFAULT_MODEL,
         ),
     ],
 )

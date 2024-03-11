@@ -4,3 +4,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 ULTRALYTICS_API_KEY = os.getenv("ULTRALYTICS_API_KEY", "")
+
+VANWATCH_DEFAULT_MODEL = os.getenv("VANWATCH_DEFAULT_MODEL", "")
+
+VANWATCH_TEST_OBJECT = os.getenv("VANWATCH_TEST_OBJECT", "")

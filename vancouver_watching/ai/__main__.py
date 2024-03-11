@@ -1,7 +1,7 @@
 import argparse
 from vancouver_watching import VERSION
 from vancouver_watching.area import Area
-from vancouver_watching.ai import NAME, DEFAULT_MODEL
+from vancouver_watching.ai import NAME
 from vancouver_watching.logger import logger
 
 
@@ -9,7 +9,7 @@ parser = argparse.ArgumentParser(NAME, description=f"{NAME}-{VERSION}")
 parser.add_argument(
     "task",
     type=str,
-    help="get_default_model|process",
+    help="process",
 )
 parser.add_argument(
     "--geojson",
@@ -60,10 +60,7 @@ parser.add_argument(
 args = parser.parse_args()
 
 success = False
-if args.task == "get_default_model":
-    success = True
-    print(DEFAULT_MODEL)
-elif args.task == "process":
+if args.task == "process":
     area = Area(
         args.geojson,
         do_dryrun=args.do_dryrun,

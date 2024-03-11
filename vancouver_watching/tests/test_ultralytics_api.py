@@ -1,6 +1,6 @@
 import pytest
 from abcli.modules import objects
-from vancouver_watching.ai import DEFAULT_MODEL, TEST_OBJECT
+from vancouver_watching import env
 from vancouver_watching.ai.classes import Ultralytics_API
 
 
@@ -8,8 +8,8 @@ from vancouver_watching.ai.classes import Ultralytics_API
     "model_id, object_name, filename",
     [
         (
-            DEFAULT_MODEL,
-            TEST_OBJECT,
+            env.VANWATCH_DEFAULT_MODEL,
+            env.VANWATCH_TEST_OBJECT,
             "Victoria41East.jpg",
         ),
     ],

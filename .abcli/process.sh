@@ -16,8 +16,7 @@ function vancouver_watching_process() {
     local do_download=$(abcli_option_int "$options" download $(abcli_not $do_dryrun))
     local do_upload=$(abcli_option_int "$options" upload $(abcli_not $do_dryrun))
     local do_publish=$(abcli_option_int "$options" publish 0)
-    local model_id=$(python3 -m vancouver_watching.ai get_default_model)
-    local model_id=$(abcli_option "$options" model $model_id)
+    local model_id=$(abcli_option "$options" model $VANWATCH_DEFAULT_MODEL)
 
     local object_name=$(abcli_clarify_object $2 .)
     [[ "$do_download" == 1 ]] &&
