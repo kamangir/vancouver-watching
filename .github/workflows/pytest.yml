@@ -45,4 +45,5 @@ jobs:
           echo "ABCLI_AWS_RDS_PASSWORD: $ABCLI_AWS_RDS_PASSWORD"
           echo "ABCLI_AWS_RDS_PORT: $ABCLI_AWS_RDS_PORT"
           echo "ABCLI_AWS_RDS_USER: $ABCLI_AWS_RDS_USER"
+          aws s3 ls
           pytest
