@@ -1,4 +1,5 @@
 import pytest
+from abcli import path, file
 from abcli.modules import objects
 from abcli.plugins.testing import download_object
 from vancouver_watching import env
@@ -22,6 +23,27 @@ def test_Area(
     model_id,
 ):
     assert download_object(object_name)
+
+    assert path.exist(objects.object_path(object_name))
+
+    list_of_files = [
+        file.name_and_extension(filename)
+        for filename in objects.list_of_files(object_name=object_name)
+    ]
+
+    assert "vancouver.json" in list_of_files, objects.path_of(
+        object_name=object_name,
+        filename="vancouver.json",
+    )
+
+    assert file.exist(
+        objects.path_of(
+            object_name=object_name,
+            filename="vancouver.json",
+        )
+    )
+
+    # ----
 
     geojson_filename = objects.path_of(
         object_name=object_name,
