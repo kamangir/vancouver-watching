@@ -1,8 +1,10 @@
 import os
 from dotenv import load_dotenv
 
-load_dotenv(".env")
-load_dotenv("config.env")
+parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+load_dotenv(os.path.join(parent_dir, ".env"))
+load_dotenv(os.path.join(parent_dir, "config.env"))
 
 ULTRALYTICS_API_KEY = os.getenv("ULTRALYTICS_API_KEY", "")
 
