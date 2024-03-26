@@ -12,7 +12,7 @@ function vancouver_watching() {
         vancouver_watching_discover "$@"
         vancouver_watching_ingest "$@"
         vancouver_watching_list "$@"
-        vancouver_watching_openai_vision "$@"
+        vancouver_watching_openai_cli_vision "$@"
         vancouver_watching_process "$@"
 
         local task
