@@ -124,7 +124,7 @@ class Ultralytics_API:
         self,
         image,
         inference,
-        header: List = [],
+        header: List[str] = [],
         fontFace=cv2.FONT_HERSHEY_SIMPLEX,
         fontScale=0.5,
     ):
@@ -162,5 +162,6 @@ class Ultralytics_API:
         return add_signature(
             image,
             header=header,
-            footer=[f"{NAME}-{VERSION}"] + host_signature(),
+            footer=[" | ".join([f"{NAME}-{VERSION}"] + host_signature())],
+            word_wrap=False,
         )
