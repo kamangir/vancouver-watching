@@ -4,4 +4,4 @@ ICON = "🌈"
 
 DESCRIPTION = f"{ICON} Vancouver Watching with AI."
 
-VERSION = "3.308.1"
+VERSION = "3.309.1"

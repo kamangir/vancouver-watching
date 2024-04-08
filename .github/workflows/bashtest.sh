@@ -22,7 +22,7 @@ function runme() {
 
     source $git_root/awesome-bash-cli/bash/abcli.sh ~terraform
 
-    blue_plugin test "$@"
+    vancouver_watching test "$@"
 
     return
 }
