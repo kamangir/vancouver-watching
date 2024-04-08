@@ -42,4 +42,5 @@ function vancouver_watching_conda() {
     fi
 
     abcli_log_error "-vancouver_watching: conda: $task: command not found."
+    return 1
 }
