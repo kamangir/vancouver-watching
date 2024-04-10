@@ -56,9 +56,9 @@ function vancouver_watching() {
 }
 
 abcli_source_path \
-    $abcli_path_git/vancouver-watching/.abcli/tests
+    $abcli_path_git/Vancouver-Watching/.abcli/tests
 
 abcli_env dot load \
-    plugin=vancouver_watching
+    plugin=Vancouver-Watching
 abcli_env dot load \
-    filename=config.env,plugin=vancouver_watching
+    filename=config.env,plugin=Vancouver-Watching
