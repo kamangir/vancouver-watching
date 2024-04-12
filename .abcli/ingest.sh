@@ -1,17 +1,29 @@
 #! /usr/bin/env bash
 
-export vancouver_watching_ingest_options="area=<area>,count=<count>$EOP,dryrun,gif,model=<model-id>,~process,publish,~upload$EOPE"
-
 function vancouver_watching_ingest() {
     local options=$1
 
     if [ $(abcli_option_int "$options" help 0) == 1 ]; then
-        abcli_show_usage "vanwatch ingest$ABCUL$vancouver_watching_ingest_options$EOP$ABCUL-|<object-name>$EARGS" \
+        local options="area=<vancouver>,~batch,count=<-1>$EOP,dryrun,gif,model=<model-id>,~process$EOPE,publish$EOP,~upload$EOPE"
+        abcli_show_usage "vanwatch ingest$ABCUL$options$EOP$ABCUL-|<object-name>$EARGS" \
             "ingest <area> -> <object-name>."
 
         if [ "$(abcli_keyword_is $2 verbose)" == true ]; then
             python3 -m vancouver_watching.ingest --help
         fi
+        return
+    fi
+
+    local on_batch=$(abcli_option_int "$options" batch 1)
+
+    local object_name=$(abcli_clarify_object $2 $(abcli_string_timestamp))
+
+    if [[ "$on_batch" == 1 ]]; then
+        abcli_aws_batch eval name=$object_name \
+            vancouver_watching_ingest \
+            "$options,~batch" \
+            $object_name \
+            "${@:3}"
         return
     fi
 
@@ -21,7 +33,6 @@ function vancouver_watching_ingest() {
     local do_process=$(abcli_option_int "$options" process 1)
     local do_upload=$(abcli_option_int "$options" upload $(abcli_not $do_dryrun))
 
-    local object_name=$(abcli_clarify_object $2 $(abcli_string_timestamp))
     local object_path=$abcli_object_root/$object_name
 
     local discovery_object=$(
@@ -60,4 +71,6 @@ function vancouver_watching_ingest() {
             "$options" \
             "$object_name" \
             "${@:3}"
+
+    return 0
 }
