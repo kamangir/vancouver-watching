@@ -83,7 +83,7 @@ model: https://hub.ultralytics.com/models/R6nMlK6kQjSsQ76MPqQM?tab=preview
 
 ![image](https://github.com/kamangir/assets/blob/main/vanwatch/2024-01-06-20-39-46-73614-QGIS.gif?raw=true?raw=1)
 
-dataset: [vanwatch-cache-2024-02-28-21-04-19-26236.tar.gz](https://kamangir-public.s3.ca-central-1.amazonaws.com/vanwatch-cache-2024-02-28-21-04-19-26236.tar.gz), ([details](https://medium.com/@arash-kamangir/vancouver-watching-with-ai-37-72b6a032b7fa)).
+dataset: [vanwatch-cache-2024-02-28-21-04-19-26236.tar.gz](https://kamangir-public.s3.ca-central-1.amazonaws.com/vanwatch-cache-2024-02-28-21-04-19-26236.tar.gz) ([details](https://medium.com/@arash-kamangir/vancouver-watching-with-ai-37-72b6a032b7fa)).
 
 ---
 
