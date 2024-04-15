@@ -8,4 +8,7 @@ setup(
     version=VERSION,
     description=DESCRIPTION,
     packages=[NAME],
+    package_data={
+        NAME: ["config.env"],
+    },
 )

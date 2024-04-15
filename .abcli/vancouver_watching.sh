@@ -61,4 +61,4 @@ abcli_source_path \
 abcli_env dot load \
     plugin=Vancouver-Watching
 abcli_env dot load \
-    filename=config.env,plugin=Vancouver-Watching
+    filename=vancouver_watching/config.env,plugin=Vancouver-Watching

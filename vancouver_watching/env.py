@@ -1,10 +1,8 @@
 import os
-from dotenv import load_dotenv
+from abcli.env import load_env, load_config
 
-parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-load_dotenv(os.path.join(parent_dir, ".env"))
-load_dotenv(os.path.join(parent_dir, "config.env"))
+load_env(__name__)
+load_config(__name__)
 
 ULTRALYTICS_API_KEY = os.getenv("ULTRALYTICS_API_KEY", "")
 
