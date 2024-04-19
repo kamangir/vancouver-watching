@@ -8,7 +8,7 @@ function test_vancouver_watching_process() {
 
     abcli_eval dryrun=$do_dryrun \
         vanwatch ingest \
-        area=vancouver,count=3,~process,$2 \
+        area=vancouver,~batch,count=3,~process,$2 \
         $ingest_object_name
 
     abcli_eval dryrun=$do_dryrun \
