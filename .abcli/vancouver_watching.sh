@@ -8,7 +8,6 @@ function vancouver_watching() {
     local task=$(abcli_unpack_keyword $1 help)
 
     if [ $task == "help" ]; then
-        vancouver_watching_conda "$@"
         vancouver_watching_discover "$@"
         vancouver_watching_ingest "$@"
         vancouver_watching_list "$@"
