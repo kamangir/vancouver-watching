@@ -4,7 +4,7 @@
 
 ```bash
  > vanwatch help
-vanwatch conda create_env [validate,~recreate]
+vanwatch conda create [validate,~recreate]
  . create conda environment.
 vanwatch conda validate
  . validate conda environment.

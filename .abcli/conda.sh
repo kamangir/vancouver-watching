@@ -4,14 +4,14 @@ function vancouver_watching_conda() {
     local task=$(abcli_unpack_keyword $1 help)
 
     if [ "$task" == "help" ]; then
-        abcli_show_usage "vanwatch conda create_env [validate,~recreate]" \
+        abcli_show_usage "vanwatch conda create [validate,~recreate]" \
             "create conda environment."
         abcli_show_usage "vanwatch conda validate" \
             "validate conda environment."
         return
     fi
 
-    if [ "$task" == "create_env" ]; then
+    if [ "$task" == "create" ]; then
         local options=$2
         local do_recreate=$(abcli_option_int "$options" recreate 1)
         local do_validate=$(abcli_option_int "$options" validate 0)
@@ -23,7 +23,7 @@ function vancouver_watching_conda() {
             return
         fi
 
-        abcli_conda create_env name=$environment_name
+        abcli_conda create name=$environment_name
 
         pip3 install -r requirements.txt
 
