@@ -2,9 +2,8 @@
 
 function test_vancouver_watching_ingest() {
     local options=$1
-    local do_dryrun=$(abcli_option_int "$options" dryrun 0)
 
-    abcli_eval dryrun=$do_dryrun \
+    abcli_eval $options, \
         vanwatch ingest \
         area=vancouver,count=3,~batch,$2 \
         "${@:3}"

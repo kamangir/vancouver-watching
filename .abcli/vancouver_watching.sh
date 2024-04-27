@@ -44,11 +44,6 @@ function vancouver_watching() {
         return
     fi
 
-    if [ "$task" == "version" ]; then
-        python3 -m vancouver_watching version "${@:2}"
-        return
-    fi
-
     python3 -m vancouver_watching \
         "$task" \
         "${@:2}"
@@ -61,3 +56,5 @@ abcli_env dot load \
     plugin=Vancouver-Watching
 abcli_env dot load \
     filename=vancouver_watching/config.env,plugin=Vancouver-Watching
+
+abcli_log $(vancouver_watching version --show_icon 1)

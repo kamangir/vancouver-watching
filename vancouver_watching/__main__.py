@@ -1,5 +1,5 @@
 import argparse
-from vancouver_watching import NAME, VERSION, DESCRIPTION
+from vancouver_watching import NAME, VERSION, DESCRIPTION, ICON
 from vancouver_watching.logger import logger
 from vancouver_watching.QGIS import update_cache
 
@@ -21,6 +21,12 @@ parser.add_argument(
     help="0|1",
 )
 parser.add_argument(
+    "--show_icon",
+    type=int,
+    default=0,
+    help="0|1",
+)
+parser.add_argument(
     "--verbose",
     type=int,
     default=0,
@@ -36,7 +42,8 @@ if args.task == "update_cache":
     )
 elif args.task == "version":
     print(
-        "{}-{}{}".format(
+        "{}{}-{}{}".format(
+            f"{ICON} " if args.show_icon else "",
             NAME,
             VERSION,
             "\\n{}".format(DESCRIPTION) if args.show_description else "",
