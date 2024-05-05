@@ -21,7 +21,7 @@ function vancouver_watching_ingest() {
     if [[ "$on_batch" == 1 ]]; then
         abcli_aws_batch eval name=$object_name \
             vancouver_watching_ingest \
-            "$options,~batch" \
+            ",$options,~batch" \
             $object_name \
             "${@:3}"
         return
