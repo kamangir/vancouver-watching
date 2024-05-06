@@ -42,4 +42,6 @@ function vancouver_watching_process() {
 
     [[ "$do_publish" == 1 ]] &&
         abcli_publish - $object_name
+
+    return 0
 }

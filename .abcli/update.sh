@@ -79,4 +79,6 @@ function vancouver_watching_update_cache() {
         abcli_publish \
             ~download,tar \
             $object_name
+
+    return 0
 }
