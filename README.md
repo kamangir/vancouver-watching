@@ -51,6 +51,14 @@ vancouver_watching test \
  . test vancouver_watching.
 ```
 
+---
+
+last build:
+
+![image](https://kamangir-public.s3.ca-central-1.amazonaws.com/test_vancouver_watching_ingest/animation.gif?raw=true)
+
+---
+
 ## Discover and Ingest an Area
 
 ![image](https://user-images.githubusercontent.com/1007567/196573547-b1c71b3b-7fac-4d2c-bba0-a87b063830da.png)
