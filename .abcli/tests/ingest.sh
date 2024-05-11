@@ -7,7 +7,7 @@ function test_vancouver_watching_ingest() {
 
     abcli_eval ,$options \
         vanwatch ingest \
-        area=vancouver,count=3,~batch,$2 \
+        area=vancouver,~batch,count=3,gif,$2 \
         $object_name \
         "${@:3}"
 
