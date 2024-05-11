@@ -11,6 +11,13 @@ function test_vancouver_watching_ingest() {
         $object_name \
         "${@:3}"
 
+    (
+        cd $abcli_object_root/$object_name
+        mv -v \
+            $object_name.gif \
+            animation.gif
+    )
+
     abcli_publish \
         as=test_vancouver_watching_ingest,~download,suffix=.gif \
         $object_name
