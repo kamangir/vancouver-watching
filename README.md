@@ -53,7 +53,7 @@ vancouver_watching test \
 
 ---
 
-last build:
+last build [🔗](https://kamangir-public.s3.ca-central-1.amazonaws.com/test_vancouver_watching_ingest/animation.gif):
 
 ![image](https://kamangir-public.s3.ca-central-1.amazonaws.com/test_vancouver_watching_ingest/animation.gif?raw=true)
 

@@ -1,4 +1,4 @@
-git+https://github.com/kamangir/awesome-bash-cli.git@current#egg=abcli
+abcli
 beautifulsoup4
 boto3
 folium
