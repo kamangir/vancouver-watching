@@ -1,17 +1,17 @@
 #! /usr/bin/env bash
 
 function vancouver_watching_vision() {
-    vancouver_watching_openai_cli_vision "$@"
+    vancouver_watching_openai_commands_vision "$@"
 }
 
-function vancouver_watching_openai_cli_vision() {
+function vancouver_watching_openai_commands_vision() {
     local prompt=$1
 
     if [ "$prompt" == "help" ]; then
-        local options="area=<area>,offset=<1>,$openai_cli_vision_options"
+        local options="area=<area>,offset=<1>,$openai_commands_vision_options"
         local args="[--verbose 1]"
         abcli_show_usage "vanwatch vision \"prompt\"$ABCUL[$options]${ABCUL}Davie,Bute$ABCUL$args" \
-            "openai_cli vision: prompt @ <area>/intersection."
+            "openai_commands vision: prompt @ <area>/intersection."
         return
     fi
 
@@ -21,7 +21,7 @@ function vancouver_watching_openai_cli_vision() {
 
     local intersection=$3
 
-    openai_cli_vision \
+    openai_commands_vision \
         "$prompt" \
         "$options" \
         $intersection,.jpg \

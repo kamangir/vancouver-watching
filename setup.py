@@ -1,10 +1,10 @@
-from setuptools import setup
-
 from vancouver_watching import NAME, VERSION, DESCRIPTION
+from blueness.pypi import setup
 
 setup(
+    filename=__file__,
+    repo_name="Vancouver-Watching",
     name=NAME,
-    author="arash@kamangir.net",
     version=VERSION,
     description=DESCRIPTION,
     packages=[NAME],
