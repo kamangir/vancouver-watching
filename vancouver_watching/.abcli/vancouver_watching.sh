@@ -18,8 +18,7 @@ function vancouver_watching() {
         "${@:2}"
 }
 
-abcli_source_path \
-    $abcli_path_git/Vancouver-Watching/.abcli/tests
+abcli_source_path - caller,suffix=/tests
 
 abcli_env dot load \
     plugin=Vancouver-Watching
