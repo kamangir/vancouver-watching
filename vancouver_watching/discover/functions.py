@@ -69,7 +69,7 @@ def get_list_of_areas():
         for filename in file.list_of(
             os.path.join(
                 env.abcli_path_git,
-                "Vancouver-Watching/.abcli/discovery/*.sh",
+                "vancouver-watching/.abcli/discovery/*.sh",
             )
         )
     ]
