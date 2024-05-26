@@ -35,5 +35,4 @@ function vancouver_watching_discover() {
     abcli_upload - $object_name
 }
 
-abcli_source_path \
-    $abcli_path_git/Vancouver-Watching/.abcli/discovery
+abcli_source_path - caller,suffix=/discovery
