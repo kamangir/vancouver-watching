@@ -35,7 +35,10 @@ parser.add_argument(
 args = parser.parse_args()
 
 success = False
-if args.task == "update_cache":
+if args.task == "locate":
+    success = True
+    print(__file__)
+elif args.task == "update_cache":
     success, _ = update_cache(
         object_name=args.object_name,
         verbose=args.verbose,
