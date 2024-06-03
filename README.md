@@ -1,6 +1,10 @@
-# Vancouver Watching (`vanwatch`) 🌈
+# 🌈 Vancouver Watching (`vanwatch`)
 
-`vanwatch` 🌈 discovers and ingests images from traffic cameras in an area and then runs [YOLO 🚀](https://github.com/ultralytics/ultralytics), [OpenAI Vision](https://github.com/kamangir/openai_commands#vision), and other vision algo to extract information about urban activity at scale. Also see [`@vanwatch`](https://github.com/kamangir/notebooks-and-scripts/tree/main/scripts#vanwatch).
+`vanwatch` 🌈 discovers and ingests images from traffic cameras in an area and then runs [YOLO 🚀](https://github.com/ultralytics/ultralytics), [OpenAI Vision](https://github.com/kamangir/openai_commands#vision), and other vision algo to extract information about urban activity at scale.
+
+```bash
+pip install vancouver-watching
+```
 
 ```bash
  > vanwatch help
@@ -51,31 +55,25 @@ vancouver_watching test \
  . test vancouver_watching.
 ```
 
----
+last build [🔗](https://kamangir-public.s3.ca-central-1.amazonaws.com/test_vancouver_watching_ingest/animation.gif) ![image](https://kamangir-public.s3.ca-central-1.amazonaws.com/test_vancouver_watching_ingest/animation.gif?raw=true)
 
-last build [🔗](https://kamangir-public.s3.ca-central-1.amazonaws.com/test_vancouver_watching_ingest/animation.gif):
-
-![image](https://kamangir-public.s3.ca-central-1.amazonaws.com/test_vancouver_watching_ingest/animation.gif?raw=true)
-
----
-
-## Discover and Ingest an Area
+## discover and Ingest an Area
 
 ![image](https://user-images.githubusercontent.com/1007567/196573547-b1c71b3b-7fac-4d2c-bba0-a87b063830da.png)
 
-To see the list of areas supported by `vanwatch` type in,
+to see the list of areas supported by `vanwatch` type in,
 
 ```bash
 vanwatch list areas
 ```
 
-To discover the available cameras in an area type in,
+to discover the available cameras in an area type in,
 
 ```bash
 vanwatch discover area=vancouver
 ```
 
-You have generated a `geojson` of [traffic images in the City of Vancouver](./data/vancouver.geojson). Now, you can ingest the traffic images from this area and detect people and cars in them,
+you have generated a `geojson` of [traffic images in the City of Vancouver](./data/vancouver.geojson). Now, you can ingest the traffic images from this area and detect people and cars in them,
 
 ```bash
 vanwatch ingest area=vancouver,count=2,publish
@@ -95,4 +93,6 @@ dataset: [vanwatch-cache-2024-02-28-21-04-19-26236.tar.gz](https://kamangir-publ
 
 ---
 
-To use on [AWS SageMaker](https://aws.amazon.com/sagemaker/) replace `<plugin-name>` with `vanwatch` and follow [these instructions](https://github.com/kamangir/blue-plugin/blob/main/SageMaker.md).
+[![PyPI version](https://img.shields.io/pypi/v/vancouver-watching.svg)](https://pypi.org/project/vancouver-watching/)
+
+to use on [AWS SageMaker](https://aws.amazon.com/sagemaker/) replace `<plugin-name>` with `vanwatch` and follow [these instructions](https://github.com/kamangir/blue-plugin/blob/main/SageMaker.md).
