@@ -6,7 +6,7 @@ from vancouver_watching.discover.functions import (
     get_list_of_areas,
 )
 from vancouver_watching.logger import logger
-from blueness.argparse.generic import ending
+from blueness.argparse.generic import sys_exit
 
 
 parser = argparse.ArgumentParser(NAME, description=f"{NAME}-{VERSION}")
@@ -46,4 +46,4 @@ elif args.task == "discover_cameras_vancouver_style":
 else:
     success = None
 
-ending(logger, NAME, args.task, success)
+sys_exit(logger, NAME, args.task, success)

@@ -2,7 +2,7 @@ import argparse
 from vancouver_watching import NAME, VERSION, DESCRIPTION, ICON
 from vancouver_watching.logger import logger
 from vancouver_watching.QGIS import update_cache
-from blueness.argparse.generic import ending
+from blueness.argparse.generic import sys_exit
 
 parser = argparse.ArgumentParser(NAME, description=f"{NAME}-{VERSION}")
 parser.add_argument(
@@ -57,4 +57,4 @@ elif args.task == "version":
 else:
     success = None
 
-ending(logger, NAME, args.task, success)
+sys_exit(logger, NAME, args.task, success)

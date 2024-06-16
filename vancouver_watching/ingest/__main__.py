@@ -3,7 +3,7 @@ from vancouver_watching import VERSION
 from vancouver_watching.area import Area
 from vancouver_watching.ingest import NAME
 from vancouver_watching.logger import logger
-from blueness.argparse.generic import ending
+from blueness.argparse.generic import sys_exit
 
 
 parser = argparse.ArgumentParser(NAME, description=f"{NAME}-{VERSION}")
@@ -36,4 +36,4 @@ if success:
 
     success = None
 
-ending(logger, NAME, "discover", success)
+sys_exit(logger, NAME, "discover", success)
