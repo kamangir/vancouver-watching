@@ -3,6 +3,7 @@ from vancouver_watching import VERSION
 from vancouver_watching.area import Area
 from vancouver_watching.ingest import NAME
 from vancouver_watching.logger import logger
+from blueness.argparse.generic import ending
 
 
 parser = argparse.ArgumentParser(NAME, description=f"{NAME}-{VERSION}")
@@ -33,5 +34,6 @@ success = area.valid
 if success:
     success = area.ingest(count=args.count)
 
-if not success:
-    logger.error(f"{args.task}: failed.")
+    success = None
+
+ending(logger, NAME, "discover", success)

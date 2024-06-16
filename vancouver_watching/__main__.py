@@ -2,6 +2,7 @@ import argparse
 from vancouver_watching import NAME, VERSION, DESCRIPTION, ICON
 from vancouver_watching.logger import logger
 from vancouver_watching.QGIS import update_cache
+from blueness.argparse.generic import ending
 
 parser = argparse.ArgumentParser(NAME, description=f"{NAME}-{VERSION}")
 parser.add_argument(
@@ -54,7 +55,6 @@ elif args.task == "version":
     )
     success = True
 else:
-    logger.error(f"{args.task}: command not found.")
+    success = None
 
-if not success:
-    logger.error(f"{args.task}: failed.")
+ending(logger, NAME, args.task, success)

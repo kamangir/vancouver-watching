@@ -3,6 +3,7 @@ from vancouver_watching import VERSION
 from vancouver_watching.area import Area
 from vancouver_watching.ai import NAME
 from vancouver_watching.logger import logger
+from blueness.argparse.generic import ending
 
 
 parser = argparse.ArgumentParser(NAME, description=f"{NAME}-{VERSION}")
@@ -79,7 +80,6 @@ if args.task == "process":
     if success:
         success = area.summarize()
 else:
-    logger.error(f"{args.task}: command not found.")
+    success = None
 
-if not success:
-    logger.error(f"{args.task}: failed.")
+ending(logger, NAME, args.task, success)

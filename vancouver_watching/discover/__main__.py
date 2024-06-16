@@ -6,6 +6,7 @@ from vancouver_watching.discover.functions import (
     get_list_of_areas,
 )
 from vancouver_watching.logger import logger
+from blueness.argparse.generic import ending
 
 
 parser = argparse.ArgumentParser(NAME, description=f"{NAME}-{VERSION}")
@@ -43,7 +44,6 @@ elif args.task == "discover_cameras_vancouver_style":
         args.prefix,
     )
 else:
-    logger.error(f"{args.task}: command not found.")
+    success = None
 
-if not success:
-    logger.error(f"{args.task}: failed.")
+ending(logger, NAME, args.task, success)
