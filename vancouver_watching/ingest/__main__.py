@@ -34,6 +34,5 @@ success = area.valid
 if success:
     success = area.ingest(count=args.count)
 
-    success = None
 
 sys_exit(logger, NAME, "discover", success)
