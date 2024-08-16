@@ -67,8 +67,8 @@ function vancouver_watching_update_cache() {
     done
 
     abcli_eval - \
-        python3 -m vancouver_watching \
-        update_cache \
+        python3 -m vancouver_watching.cache \
+        update \
         --object_name $object_name \
         "${@:2}"
 
