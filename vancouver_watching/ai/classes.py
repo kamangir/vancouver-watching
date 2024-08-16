@@ -3,14 +3,16 @@ from collections import Counter
 import json
 import cv2
 from typing import Dict, Tuple, List
+from blueness import module
 from abcli import file, path
 from abcli.plugins.graphics import add_signature
 from abcli.modules.host import signature as host_signature
 from abcli.modules.objects import signature as object_signature
-from vancouver_watching import VERSION
-from vancouver_watching.ai import NAME
+from vancouver_watching import NAME, VERSION
 from vancouver_watching import env
 from vancouver_watching.logger import logger
+
+NAME = module.name(__file__, NAME)
 
 
 class Ultralytics_API:

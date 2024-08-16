@@ -1,9 +1,12 @@
 import os
 import requests
 from tqdm import tqdm
-from abcli import env, file
+from blueness import module
+from abcli import file
 from vancouver_watching import NAME
 from vancouver_watching.logger import logger
+
+NAME = module.name(__file__, NAME)
 
 
 def discover_cameras_vancouver_style(filename, prefix):

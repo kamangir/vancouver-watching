@@ -1,8 +1,11 @@
 import argparse
-from vancouver_watching import NAME, VERSION, DESCRIPTION, ICON
+from blueness import module
+from vancouver_watching import NAME, VERSION
 from vancouver_watching.logger import logger
 from vancouver_watching.QGIS import update_cache
 from blueness.argparse.generic import sys_exit
+
+NAME = module.name(__file__, NAME)
 
 parser = argparse.ArgumentParser(NAME, description=f"{NAME}-{VERSION}")
 parser.add_argument(
