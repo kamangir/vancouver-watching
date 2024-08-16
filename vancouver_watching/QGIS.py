@@ -6,12 +6,15 @@ from typing import Tuple
 import matplotlib.pyplot as plt
 import pandas as pd
 import glob
+from blueness import module
 from abcli import fullname
 from abcli.plugins.metadata import post as post_metadata, MetadataSourceType
 from abcli import file
 from abcli.modules import objects
 from vancouver_watching import NAME, VERSION
 from vancouver_watching.logger import logger
+
+NAME = module.name(__file__, NAME)
 
 
 def label_of_camera(

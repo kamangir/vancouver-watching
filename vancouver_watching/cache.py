@@ -1,40 +1,38 @@
 import argparse
 from blueness import module
 from vancouver_watching import NAME, VERSION
-from vancouver_watching.area import Area
 from vancouver_watching.logger import logger
+from vancouver_watching.QGIS import update_cache
 from blueness.argparse.generic import sys_exit
 
 NAME = module.name(__file__, NAME)
 
-
 parser = argparse.ArgumentParser(NAME, description=f"{NAME}-{VERSION}")
 parser.add_argument(
-    "--geojson",
+    "task",
     type=str,
-    default="",
+    help="update",
 )
 parser.add_argument(
-    "--count",
-    type=int,
-    default=-1,
+    "--object_name",
+    type=str,
+    default=".",
 )
 parser.add_argument(
-    "--do_dryrun",
+    "--verbose",
     type=int,
     default=0,
     help="0|1",
 )
 args = parser.parse_args()
 
-area = Area(
-    args.geojson,
-    do_dryrun=args.do_dryrun,
-)
-success = area.valid
+success = False
+if args.task == "update":
+    success, _ = update_cache(
+        object_name=args.object_name,
+        verbose=args.verbose,
+    )
+else:
+    success = None
 
-if success:
-    success = area.ingest(count=args.count)
-
-
-sys_exit(logger, NAME, "discover", success)
+sys_exit(logger, NAME, args.task, success)
