@@ -89,7 +89,7 @@ class Ultralytics_API:
             [
                 "{}: {}".format(thing, count)
                 for thing, count in Counter(
-                    [thing["name"] for thing in response_dict["data"]]
+                    [thing["name"] for thing in response_dict["images"][0]["results"]]
                 ).items()
             ]
         )
@@ -131,17 +131,12 @@ class Ultralytics_API:
         fontScale=0.5,
     ):
         image = image.copy()
-        for thing in inference["data"]:
+        for thing in inference["images"][0]["results"]:
             try:
-                height = thing["height"]
-                width = thing["width"]
-                xcenter = thing["xcenter"]
-                ycenter = thing["ycenter"]
-
-                x1 = int((xcenter - width / 2) * image.shape[1])
-                y1 = int((ycenter - height / 2) * image.shape[0])
-                x2 = int((xcenter + width / 2) * image.shape[1])
-                y2 = int((ycenter + height / 2) * image.shape[0])
+                x1 = int(thing["box"]["x1"])
+                x2 = int(thing["box"]["x2"])
+                y1 = int(thing["box"]["y1"])
+                y2 = int(thing["box"]["y2"])
                 text = "{}@{:.2f}".format(
                     thing["name"],
                     thing["confidence"],
