@@ -7,7 +7,7 @@ geojson
 geopandas
 matplotlib
 opencv-python
-pymysql==0.10.1
+pymysql
 pyyaml
 pylint
 pytest
