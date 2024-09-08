@@ -1,11 +1,15 @@
+# to avoid import complications.
+# from blue_objects.env import ABCLI_PUBLIC_PREFIX
+ABCLI_PUBLIC_PREFIX = "https://kamangir-public.s3.ca-central-1.amazonaws.com"
+
 NAME = "vancouver_watching"
 
 ICON = "🌈"
 
 DESCRIPTION = f"{ICON} Vancouver Watching with AI."
 
-VERSION = "3.392.1"
+VERSION = "3.393.1"
 
 REPO_NAME = "vancouver-watching"
 
-MARQUEE = "https://user-images.githubusercontent.com/1007567/196573547-b1c71b3b-7fac-4d2c-bba0-a87b063830da.png"
+MARQUEE = f"{ABCLI_PUBLIC_PREFIX}/test_vancouver_watching_ingest/animation.gif"
