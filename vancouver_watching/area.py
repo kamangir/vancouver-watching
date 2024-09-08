@@ -17,13 +17,12 @@ class Area:
         do_dryrun: bool = False,
         verbose: bool = False,
     ):
-        import geopandas
-
         self.map_filename = map_filename  # geojson file
 
         self.object_path = file.path(self.map_filename)
         self.object_name = path.name(self.object_path)
-        self.gdf = geopandas.read_file(self.map_filename)
+        success, self.gdf = file.load_geodataframe(self.map_filename)
+        assert success
 
         self.do_dryrun = do_dryrun
         self.verbose = verbose
