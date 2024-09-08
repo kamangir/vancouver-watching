@@ -3,11 +3,13 @@ from collections import Counter
 import json
 import cv2
 from typing import Dict, Tuple, List
+
 from blueness import module
-from abcli import file, path
+from blue_objects import file, path
 from abcli.plugins.graphics import add_signature
 from abcli.modules.host import signature as host_signature
 from abcli.modules.objects import signature as object_signature
+
 from vancouver_watching import NAME, VERSION
 from vancouver_watching import env
 from vancouver_watching.logger import logger
@@ -96,8 +98,8 @@ class Ultralytics_API:
         logger.info(summary)
 
         if self.render_inference:
-            render_filename = file.add_postfix(
-                file.set_extension(image_filename, "jpg"), "inference"
+            render_filename = file.add_suffix(
+                file.add_extension(image_filename, "jpg"), "inference"
             )
 
             file.save_image(
