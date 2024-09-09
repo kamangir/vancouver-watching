@@ -1,7 +1,6 @@
 import pytest
 
 from blue_objects import objects
-from abcli.plugins.testing import download_object
 
 from vancouver_watching import env
 from vancouver_watching.ai.classes import Ultralytics_API
@@ -18,7 +17,7 @@ from vancouver_watching.ai.classes import Ultralytics_API
     ],
 )
 def test_ultralytics_api(model_id, object_name, filename):
-    assert download_object(object_name)
+    assert objects.download(object_name)
 
     ultralytics_api = Ultralytics_API(model_id)
 

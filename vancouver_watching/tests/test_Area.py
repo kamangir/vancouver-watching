@@ -1,7 +1,6 @@
 import pytest
 
 from blue_objects import path, file, objects
-from abcli.plugins.testing import download_object
 
 from vancouver_watching import env
 from vancouver_watching.area import Area
@@ -23,7 +22,7 @@ def test_Area(
     object_name,
     model_id,
 ):
-    assert download_object(object_name)
+    assert objects.download(object_name)
 
     assert path.exist(objects.object_path(object_name))
 
