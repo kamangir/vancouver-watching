@@ -34,7 +34,7 @@ function vancouver_watching_process() {
         --animated_gif $(abcli_option_int "$options" gif 0) \
         --count $(abcli_option "$options" count -1) \
         --model_id $model_id \
-        --geojson $abcli_object_root/$object_name/$area.geojson \
+        --geojson $ABCLI_OBJECT_ROOT/$object_name/$area.geojson \
         "${@:3}"
 
     [[ "$do_upload" == 1 ]] &&

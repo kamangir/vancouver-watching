@@ -8,8 +8,8 @@ import pandas as pd
 import glob
 
 from blueness import module
+from blue_options import fullname
 from blue_objects import file
-from abcli import fullname
 from abcli.plugins.metadata import post as post_metadata, MetadataSourceType
 from abcli.modules import objects
 
