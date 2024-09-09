@@ -9,9 +9,9 @@ import glob
 
 from blueness import module
 from blue_options import fullname
-from blue_objects import file
-from abcli.plugins.metadata import post as post_metadata, MetadataSourceType
-from abcli.modules import objects
+from blue_objects import file, objects
+from abcli.plugins.metadata import post_to_object
+
 
 from vancouver_watching import NAME, VERSION
 from vancouver_watching.logger import logger
@@ -159,14 +159,13 @@ def update_cache(
     file.save_fig(os.path.join(object_path, "counts.png"), log=True)
 
     return (
-        post_metadata(
+        post_to_object(
+            object_name,
             "cache",
             {
                 "mean_counts": mean_counts,
                 "published_object_name": published_object_name,
             },
-            source=object_name,
-            source_type=MetadataSourceType.OBJECT,
             verbose=verbose,
         )
         and file.save_csv(

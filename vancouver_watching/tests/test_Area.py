@@ -1,7 +1,8 @@
 import pytest
-from abcli import path, file
-from abcli.modules import objects
+
+from blue_objects import path, file, objects
 from abcli.plugins.testing import download_object
+
 from vancouver_watching import env
 from vancouver_watching.area import Area
 

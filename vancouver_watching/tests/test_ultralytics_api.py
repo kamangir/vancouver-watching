@@ -1,6 +1,8 @@
 import pytest
-from abcli.modules import objects
+
+from blue_objects import objects
 from abcli.plugins.testing import download_object
+
 from vancouver_watching import env
 from vancouver_watching.ai.classes import Ultralytics_API
 
