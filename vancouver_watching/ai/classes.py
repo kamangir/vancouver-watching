@@ -8,7 +8,7 @@ from blueness import module
 from blue_objects import file, path
 from blue_objects.graphics import add_signature
 from blue_options.host import signature as host_signature
-from blue_objects.functions import signature as object_signature
+from blue_objects.objects import signature as object_signature
 
 from vancouver_watching import NAME, VERSION
 from vancouver_watching import env
