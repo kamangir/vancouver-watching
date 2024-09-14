@@ -24,7 +24,7 @@ def test_Area(
 ):
     assert objects.download(object_name)
 
-    assert path.exist(objects.object_path(object_name))
+    assert path.exists(objects.object_path(object_name))
 
     list_of_files = [
         file.name_and_extension(filename)
