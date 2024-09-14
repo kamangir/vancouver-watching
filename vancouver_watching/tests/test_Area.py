@@ -36,7 +36,7 @@ def test_Area(
         filename="vancouver.json",
     )
 
-    assert file.exist(
+    assert file.exists(
         objects.path_of(
             object_name=object_name,
             filename="vancouver.json",

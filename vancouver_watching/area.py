@@ -108,7 +108,7 @@ class Area:
         for mapid in tqdm(self.metadata):
             for filename, metadata in self.metadata[mapid]["cameras"].items():
                 full_filename = os.path.join(self.object_path, filename)
-                if not file.exist(full_filename):
+                if not file.exists(full_filename):
                     continue
 
                 if self.do_dryrun:
