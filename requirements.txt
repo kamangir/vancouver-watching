@@ -3,8 +3,6 @@ abcli
 beautifulsoup4
 boto3
 folium
-geojson
-geopandas
 matplotlib
 opencv-python
 pymysql
