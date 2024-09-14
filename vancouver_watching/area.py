@@ -6,7 +6,7 @@ from collections import Counter
 from tqdm import tqdm
 
 from blue_objects import file, path
-from blue_objects.gif import generate_animated_gif
+from blue_objects.graphics.gif import generate_animated_gif
 
 from vancouver_watching.ai.classes import Ultralytics_API
 from vancouver_watching.logger import logger
