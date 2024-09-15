@@ -33,7 +33,7 @@ function vancouver_watching_ingest() {
     local do_process=$(abcli_option_int "$options" process 1)
     local do_upload=$(abcli_option_int "$options" upload $(abcli_not $do_dryrun))
 
-    local object_path=$abcli_object_root/$object_name
+    local object_path=$ABCLI_OBJECT_ROOT/$object_name
 
     local discovery_object=$(
         abcli_tag search \
@@ -49,7 +49,7 @@ function vancouver_watching_ingest() {
     abcli_download - $discovery_object
 
     cp -v \
-        $abcli_object_root/$discovery_object/$area.geojson \
+        $ABCLI_OBJECT_ROOT/$discovery_object/$area.geojson \
         $object_path/
 
     python3 -m vancouver_watching.ingest \

@@ -1,7 +1,7 @@
 import pytest
-from abcli import path, file
-from abcli.modules import objects
-from abcli.plugins.testing import download_object
+
+from blue_objects import path, file, objects
+
 from vancouver_watching import env
 from vancouver_watching.area import Area
 
@@ -22,9 +22,9 @@ def test_Area(
     object_name,
     model_id,
 ):
-    assert download_object(object_name)
+    assert objects.download(object_name)
 
-    assert path.exist(objects.object_path(object_name))
+    assert path.exists(objects.object_path(object_name))
 
     list_of_files = [
         file.name_and_extension(filename)
@@ -36,7 +36,7 @@ def test_Area(
         filename="vancouver.json",
     )
 
-    assert file.exist(
+    assert file.exists(
         objects.path_of(
             object_name=object_name,
             filename="vancouver.json",

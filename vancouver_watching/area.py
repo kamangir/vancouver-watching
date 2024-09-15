@@ -4,8 +4,10 @@ from typing import List
 import re
 from collections import Counter
 from tqdm import tqdm
-from abcli import file, path
-from abcli.plugins.graphics.gif import generate_animated_gif
+
+from blue_objects import file, path
+from blue_objects.graphics.gif import generate_animated_gif
+
 from vancouver_watching.ai.classes import Ultralytics_API
 from vancouver_watching.logger import logger
 
@@ -27,7 +29,7 @@ class Area:
         self.do_dryrun = do_dryrun
         self.verbose = verbose
 
-        self.metadata_filename = file.set_extension(self.map_filename, "json")
+        self.metadata_filename = file.add_extension(self.map_filename, "json")
         self.metadata = {}
 
         self.valid = True
@@ -47,7 +49,9 @@ class Area:
             )
         )
 
-        success, self.metadata = file.load_json(self.metadata_filename, civilized=True)
+        success, self.metadata = file.load_json(
+            self.metadata_filename, ignore_error=True
+        )
         if not success:
             logger.info("generating metadata: {}".format(self.metadata_filename))
 
@@ -104,7 +108,7 @@ class Area:
         for mapid in tqdm(self.metadata):
             for filename, metadata in self.metadata[mapid]["cameras"].items():
                 full_filename = os.path.join(self.object_path, filename)
-                if not file.exist(full_filename):
+                if not file.exists(full_filename):
                     continue
 
                 if self.do_dryrun:

@@ -1,15 +1,18 @@
+from typing import List
 import os
 import requests
 from tqdm import tqdm
+
 from blueness import module
-from abcli import file
+from blue_objects import file
+
 from vancouver_watching import NAME
 from vancouver_watching.logger import logger
 
 NAME = module.name(__file__, NAME)
 
 
-def discover_cameras_vancouver_style(filename, prefix):
+def discover_cameras_vancouver_style(filename: str, prefix: str) -> bool:
     from vancouver_watching.QGIS import label_of_camera
     from bs4 import BeautifulSoup
 
@@ -66,7 +69,7 @@ def discover_cameras_vancouver_style(filename, prefix):
     return file.save_geojson(filename, gdf)
 
 
-def get_list_of_areas():
+def get_list_of_areas() -> List[str]:
     return [
         file.name(filename)
         for filename in file.list_of(

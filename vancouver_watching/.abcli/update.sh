@@ -39,7 +39,7 @@ function vancouver_watching_update_cache() {
 
     abcli_log "cache: $object_name"
 
-    local object_path=$abcli_object_root/$object_name
+    local object_path=$ABCLI_OBJECT_ROOT/$object_name
     mkdir -pv $object_path
 
     local published_object_name
@@ -63,7 +63,7 @@ function vancouver_watching_update_cache() {
         fi
 
         cp -v \
-            $abcli_object_root/$published_object_name/$area.geojson \
+            $ABCLI_OBJECT_ROOT/$published_object_name/$area.geojson \
             $local_filename
     done
 

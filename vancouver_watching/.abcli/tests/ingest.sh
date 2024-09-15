@@ -12,7 +12,7 @@ function test_vancouver_watching_ingest() {
         "${@:3}"
 
     (
-        cd $abcli_object_root/$object_name
+        cd $ABCLI_OBJECT_ROOT/$object_name
         mv -v \
             $object_name.gif \
             animation.gif

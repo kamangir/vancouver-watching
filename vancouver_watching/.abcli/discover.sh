@@ -23,7 +23,7 @@ function vancouver_watching_discover() {
 
     abcli_log "discovering $area -> $object_name"
     $function_name \
-        $abcli_object_root/$object_name \
+        $ABCLI_OBJECT_ROOT/$object_name \
         "${@:3}"
 
     [[ "$do_upload" == 0 ]] && return
