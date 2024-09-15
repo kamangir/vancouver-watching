@@ -10,8 +10,7 @@ import glob
 from blueness import module
 from blue_options import fullname
 from blue_objects import file, objects
-from abcli.plugins.metadata import post_to_object
-
+from blue_objects.metadata import post_to_object
 
 from vancouver_watching import NAME, VERSION
 from vancouver_watching.logger import logger
