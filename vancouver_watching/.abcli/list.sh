@@ -29,5 +29,5 @@ function vancouver_watching_list() {
     local tags=$area,vancouver_watching,$stage
     [[ "$do_published" == 1 ]] && tags="$tags,published"
 
-    abcli_tag search $tags "${@:2}"
+    abcli_tags search $tags "${@:2}"
 }

@@ -36,7 +36,7 @@ function vancouver_watching_ingest() {
     local object_path=$ABCLI_OBJECT_ROOT/$object_name
 
     local discovery_object=$(
-        abcli_tag search \
+        abcli_tags search \
             $area,vancouver_watching,discovery \
             --count 1 \
             --log 0
@@ -58,7 +58,7 @@ function vancouver_watching_ingest() {
         --geojson $object_path/$area.geojson \
         "${@:3}"
 
-    abcli_tag set \
+    abcli_tags set \
         $object_name \
         $area,vancouver_watching,ingest
     abcli_cache write $object_name.area $area

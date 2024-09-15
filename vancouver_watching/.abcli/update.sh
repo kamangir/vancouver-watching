@@ -43,7 +43,7 @@ function vancouver_watching_update_cache() {
     mkdir -pv $object_path
 
     local published_object_name
-    for published_object_name in $(abcli_tag search \
+    for published_object_name in $(abcli_tags search \
         ingest,published,$area,vancouver_watching \
         --log 0 \
         --delim space); do

@@ -28,7 +28,7 @@ function vancouver_watching_discover() {
 
     [[ "$do_upload" == 0 ]] && return
 
-    abcli_tag set \
+    abcli_tags set \
         $object_name \
         $area,vancouver_watching,discovery
 
