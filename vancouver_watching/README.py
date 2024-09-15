@@ -18,7 +18,12 @@ content = {
 }
 
 items = [
-    "[{}]({}) ![image]({})".format(title, item["url"], item["thumbnail"])
+    "[{}]({}) [![image]({})]({})".format(
+        title,
+        item["url"],
+        item["thumbnail"],
+        item["url"],
+    )
     for title, item in content.items()
 ]
 
