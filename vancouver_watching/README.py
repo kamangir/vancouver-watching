@@ -13,7 +13,7 @@ content = {
     },
     "time-series": {
         "url": "https://github.com/kamangir/vancouver-watching/tree/main/vancouver_watching/ingest",
-        f"thumbnail": "https://kamangir-public.s3.ca-central-1.amazonaws.com/2024-01-06-20-39-46-73614/2024-01-06-20-39-46-73614-2X.gif?raw=true&random={string.random()}",
+        "thumbnail": f"https://kamangir-public.s3.ca-central-1.amazonaws.com/2024-01-06-20-39-46-73614/2024-01-06-20-39-46-73614-2X.gif?raw=true&random={string.random()}",
     },
 }
 
