@@ -1,4 +1,4 @@
-from blue_objects import cache
+from blue_objects.mysql import cache
 
 from vancouver_watching.QGIS import update_cache
 
