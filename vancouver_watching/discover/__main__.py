@@ -1,17 +1,18 @@
 import argparse
+
 from blueness import module
-from vancouver_watching import NAME, VERSION
+from blueness.argparse.generic import sys_exit
+
+from vancouver_watching import NAME
 from vancouver_watching.discover.functions import (
     discover_cameras_vancouver_style,
     get_list_of_areas,
 )
 from vancouver_watching.logger import logger
-from blueness.argparse.generic import sys_exit
-
 
 NAME = module.name(__file__, NAME)
 
-parser = argparse.ArgumentParser(NAME, description=f"{NAME}-{VERSION}")
+parser = argparse.ArgumentParser(NAME)
 parser.add_argument(
     "task",
     type=str,
