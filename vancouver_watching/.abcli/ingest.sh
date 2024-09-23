@@ -37,7 +37,7 @@ function vancouver_watching_ingest() {
 
     local discovery_object=$(
         abcli_tags search \
-            $area,vancouver_watching,discovery \
+            area=$area,discovery,vancouver_watching \
             --count 1 \
             --log 0
     )
@@ -60,8 +60,7 @@ function vancouver_watching_ingest() {
 
     abcli_tags set \
         $object_name \
-        $area,vancouver_watching,ingest
-    abcli_cache write $object_name.area $area
+        area=$area,ingest,vancouver_watching
 
     [[ "$do_upload" == 1 ]] &&
         abcli_upload - $object_name
