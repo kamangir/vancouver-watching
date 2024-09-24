@@ -26,7 +26,7 @@ function vancouver_watching_list() {
     local stage=$(abcli_option_choice "$options" discovery,ingest ingest)
     local do_published=$(abcli_option_int "$options" published 1)
 
-    local tags=$area,vancouver_watching,$stage
+    local tags="area=$area,$stage,vancouver_watching"
     [[ "$do_published" == 1 ]] && tags="$tags,published"
 
     abcli_tags search $tags "${@:2}"

@@ -44,7 +44,7 @@ function vancouver_watching_update_cache() {
 
     local published_object_name
     for published_object_name in $(abcli_tags search \
-        ingest,published,$area,vancouver_watching \
+        area=$area,ingest,published,vancouver_watching \
         --log 0 \
         --delim space); do
 
