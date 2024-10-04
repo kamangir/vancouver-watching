@@ -28,7 +28,7 @@ function vancouver_watching_update_cache() {
         object_name=vanwatch-cache-$(abcli_string_timestamp)
 
         abcli_clone \
-            ~meta \
+            - \
             vanwatch-QGIS-template-v5 \
             $object_name
 
