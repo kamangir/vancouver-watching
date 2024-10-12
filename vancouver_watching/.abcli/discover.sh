@@ -35,4 +35,4 @@ function vancouver_watching_discover() {
     abcli_upload - $object_name
 }
 
-abcli_source_path - caller,suffix=/discovery
+abcli_source_caller_suffix_path /discovery
