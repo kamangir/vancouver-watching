@@ -22,7 +22,9 @@ function vancouver_watching_process() {
     [[ "$do_download" == 1 ]] &&
         abcli_download - $object_name
 
-    local area=$(abcli_tags get $object_name --tag area)
+    local area=$(abcli_mlflow_tags get \
+        $object_name \
+        --tag area)
     if [[ -z "$area" ]]; then
         abcli_log_error "vancouver_watching: process: $object_name: area not found."
         return 1
@@ -36,6 +38,7 @@ function vancouver_watching_process() {
         --model_id $model_id \
         --geojson $ABCLI_OBJECT_ROOT/$object_name/$area.geojson \
         "${@:3}"
+    local status="$?"
 
     [[ "$do_upload" == 1 ]] &&
         abcli_upload - $object_name
@@ -43,5 +46,5 @@ function vancouver_watching_process() {
     [[ "$do_publish" == 1 ]] &&
         abcli_publish - $object_name
 
-    return 0
+    return $status
 }

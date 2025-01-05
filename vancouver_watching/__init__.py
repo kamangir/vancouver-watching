@@ -8,8 +8,10 @@ ICON = "🌈"
 
 DESCRIPTION = f"{ICON} Vancouver Watching with AI."
 
-VERSION = "3.447.1"
+VERSION = "3.448.1"
 
 REPO_NAME = "vancouver-watching"
 
 MARQUEE = f"{ABCLI_PUBLIC_PREFIX}/test_vancouver_watching_ingest/animation.gif"
+
+ALIAS = "vanwatch"

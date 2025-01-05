@@ -23,7 +23,9 @@ function vancouver_watching_update_cache() {
     local do_refresh=$(abcli_option_int "$options" refresh 0)
     local do_upload=$(abcli_option_int "$options" upload $(abcli_not $do_dryrun))
 
-    local object_name=$(abcli_cache read vanwatch.cache)
+    local object_name=$(abcli_mlflow_tags get \
+        vancouver_watching \
+        --tag cache)
     if [[ -z "$object_name" ]] || [[ "$do_refresh" == 1 ]]; then
         object_name=vanwatch-cache-$(abcli_string_timestamp)
 
@@ -33,18 +35,18 @@ function vancouver_watching_update_cache() {
             $object_name
 
         [[ "$do_dryrun" == 0 ]] &&
-            abcli_cache write \
-                vanwatch.cache $object_name
+            abcli_mlflow_tags set \
+                vancouver_watching \
+                cache=$object_name
     fi
-
     abcli_log "cache: $object_name"
 
     local object_path=$ABCLI_OBJECT_ROOT/$object_name
     mkdir -pv $object_path
 
     local published_object_name
-    for published_object_name in $(abcli_tags search \
-        area=$area,ingest,published,vancouver_watching \
+    for published_object_name in $(abcli_mlflow_tags search \
+        app=vancouver_watching,area=$area,stage=ingest,published \
         --log 0 \
         --delim space); do
 
@@ -72,6 +74,7 @@ function vancouver_watching_update_cache() {
         update \
         --object_name $object_name \
         "${@:2}"
+    local status="$?"
 
     [[ "$do_upload" == 1 ]] &&
         abcli_upload - $object_name
@@ -81,5 +84,5 @@ function vancouver_watching_update_cache() {
             ~download,tar \
             $object_name
 
-    return 0
+    return $status
 }
