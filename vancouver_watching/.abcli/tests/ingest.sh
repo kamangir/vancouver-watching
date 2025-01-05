@@ -3,13 +3,13 @@
 function test_vancouver_watching_ingest() {
     local options=$1
 
-    local object_name="test_vancouver_watching_ingest_$(abcli_string_timestamp)"
+    local object_name=test_vancouver_watching_ingest_$(abcli_string_timestamp_short)
 
-    abcli_eval ,$options \
-        vanwatch ingest \
+    vancouver_watching ingest \
         area=vancouver,~batch,count=3,gif,$2 \
         $object_name \
         "${@:3}"
+    [[ $? -ne 0 ]] && return 1
 
     (
         cd $ABCLI_OBJECT_ROOT/$object_name

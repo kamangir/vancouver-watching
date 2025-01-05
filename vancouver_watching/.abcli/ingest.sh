@@ -42,7 +42,7 @@ function vancouver_watching_ingest() {
             --log 0
     )
     if [ -z "$discovery_object" ]; then
-        abcli_log_error "-vancouver_watching: ingest: $area: area not found."
+        abcli_log_error "vancouver_watching: ingest: $area: area not found."
         return 1
     fi
 

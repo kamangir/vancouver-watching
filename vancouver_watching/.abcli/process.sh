@@ -24,7 +24,7 @@ function vancouver_watching_process() {
 
     local area=$(abcli_tags get $object_name --tag area)
     if [[ -z "$area" ]]; then
-        abcli_log_error "-vancouver_watching: process: $object_name: area not found."
+        abcli_log_error "vancouver_watching: process: $object_name: area not found."
         return 1
     fi
 

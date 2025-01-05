@@ -17,7 +17,7 @@ function vancouver_watching_discover() {
 
     local function_name=vancouver_watching_discover_$area
     if [[ $(type -t $function_name) != "function" ]]; then
-        abcli_log_error "-vancouver_watching: discover: $area: area not found."
+        abcli_log_error "vancouver_watching: discover: $area: area not found."
         return
     fi
 
