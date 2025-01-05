@@ -1,20 +1,7 @@
 #! /usr/bin/env bash
 
-function vancouver_watching_update() {
-    vancouver_watching_update_cache "$@"
-}
-
 function vancouver_watching_update_cache() {
     local options=$1
-
-    if [ $(abcli_option_int "$options" help 0) == 1 ]; then
-        local args="[--verbose 1]"
-        local options="area=<vancouver>,dryrun,overwrite,process,~publish,refresh,~upload"
-        abcli_show_usage "vanwatch update|update_cache$ABCUL$EOP$options$ABCUL$args$EOPE" \
-            "update QGIS cache."
-        return
-    fi
-
     local area=$(abcli_option "$options" area vancouver)
     local do_dryrun=$(abcli_option_int "$options" dryrun 0)
     local do_overwrite=$(abcli_option_int "$options" overwrite 0)

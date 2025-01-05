@@ -6,9 +6,10 @@ function test_vancouver_watching_ingest() {
     local object_name=test_vancouver_watching_ingest_$(abcli_string_timestamp_short)
 
     vancouver_watching ingest \
-        area=vancouver,~batch,count=3,gif,$2 \
+        area=vancouver,count=3,~upload,$2 \
         $object_name \
-        "${@:3}"
+        process,gif,~download,$3 \
+        "${@:4}"
     [[ $? -ne 0 ]] && return 1
 
     (

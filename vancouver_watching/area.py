@@ -56,7 +56,7 @@ class Area:
             logger.info("generating metadata: {}".format(self.metadata_filename))
 
             p = re.compile(
-                "https?:\/\/([0-9.]+).\:([0-9.]+)\/webcapture.jpg.*.channel=([0-9.]+).*"
+                r"https?:\/\/([0-9.]+).\:([0-9.]+)\/webcapture.jpg.*.channel=([0-9.]+).*"
             )
             for _, row in tqdm(self.gdf.iterrows()):
                 cameras = {}

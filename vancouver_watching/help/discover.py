@@ -2,6 +2,12 @@ from typing import List
 
 from blue_options.terminal import show_usage, xtra
 
+from vancouver_watching.discover.functions import get_list_of_areas
+
+area_details = {
+    "area: {}".format(" | ".join(get_list_of_areas())): [],
+}
+
 
 def help_discover(
     tokens: List[str],
@@ -23,5 +29,6 @@ def help_discover(
             "[<args>]",
         ],
         "discover area -> <object-name>.",
+        area_details,
         mono=mono,
     )

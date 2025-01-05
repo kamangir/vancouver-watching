@@ -6,7 +6,7 @@ function vancouver_watching_discover() {
     local do_dryrun=$(abcli_option_int "$options" dryrun 0)
     local do_upload=$(abcli_option_int "$options" upload $(abcli_not $do_dryrun))
 
-    local object_name=$(abcli_clarify_object $2 $(abcli_string_timestamp))
+    local object_name=$(abcli_clarify_object $2 $area-discover-$(abcli_string_timestamp_short))
 
     local function_name=vancouver_watching_discover_$area
     if [[ $(type -t $function_name) != "function" ]]; then
