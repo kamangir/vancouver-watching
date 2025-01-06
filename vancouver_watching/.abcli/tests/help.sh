@@ -8,7 +8,6 @@ function test_vancouver_watching_help() {
         "vancouver_watching discover" \
         "vancouver_watching ingest" \
         "vancouver_watching process" \
-        "vancouver_watching update_cache" \
         "vancouver_watching"; do
         abcli_eval ,$options \
             abcli_help $module
