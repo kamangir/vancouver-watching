@@ -13,7 +13,7 @@ parser = argparse.ArgumentParser(NAME)
 parser.add_argument(
     "task",
     type=str,
-    help="process",
+    help="detect",
 )
 parser.add_argument(
     "--geojson",
@@ -51,7 +51,7 @@ parser.add_argument(
     help="0|1",
 )
 parser.add_argument(
-    "--detect_objects",
+    "--detect",
     type=int,
     default=1,
     help="0|1",
@@ -64,7 +64,7 @@ parser.add_argument(
 args = parser.parse_args()
 
 success = False
-if args.task == "process":
+if args.task == "detect":
     target = Target(
         map_filename=args.geojson,
         do_dryrun=args.do_dryrun,
@@ -72,8 +72,8 @@ if args.task == "process":
     )
     success = target.valid
 
-    if success and args.detect_objects:
-        success = target.detect_objects(
+    if success and args.detect:
+        success = target.detect(
             model_id=args.model_id,
             animated_gif=args.animated_gif,
             count=args.count,

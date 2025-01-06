@@ -4,9 +4,9 @@ from blue_options.terminal import show_usage, xtra
 from abcli.help.generic import help_functions as generic_help_functions
 
 from vancouver_watching.help.discover import target_details
-from vancouver_watching.help.process import (
-    args as process_args,
-    options as process_options,
+from vancouver_watching.help.detect import (
+    args as detect_args,
+    options as detect_options,
 )
 
 
@@ -27,9 +27,9 @@ def help_ingest(
             "ingest",
             f"[{options}]",
             "[-|<object-name>]",
-            f"[process,{process_options(mono=mono)}]",
+            f"[detect,{detect_options(mono=mono)}]",
         ]
-        + process_args,
+        + detect_args,
         "ingest <target> -> <object-name>.",
         target_details,
         mono=mono,

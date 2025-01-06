@@ -5,9 +5,9 @@ function test_vancouver_watching_help() {
 
     local module
     for module in \
+        "vancouver_watching detect" \
         "vancouver_watching discover" \
         "vancouver_watching ingest" \
-        "vancouver_watching process" \
         "vancouver_watching"; do
         abcli_eval ,$options \
             abcli_help $module

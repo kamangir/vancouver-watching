@@ -49,12 +49,12 @@ function vancouver_watching_ingest() {
 
     [[ "$status" -ne 0 ]] && return $status
 
-    local process_options=$3
-    local do_process=$(abcli_option_int "$process_options" process 1)
-    [[ "$do_process" == 0 ]] && return $status
+    local detection_options=$3
+    local do_detect=$(abcli_option_int "$detection_options" detect 1)
+    [[ "$do_detect" == 0 ]] && return $status
 
-    vancouver_watching_process \
-        ~download,upload=$do_upload,$process_options \
+    vancouver_watching_detect \
+        ~download,upload=$do_upload,$detection_options \
         $object_name \
         "${@:4}"
 }

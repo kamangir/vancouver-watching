@@ -56,7 +56,7 @@ def test_Area(
         count=1,
     )
 
-    assert target.detect_objects(
+    assert target.detect(
         model_id=model_id,
         count=1,
     )

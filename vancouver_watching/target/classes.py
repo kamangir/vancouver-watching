@@ -8,7 +8,7 @@ from tqdm import tqdm
 from blue_objects import file, path
 from blue_objects.graphics.gif import generate_animated_gif
 
-from vancouver_watching.ai.ultralytics import Ultralytics_API
+from vancouver_watching.ai import Ultralytics_API
 from vancouver_watching.logger import logger
 
 
@@ -82,7 +82,7 @@ class Target:
 
             self.save_metadata()
 
-    def detect_objects(
+    def detect(
         self,
         model_id: str,
         animated_gif: bool = False,
@@ -90,7 +90,7 @@ class Target:
         overwrite: bool = False,
     ) -> bool:
         logger.info(
-            "{}.detect_objects({},model_id{},count={}{})".format(
+            "{}.detect({},model_id{},count={}{})".format(
                 self.__class__.__name__,
                 model_id,
                 ",animated_gif" if animated_gif else "",

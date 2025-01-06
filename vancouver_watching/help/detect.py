@@ -4,7 +4,7 @@ from blue_options.terminal import show_usage, xtra
 
 
 args = [
-    "[--detect_objects 0]",
+    "[--detect 0]",
     "[--overwrite 1]",
     "[--verbose 1]",
 ]
@@ -22,18 +22,18 @@ def options(mono: bool):
     )
 
 
-def help_process(
+def help_detect(
     tokens: List[str],
     mono: bool,
 ) -> str:
     return show_usage(
         [
             "vanwatch",
-            "process",
+            "detect",
             f"[{options(mono)}]",
             "[.|<object-name>]",
         ]
         + args,
-        "process <object-name>.",
+        "detect objects in <object-name>.",
         mono=mono,
     )

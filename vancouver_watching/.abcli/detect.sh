@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-function vancouver_watching_process() {
+function vancouver_watching_detect() {
     local options=$1
     local count=$(abcli_option "$options" count -1)
     local do_dryrun=$(abcli_option_int "$options" dryrun 0)
@@ -17,13 +17,13 @@ function vancouver_watching_process() {
         $object_name \
         --tag target)
     if [[ -z "$target" ]]; then
-        abcli_log_error "vancouver_watching: process: $object_name: target not found."
+        abcli_log_error "vancouver_watching: detect: $object_name: target not found."
         return 1
     fi
 
     abcli_eval - \
-        python3 -m vancouver_watching.ai \
-        process \
+        python3 -m vancouver_watching.target \
+        detect \
         --do_dryrun $do_dryrun \
         --animated_gif $(abcli_option_int "$options" gif 0) \
         --count $count \
