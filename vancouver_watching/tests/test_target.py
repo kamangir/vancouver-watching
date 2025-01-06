@@ -3,7 +3,7 @@ import pytest
 from blue_objects import path, file, objects
 
 from vancouver_watching import env
-from vancouver_watching.area import Area
+from vancouver_watching.target import Target
 
 
 @pytest.mark.parametrize(
@@ -49,16 +49,16 @@ def test_Area(
         object_name=object_name,
         filename="vancouver.geojson",
     )
-    area = Area(geojson_filename)
-    assert area.valid
+    target = Target(geojson_filename)
+    assert target.valid
 
-    assert area.ingest(
+    assert target.ingest(
         count=1,
     )
 
-    assert area.detect_objects(
+    assert target.detect_objects(
         model_id=model_id,
         count=1,
     )
 
-    assert area.summarize()
+    assert target.summarize()

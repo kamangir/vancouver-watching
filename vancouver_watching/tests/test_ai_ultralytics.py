@@ -16,7 +16,7 @@ from vancouver_watching.ai.ultralytics import Ultralytics_API
         ),
     ],
 )
-def test_ultralytics_api(model_id, object_name, filename):
+def test_ai_ultralytics(model_id, object_name, filename):
     assert objects.download(object_name)
 
     ultralytics_api = Ultralytics_API(model_id)

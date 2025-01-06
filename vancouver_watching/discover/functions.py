@@ -85,7 +85,7 @@ def discover_cameras_vancouver_style(
     return file.save_geojson(filename, gdf)
 
 
-def get_list_of_areas() -> List[str]:
+def get_list_of_targets() -> List[str]:
     return [
         file.name(filename)
         for filename in file.list_of(

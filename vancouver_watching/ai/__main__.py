@@ -4,7 +4,7 @@ from blueness import module
 from blueness.argparse.generic import sys_exit
 
 from vancouver_watching import NAME
-from vancouver_watching.area import Area
+from vancouver_watching.target import Target
 from vancouver_watching.logger import logger
 
 NAME = module.name(__file__, NAME)
@@ -65,15 +65,15 @@ args = parser.parse_args()
 
 success = False
 if args.task == "process":
-    area = Area(
+    target = Target(
         map_filename=args.geojson,
         do_dryrun=args.do_dryrun,
         verbose=args.verbose,
     )
-    success = area.valid
+    success = target.valid
 
     if success and args.detect_objects:
-        success = area.detect_objects(
+        success = target.detect_objects(
             model_id=args.model_id,
             animated_gif=args.animated_gif,
             count=args.count,
@@ -81,7 +81,7 @@ if args.task == "process":
         )
 
     if success:
-        success = area.summarize()
+        success = target.summarize()
 else:
     success = None
 

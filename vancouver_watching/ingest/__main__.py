@@ -4,7 +4,7 @@ from blueness import module
 from blueness.argparse.generic import sys_exit
 
 from vancouver_watching import NAME
-from vancouver_watching.area import Area
+from vancouver_watching.target import Target
 from vancouver_watching.logger import logger
 
 NAME = module.name(__file__, NAME)
@@ -28,14 +28,14 @@ parser.add_argument(
 )
 args = parser.parse_args()
 
-area = Area(
+target = Target(
     args.geojson,
     do_dryrun=args.do_dryrun,
 )
-success = area.valid
+success = target.valid
 
 if success:
-    success = area.ingest(count=args.count)
+    success = target.ingest(count=args.count)
 
 
 sys_exit(logger, NAME, "ingest", success)

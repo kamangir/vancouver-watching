@@ -12,7 +12,7 @@ from vancouver_watching.ai.ultralytics import Ultralytics_API
 from vancouver_watching.logger import logger
 
 
-class Area:
+class Target:
     def __init__(
         self,
         map_filename: str,
@@ -37,7 +37,9 @@ class Area:
             if column not in self.gdf.columns:
                 self.valid = False
                 logger.info(
-                    "Invaid Area, missing {}: {}.".format(column, self.map_filename)
+                    "Invalid target: {} not found in {}.".format(
+                        column, self.map_filename
+                    )
                 )
                 return
 

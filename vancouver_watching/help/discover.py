@@ -2,10 +2,10 @@ from typing import List
 
 from blue_options.terminal import show_usage, xtra
 
-from vancouver_watching.discover.functions import get_list_of_areas
+from vancouver_watching.discover.functions import get_list_of_targets
 
-area_details = {
-    "area: {}".format(" | ".join(get_list_of_areas())): [],
+target_details = {
+    "target: {}".format(" | ".join(get_list_of_targets())): [],
 }
 
 
@@ -15,7 +15,7 @@ def help_discover(
 ) -> str:
     options = "".join(
         [
-            "area=<area>",
+            "target=<target>",
             xtra(",count=<-1>,dryrun,~tag,~upload", mono=mono),
         ]
     )
@@ -28,7 +28,7 @@ def help_discover(
             "[-|<object-name>]",
             "[<args>]",
         ],
-        "discover area -> <object-name>.",
-        area_details,
+        "discover target -> <object-name>.",
+        target_details,
         mono=mono,
     )

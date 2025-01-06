@@ -8,6 +8,6 @@ function test_vancouver_watching_discover() {
     abcli_eval ,$options \
         vancouver_watching \
         discover \
-        area=vancouver,count=3,~tag,~upload \
+        target=vancouver,count=3,~tag,~upload \
         $object_name
 }

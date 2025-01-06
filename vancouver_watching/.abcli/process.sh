@@ -13,11 +13,11 @@ function vancouver_watching_process() {
     [[ "$do_download" == 1 ]] &&
         abcli_download - $object_name
 
-    local area=$(abcli_mlflow_tags get \
+    local target=$(abcli_mlflow_tags get \
         $object_name \
-        --tag area)
-    if [[ -z "$area" ]]; then
-        abcli_log_error "vancouver_watching: process: $object_name: area not found."
+        --tag target)
+    if [[ -z "$target" ]]; then
+        abcli_log_error "vancouver_watching: process: $object_name: target not found."
         return 1
     fi
 
