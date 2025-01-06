@@ -7,10 +7,6 @@ from vancouver_watching import NAME, VERSION, ICON, REPO_NAME
 
 
 content = {
-    "last build": {
-        "url": f"https://kamangir-public.s3.ca-central-1.amazonaws.com/test_vancouver_watching_ingest/animation.gif?raw=true&random={string.random()}",
-        "thumbnail": f"https://kamangir-public.s3.ca-central-1.amazonaws.com/test_vancouver_watching_ingest/animation.gif?raw=true&random={string.random()}",
-    },
     "ingest -> detect": {
         "url": "https://github.com/kamangir/assets/raw/main/vanwatch/2023-11-25-openai-vision/QGIS.png?raw=true",
         "thumbnail": "https://github.com/kamangir/assets/raw/main/vanwatch/2023-11-25-openai-vision/QGIS.png?raw=true",
@@ -18,6 +14,10 @@ content = {
     "time-series": {
         "url": "https://kamangir-public.s3.ca-central-1.amazonaws.com/vanwatch-cache-2024-02-28-21-04-19-26236.tar.gz",
         "thumbnail": f"https://kamangir-public.s3.ca-central-1.amazonaws.com/2024-01-06-20-39-46-73614/2024-01-06-20-39-46-73614-2X.gif?raw=true&random={string.random()}",
+    },
+    "last build": {
+        "url": f"https://kamangir-public.s3.ca-central-1.amazonaws.com/test_vancouver_watching_ingest/animation.gif?raw=true&random={string.random()}",
+        "thumbnail": f"https://kamangir-public.s3.ca-central-1.amazonaws.com/test_vancouver_watching_ingest/animation.gif?raw=true&random={string.random()}",
     },
 }
 
