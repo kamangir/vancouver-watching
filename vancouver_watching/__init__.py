@@ -8,7 +8,7 @@ ICON = "🌈"
 
 DESCRIPTION = f"{ICON} Vancouver Watching with AI."
 
-VERSION = "3.464.1"
+VERSION = "3.465.1"
 
 REPO_NAME = "vancouver-watching"
 
