@@ -1,4 +1,5 @@
 from blue_objects import file, path
+from tqdm import tqdm
 
 from vancouver_watching.logger import logger
 
@@ -46,7 +47,23 @@ class Target:
             self.metadata_filename,
             ignore_error=True,
         )
-        assert success
+        if not success:
+            logger.info("generating metadata: {}".format(self.metadata_filename))
+
+            for _, row in tqdm(self.gdf.iterrows()):
+                cameras = {}
+                for url in row["cameras"].split(","):
+                    filename = file.name_and_extension(url)
+
+                    if file.extension(filename) not in "jpg,jpeg,png".split(","):
+                        logger.error("bad url: {}.".format(url))
+                        continue
+
+                    cameras[filename] = {"url": url}
+
+                self.metadata[row["mapid"]] = {"cameras": cameras}
+
+            self.save_metadata()
 
     def on_map(
         self,
