@@ -38,4 +38,4 @@ if success:
     success = area.ingest(count=args.count)
 
 
-sys_exit(logger, NAME, "discover", success)
+sys_exit(logger, NAME, "ingest", success)
