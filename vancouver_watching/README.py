@@ -12,7 +12,7 @@ content = {
         "thumbnail": f"https://kamangir-public.s3.ca-central-1.amazonaws.com/test_vancouver_watching_ingest/animation.gif?raw=true&random={string.random()}",
     },
     "ingest -> detect": {
-        "url": "#",
+        "url": "https://github.com/kamangir/assets/raw/main/vanwatch/2023-11-25-openai-vision/QGIS.png?raw=true",
         "thumbnail": "https://github.com/kamangir/assets/raw/main/vanwatch/2023-11-25-openai-vision/QGIS.png?raw=true",
     },
     "time-series": {
