@@ -15,6 +15,11 @@ function vancouver_watching_discover() {
         return 1
     fi
 
+    abcli_clone \
+        ~relate,~tags \
+        $VANWATCH_QGIS_TEMPLATE \
+        $object_name
+
     abcli_log "discovering $area -> $object_name"
     abcli_eval ,$options \
         $function_name \

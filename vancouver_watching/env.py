@@ -18,3 +18,8 @@ VANWATCH_TEST_OBJECT = os.getenv(
     "VANWATCH_TEST_OBJECT",
     "",
 )
+
+VANWATCH_QGIS_TEMPLATE = os.getenv(
+    "VANWATCH_QGIS_TEMPLATE",
+    "",
+)

@@ -6,14 +6,14 @@ function vancouver_watching_discover_vancouver() {
 
     curl \
         https://opendata.vancouver.ca/explore/dataset/web-cam-url-links/download/?format=geojson \
-        >$object_path/vancouver.geojson
+        >$object_path/detections.geojson
 
     local count=$(abcli_option_int "$options" count -1)
 
     abcli_eval ,$options \
         python3 -m vancouver_watching.discover \
         discover_cameras_vancouver_style \
-        --filename $object_path/vancouver.geojson \
+        --filename $object_path/detections.geojson \
         --prefix https://trafficcams.vancouver.ca/ \
         --count $count \
         "${@:3}"

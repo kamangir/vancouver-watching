@@ -25,13 +25,13 @@ function vancouver_watching_ingest() {
         abcli_download - $discovery_object
 
     cp -v \
-        $ABCLI_OBJECT_ROOT/$discovery_object/$area.geojson \
+        $ABCLI_OBJECT_ROOT/$discovery_object/detections.geojson \
         $object_path/
 
     python3 -m vancouver_watching.ingest \
         --count $count \
         --do_dryrun $do_dryrun \
-        --geojson $object_path/$area.geojson
+        --geojson $object_path/detections.geojson
     local status="$?"
 
     abcli_mlflow_tags set \
