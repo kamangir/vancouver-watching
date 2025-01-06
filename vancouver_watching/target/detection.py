@@ -64,32 +64,35 @@ def detect_in_target(
             if "inference" not in metadata:
                 continue
 
-            for thing, count in Counter(
+            for thing, thing_count in Counter(
                 [
                     thing["name"]
                     for thing in metadata["inference"]["images"][0]["results"]
                 ]
             ).items():
-                detections[thing] = detections.get(thing, 0) + count
+                detections[thing] = detections.get(thing, 0) + thing_count
 
             if detections:
                 logger.info(
                     "{}: {}".format(
                         mapid,
                         " + ".join(
-                            [f"{count}*{thing}" for thing, count in detections.items()]
+                            [
+                                f"{thing_count}*{thing}"
+                                for thing, thing_count in detections.items()
+                            ]
                         ),
                     )
                 )
 
-            for thing, count in detections.items():
-                all_detections[thing] = all_detections.get(thing, 0) + count
+            for thing, thing_count in detections.items():
+                all_detections[thing] = all_detections.get(thing, 0) + thing_count
 
                 if thing not in target.gdf.columns:
                     target.gdf[thing] = 0
                     logger.info("+= {}".format(thing))
 
-                target.gdf.loc[target.gdf["mapid"] == mapid, thing] += count
+                target.gdf.loc[target.gdf["mapid"] == mapid, thing] += thing_count
 
             counter += 1
             if count != -1 and counter >= count:
@@ -99,7 +102,12 @@ def detect_in_target(
 
     logger.info(
         "all: {}".format(
-            " + ".join([f"{count}*{thing}" for thing, count in all_detections.items()])
+            " + ".join(
+                [
+                    f"{thing_count}*{thing}"
+                    for thing, thing_count in all_detections.items()
+                ]
+            )
         )
     )
 
