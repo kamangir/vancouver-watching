@@ -3,7 +3,7 @@ import pytest
 from blue_objects import objects
 
 from vancouver_watching import env
-from vancouver_watching.ai.classes import Ultralytics_API
+from vancouver_watching.ai.ultralytics import Ultralytics_API
 
 
 @pytest.mark.parametrize(
