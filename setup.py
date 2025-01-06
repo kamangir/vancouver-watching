@@ -12,7 +12,7 @@ setup(
         f"{NAME}.ai",
         f"{NAME}.discover",
         f"{NAME}.help",
-        f"{NAME}.ingest",
+        f"{NAME}.target",
     ],
     include_package_data=True,
     package_data={

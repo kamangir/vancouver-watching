@@ -34,7 +34,8 @@ function vancouver_watching_ingest() {
         $object_path/
 
     abcli_eval - \
-        python3 -m vancouver_watching.ingest \
+        python3 -m vancouver_watching.target \
+        ingest \
         --count $count \
         --do_dryrun $do_dryrun \
         --geojson $object_path/detections.geojson

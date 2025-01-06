@@ -13,7 +13,7 @@ parser = argparse.ArgumentParser(NAME)
 parser.add_argument(
     "task",
     type=str,
-    help="detect",
+    help="detect|ingest",
 )
 parser.add_argument(
     "--geojson",
@@ -82,6 +82,16 @@ if args.task == "detect":
 
     if success:
         success = target.summarize()
+elif args.task == "ingest":
+    target = Target(
+        map_filename=args.geojson,
+        do_dryrun=args.do_dryrun,
+        verbose=args.verbose,
+    )
+    success = target.valid
+
+    if success:
+        success = target.ingest(count=args.count)
 else:
     success = None
 
