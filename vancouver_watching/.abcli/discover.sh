@@ -4,6 +4,7 @@ function vancouver_watching_discover() {
     local options=$1
     local area=$(abcli_option "$options" area vancouver)
     local do_dryrun=$(abcli_option_int "$options" dryrun 0)
+    local do_tag=$(abcli_option_int "$options" tag $(abcli_not $do_dryrun))
     local do_upload=$(abcli_option_int "$options" upload $(abcli_not $do_dryrun))
 
     local object_name=$(abcli_clarify_object $2 $area-discover-$(abcli_string_timestamp_short))
@@ -17,17 +18,20 @@ function vancouver_watching_discover() {
     abcli_log "discovering $area -> $object_name"
     abcli_eval ,$options \
         $function_name \
+        ,$options \
         $ABCLI_OBJECT_ROOT/$object_name \
         "${@:3}"
     local status="$?"
 
-    [[ "$do_upload" == 0 ]] && return
+    [[ "$do_upload" == 1 ]] &&
+        abcli_upload - $object_name
 
-    abcli_mlflow_tags set \
-        $object_name \
-        app=vancouver_watching,area=$area,stage=discovery
+    [[ "$status" -ne 0 ]] && return $status
 
-    abcli_upload - $object_name
+    [[ "$do_tag" == 1 ]] &&
+        abcli_mlflow_tags set \
+            $object_name \
+            app=vancouver_watching,area=$area,stage=discovery
 
     return $status
 }

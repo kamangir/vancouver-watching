@@ -16,7 +16,7 @@ def help_discover(
     options = "".join(
         [
             "area=<area>",
-            xtra(",dryrun,~upload", mono=mono),
+            xtra(",count=<-1>,dryrun,~tag,~upload", mono=mono),
         ]
     )
 

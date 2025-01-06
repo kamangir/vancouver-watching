@@ -33,6 +33,12 @@ parser.add_argument(
     type=str,
     default="+",
 )
+parser.add_argument(
+    "--count",
+    type=int,
+    default="-1",
+    help="-1 for all",
+)
 args = parser.parse_args()
 
 delim = " " if args.delim == "space" else args.delim
@@ -43,8 +49,9 @@ if args.task == "list_of_areas":
     success = True
 elif args.task == "discover_cameras_vancouver_style":
     success = discover_cameras_vancouver_style(
-        args.filename,
-        args.prefix,
+        filename=args.filename,
+        prefix=args.prefix,
+        count=args.count,
     )
 else:
     success = None

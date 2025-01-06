@@ -2,21 +2,31 @@ from typing import List
 import os
 import requests
 from tqdm import tqdm
+from bs4 import BeautifulSoup
 
 from blueness import module
 from blue_objects import file
 
 from vancouver_watching import NAME
+from vancouver_watching.QGIS import label_of_camera
 from vancouver_watching.logger import logger
 
 NAME = module.name(__file__, NAME)
 
 
-def discover_cameras_vancouver_style(filename: str, prefix: str) -> bool:
-    from vancouver_watching.QGIS import label_of_camera
-    from bs4 import BeautifulSoup
-
-    logger.info(f"{NAME}.discover_cameras({filename}): vancouver-style")
+def discover_cameras_vancouver_style(
+    filename: str,
+    prefix: str,
+    count: int = -1,
+) -> bool:
+    logger.info(
+        "{}.discover_cameras({}{}) -vancouver-style-> {}".format(
+            NAME,
+            prefix,
+            "" if count == -1 else f"count={count}",
+            filename,
+        )
+    )
 
     success, gdf = file.load_geodataframe(filename)
     if not success:
@@ -25,6 +35,7 @@ def discover_cameras_vancouver_style(filename: str, prefix: str) -> bool:
     list_of_cameras = []
     list_of_labels = []
     failed_locations = []
+    row_count = 0
     for _, row in tqdm(gdf.iterrows()):
         list_of_cameras_ = []
 
@@ -33,16 +44,15 @@ def discover_cameras_vancouver_style(filename: str, prefix: str) -> bool:
 
             # https://towardsdatascience.com/a-tutorial-on-scraping-images-from-the-web-using-beautifulsoup-206a7633e948
             soup = BeautifulSoup(html_page.content, "html.parser")
+
             list_of_cameras_ = [
-                f'{prefix}{item.attrs["src"]}'
-                for item in soup.find(
-                    "div",
-                    class_="col-sm-12 section--container",
-                ).findAll("img")
+                f"{prefix}{src}"
+                for src in [img["src"] for img in soup.find_all("img")]
+                if src.startswith("cameraimages")
             ]
-        except:
+        except Exception as e:
             failed_locations += [row["url"]]
-            logger.error(f"failed: {row['url']}")
+            logger.error(f"failed: {e}: {row['url']}")
 
         list_of_cameras += [",".join(list_of_cameras_)]
         list_of_labels += [
@@ -52,6 +62,11 @@ def discover_cameras_vancouver_style(filename: str, prefix: str) -> bool:
                 list_of_cameras_,
             )
         ]
+
+        row_count += 1
+        if count != -1 and row_count >= count:
+            break
+
     if failed_locations:
         logger.error(f"{len(failed_locations)} location(s) failed.")
     logger.info(
@@ -63,8 +78,9 @@ def discover_cameras_vancouver_style(filename: str, prefix: str) -> bool:
         )
     )
 
-    gdf["cameras"] = list_of_cameras
-    gdf["label"] = list_of_labels
+    # for safety when count != -1
+    gdf["cameras"] = (list_of_cameras + [""] * len(gdf))[: len(gdf)]
+    gdf["label"] = (list_of_labels + [""] * len(gdf))[: len(gdf)]
 
     return file.save_geojson(filename, gdf)
 
