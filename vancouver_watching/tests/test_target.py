@@ -4,6 +4,8 @@ from blue_objects import path, file, objects
 
 from vancouver_watching import env
 from vancouver_watching.target import Target
+from vancouver_watching.target.detection import detect_in_target
+from vancouver_watching.target.ingest import ingest_target
 
 
 @pytest.mark.parametrize(
@@ -18,7 +20,7 @@ from vancouver_watching.target import Target
         ),
     ],
 )
-def test_Area(
+def test_target(
     object_name,
     model_id,
 ):
@@ -52,13 +54,13 @@ def test_Area(
     target = Target(geojson_filename)
     assert target.valid
 
-    assert target.ingest(
+    assert ingest_target(
+        target=target,
         count=1,
     )
 
-    assert target.detect(
+    assert detect_in_target(
+        target=target,
         model_id=model_id,
         count=1,
     )
-
-    assert target.summarize()

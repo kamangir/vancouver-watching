@@ -4,7 +4,6 @@ from blue_options.terminal import show_usage, xtra
 
 
 args = [
-    "[--detect 0]",
     "[--overwrite 1]",
     "[--verbose 1]",
 ]
