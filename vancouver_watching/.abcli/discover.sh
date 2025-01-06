@@ -2,37 +2,43 @@
 
 function vancouver_watching_discover() {
     local options=$1
+    local target=$(abcli_option "$options" target vancouver)
+    local do_dryrun=$(abcli_option_int "$options" dryrun 0)
+    local do_tag=$(abcli_option_int "$options" tag $(abcli_not $do_dryrun))
+    local do_upload=$(abcli_option_int "$options" upload $(abcli_not $do_dryrun))
 
-    if [ $(abcli_option_int "$options" help 0) == 1 ]; then
-        local options="area=<area>,~upload"
-        abcli_show_usage "vanwatch discover$ABCUL[$options]$ABCUL[-|<object-name>]$ABCUL[<args>]" \
-            "discover area -> <object-name>."
-        return
-    fi
+    local object_name=$(abcli_clarify_object $2 $target-discover-$(abcli_string_timestamp_short))
 
-    local area=$(abcli_option "$options" area vancouver)
-    local do_upload=$(abcli_option_int "$options" upload 1)
-
-    local object_name=$(abcli_clarify_object $2 $(abcli_string_timestamp))
-
-    local function_name=vancouver_watching_discover_$area
+    local function_name=vancouver_watching_discover_$target
     if [[ $(type -t $function_name) != "function" ]]; then
-        abcli_log_error "-vancouver_watching: discover: $area: area not found."
-        return
+        abcli_log_error "vancouver_watching: discover: $target: target not found."
+        return 1
     fi
 
-    abcli_log "discovering $area -> $object_name"
-    $function_name \
+    abcli_clone \
+        ~relate,~tags \
+        $VANWATCH_QGIS_TEMPLATE \
+        $object_name
+
+    abcli_log "discovering $target -> $object_name"
+    abcli_eval ,$options \
+        $function_name \
+        ,$options \
         $ABCLI_OBJECT_ROOT/$object_name \
         "${@:3}"
+    local status="$?"
 
-    [[ "$do_upload" == 0 ]] && return
+    [[ "$do_upload" == 1 ]] &&
+        abcli_upload - $object_name
 
-    abcli_tags set \
-        $object_name \
-        $area,vancouver_watching,discovery
+    [[ "$status" -ne 0 ]] && return $status
 
-    abcli_upload - $object_name
+    [[ "$do_tag" == 1 ]] &&
+        abcli_mlflow_tags set \
+            $object_name \
+            app=vancouver_watching,target=$target,stage=discovery
+
+    return $status
 }
 
 abcli_source_caller_suffix_path /discovery

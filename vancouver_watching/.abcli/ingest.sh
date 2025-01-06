@@ -2,74 +2,60 @@
 
 function vancouver_watching_ingest() {
     local options=$1
-
-    if [ $(abcli_option_int "$options" help 0) == 1 ]; then
-        local options="area=<vancouver>,~batch,count=<-1>$EOP,dryrun,gif,model=<model-id>,~process$EOPE,publish$EOP,~upload$EOPE"
-        abcli_show_usage "vanwatch ingest$ABCUL$options$EOP$ABCUL-|<object-name>$EARGS" \
-            "ingest <area> -> <object-name>."
-
-        if [ "$(abcli_keyword_is $2 verbose)" == true ]; then
-            python3 -m vancouver_watching.ingest --help
-        fi
-        return
-    fi
-
-    local on_batch=$(abcli_option_int "$options" batch 1)
-
-    local object_name=$(abcli_clarify_object $2 $(abcli_string_timestamp))
-
-    if [[ "$on_batch" == 1 ]]; then
-        abcli_aws_batch eval name=$object_name \
-            vancouver_watching_ingest \
-            ",$options,~batch" \
-            $object_name \
-            "${@:3}"
-        return
-    fi
-
-    local area=$(abcli_option "$options" area vancouver)
+    local target=$(abcli_option "$options" target vancouver)
     local count=$(abcli_option_int "$options" count -1)
     local do_dryrun=$(abcli_option_int "$options" dryrun 0)
-    local do_process=$(abcli_option_int "$options" process 1)
+    local do_download=$(abcli_option_int "$options" download $(abcli_not $do_dryrun))
     local do_upload=$(abcli_option_int "$options" upload $(abcli_not $do_dryrun))
 
+    local object_name=$(abcli_clarify_object $2 $target-ingest-$(abcli_string_timestamp_short))
     local object_path=$ABCLI_OBJECT_ROOT/$object_name
+    mkdir -pv $object_path
 
-    local discovery_object=$(
-        abcli_tags search \
-            area=$area,discovery,vancouver_watching \
-            --count 1 \
-            --log 0
-    )
+    local discovery_object=$(abcli_mlflow_tags search \
+        app=vancouver_watching,target=$target,stage=discovery \
+        --count 1 \
+        --log 0)
     if [ -z "$discovery_object" ]; then
-        abcli_log_error "-vancouver_watching: ingest: $area: area not found."
+        abcli_log_error "vancouver_watching: ingest: $target: target not found."
         return 1
     fi
 
-    abcli_download - $discovery_object
+    [[ "$do_download" == 1 ]] &&
+        abcli_download - $discovery_object
+
+    abcli_clone \
+        ~relate,~tags \
+        $VANWATCH_QGIS_TEMPLATE \
+        $object_name
 
     cp -v \
-        $ABCLI_OBJECT_ROOT/$discovery_object/$area.geojson \
+        $ABCLI_OBJECT_ROOT/$discovery_object/detections.geojson \
         $object_path/
 
-    python3 -m vancouver_watching.ingest \
+    abcli_eval - \
+        python3 -m vancouver_watching.target \
+        ingest \
         --count $count \
         --do_dryrun $do_dryrun \
-        --geojson $object_path/$area.geojson \
-        "${@:3}"
+        --geojson $object_path/detections.geojson
+    local status="$?"
 
-    abcli_tags set \
+    abcli_mlflow_tags set \
         $object_name \
-        area=$area,ingest,vancouver_watching
+        app=vancouver_watching,target=$target,stage=ingest
 
     [[ "$do_upload" == 1 ]] &&
         abcli_upload - $object_name
 
-    [[ "$do_process" == 1 ]] &&
-        vancouver_watching_process \
-            "$options" \
-            "$object_name" \
-            "${@:3}"
+    [[ "$status" -ne 0 ]] && return $status
 
-    return 0
+    local detection_options=$3
+    local do_detect=$(abcli_option_int "$detection_options" detect 1)
+    [[ "$do_detect" == 0 ]] && return $status
+
+    vancouver_watching_detect \
+        ~download,upload=$do_upload,$detection_options \
+        $object_name \
+        "${@:4}"
 }

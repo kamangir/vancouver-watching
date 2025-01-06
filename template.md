@@ -7,6 +7,14 @@
 pip install vancouver-watching
 ```
 
+```bash
+@select
+vanwatch ingest \
+	area=vancouver,count=4 . \
+	detect,gif,publish
+@open QGIS .
+```
+
 --table--
 
 ---

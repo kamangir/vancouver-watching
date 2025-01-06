@@ -11,7 +11,8 @@ setup(
         NAME,
         f"{NAME}.ai",
         f"{NAME}.discover",
-        f"{NAME}.ingest",
+        f"{NAME}.help",
+        f"{NAME}.target",
     ],
     include_package_data=True,
     package_data={

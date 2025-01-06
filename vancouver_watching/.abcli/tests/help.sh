@@ -5,16 +5,12 @@ function test_vancouver_watching_help() {
 
     local module
     for module in \
-        "vancouver_watching" \
+        "vancouver_watching detect" \
         "vancouver_watching discover" \
         "vancouver_watching ingest" \
-        "vancouver_watching list" \
-        "vancouver_watching vision" \
-        "vancouver_watching process" \
-        "vancouver_watching update" \
-        "vancouver_watching update_cache"; do
+        "vancouver_watching"; do
         abcli_eval ,$options \
-            $module help
+            abcli_help $module
         [[ $? -ne 0 ]] && return 1
     done
 

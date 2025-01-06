@@ -4,16 +4,20 @@ from blueness import module
 from blueness.argparse.generic import sys_exit
 
 from vancouver_watching import NAME
-from vancouver_watching.area import Area
+from vancouver_watching.target import Target
+from vancouver_watching.target.detection import detect_in_target
+from vancouver_watching.target.ingest import ingest_target
 from vancouver_watching.logger import logger
 
 NAME = module.name(__file__, NAME)
+
+list_of_tasks = ["detect", "ingest"]
 
 parser = argparse.ArgumentParser(NAME)
 parser.add_argument(
     "task",
     type=str,
-    help="process",
+    help=" | ".join(list_of_tasks),
 )
 parser.add_argument(
     "--geojson",
@@ -51,37 +55,37 @@ parser.add_argument(
     help="0|1",
 )
 parser.add_argument(
-    "--detect_objects",
-    type=int,
-    default=1,
-    help="0|1",
-)
-parser.add_argument(
     "--model_id",
     type=str,
     default="",
 )
 args = parser.parse_args()
 
-success = False
-if args.task == "process":
-    area = Area(
-        args.geojson,
+success = args.task in list_of_tasks
+
+if success:
+    target = Target(
+        map_filename=args.geojson,
         do_dryrun=args.do_dryrun,
         verbose=args.verbose,
     )
-    success = area.valid
+    success = target.valid
 
-    if success and args.detect_objects:
-        success = area.detect_objects(
+if args.task == "detect":
+    if success:
+        success = detect_in_target(
+            target=target,
             model_id=args.model_id,
             animated_gif=args.animated_gif,
             count=args.count,
             overwrite=args.overwrite,
         )
-
+elif args.task == "ingest":
     if success:
-        success = area.summarize()
+        success = ingest_target(
+            target=target,
+            count=args.count,
+        )
 else:
     success = None
 

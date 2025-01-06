@@ -13,3 +13,4 @@ def test_vanwatch_env():
     assert env.ULTRALYTICS_API_KEY
     assert env.VANWATCH_DEFAULT_MODEL
     assert env.VANWATCH_TEST_OBJECT
+    assert env.VANWATCH_QGIS_TEMPLATE

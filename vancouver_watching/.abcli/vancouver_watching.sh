@@ -1,17 +1,7 @@
 #! /usr/bin/env bash
 
 function vancouver_watching() {
-    local task=$(abcli_unpack_keyword $1 help)
-
-    if [ $task == "help" ]; then
-        vancouver_watching_discover "$@"
-        vancouver_watching_ingest "$@"
-        vancouver_watching_list "$@"
-        vancouver_watching_openai_commands_vision "$@"
-        vancouver_watching_process "$@"
-        vancouver_watching_update_cache "$@"
-        return
-    fi
+    local task=$(abcli_unpack_keyword $1 version)
 
     abcli_generic_task \
         plugin=vancouver_watching,task=$task \
