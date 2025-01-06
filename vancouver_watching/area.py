@@ -179,10 +179,18 @@ class Area:
         return output
 
     def save_gdf(self) -> bool:
-        return file.save_geojson(self.map_filename, self.gdf, log=True)
+        return file.save_geojson(
+            self.map_filename,
+            self.gdf,
+            log=True,
+        )
 
     def save_metadata(self) -> bool:
-        return file.save_json(self.metadata_filename, self.metadata, log=True)
+        return file.save_json(
+            self.metadata_filename,
+            self.metadata,
+            log=True,
+        )
 
     def summarize(self) -> bool:
         all_things = {}
@@ -193,9 +201,22 @@ class Area:
                     continue
 
                 for thing, count in Counter(
-                    [thing["name"] for thing in metadata["inference"].get("data", {})]
+                    [
+                        thing["name"]
+                        for thing in metadata["inference"]["images"][0]["results"]
+                    ]
                 ).items():
                     detections[thing] = detections.get(thing, 0) + count
+
+            if detections:
+                logger.info(
+                    "{}: {}".format(
+                        mapid,
+                        " + ".join(
+                            [f"{count}*{thing}" for thing, count in detections.items()]
+                        ),
+                    )
+                )
 
             for thing, count in detections.items():
                 all_things[thing] = all_things.get(thing, 0) + count
@@ -207,8 +228,8 @@ class Area:
                 self.gdf.loc[self.gdf["mapid"] == mapid, thing] += count
 
         logger.info(
-            ", ".join(
-                ["{}: {}".format(thing, count) for thing, count in all_things.items()]
+            "total: {}".format(
+                " + ".join([f"{count}*{thing}" for thing, count in all_things.items()])
             )
         )
 

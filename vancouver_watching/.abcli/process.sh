@@ -2,6 +2,7 @@
 
 function vancouver_watching_process() {
     local options=$1
+    local count=$(abcli_option "$options" count -1)
     local do_dryrun=$(abcli_option_int "$options" dryrun 0)
     local do_download=$(abcli_option_int "$options" download $(abcli_not $do_dryrun))
     local do_upload=$(abcli_option_int "$options" upload $(abcli_not $do_dryrun))
@@ -20,11 +21,12 @@ function vancouver_watching_process() {
         return 1
     fi
 
-    python3 -m vancouver_watching.ai \
+    abcli_eval - \
+        python3 -m vancouver_watching.ai \
         process \
         --do_dryrun $do_dryrun \
         --animated_gif $(abcli_option_int "$options" gif 0) \
-        --count $(abcli_option "$options" count -1) \
+        --count $count \
         --model_id $model_id \
         --geojson $ABCLI_OBJECT_ROOT/$object_name/detections.geojson \
         "${@:3}"

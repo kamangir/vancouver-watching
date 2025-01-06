@@ -66,7 +66,7 @@ args = parser.parse_args()
 success = False
 if args.task == "process":
     area = Area(
-        args.geojson,
+        map_filename=args.geojson,
         do_dryrun=args.do_dryrun,
         verbose=args.verbose,
     )

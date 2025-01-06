@@ -8,10 +8,14 @@ ICON = "🌈"
 
 DESCRIPTION = f"{ICON} Vancouver Watching with AI."
 
-VERSION = "3.453.1"
+VERSION = "3.454.1"
 
 REPO_NAME = "vancouver-watching"
 
 MARQUEE = f"{ABCLI_PUBLIC_PREFIX}/test_vancouver_watching_ingest/animation.gif"
 
 ALIAS = "vanwatch"
+
+
+def fullname() -> str:
+    return f"{NAME}-{VERSION}"

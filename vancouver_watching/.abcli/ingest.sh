@@ -24,11 +24,17 @@ function vancouver_watching_ingest() {
     [[ "$do_download" == 1 ]] &&
         abcli_download - $discovery_object
 
+    abcli_clone \
+        ~relate,~tags \
+        $VANWATCH_QGIS_TEMPLATE \
+        $object_name
+
     cp -v \
         $ABCLI_OBJECT_ROOT/$discovery_object/detections.geojson \
         $object_path/
 
-    python3 -m vancouver_watching.ingest \
+    abcli_eval - \
+        python3 -m vancouver_watching.ingest \
         --count $count \
         --do_dryrun $do_dryrun \
         --geojson $object_path/detections.geojson
@@ -36,7 +42,7 @@ function vancouver_watching_ingest() {
 
     abcli_mlflow_tags set \
         $object_name \
-        app=vancouver_watching=area,$area,stage=ingest
+        app=vancouver_watching,area=$area,stage=ingest
 
     [[ "$do_upload" == 1 ]] &&
         abcli_upload - $object_name
