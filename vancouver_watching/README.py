@@ -12,7 +12,7 @@ content = {
         "thumbnail": f"https://kamangir-public.s3.ca-central-1.amazonaws.com/test_vancouver_watching_ingest/animation.gif?raw=true&random={string.random()}",
     },
     "time-series": {
-        "url": "https://github.com/kamangir/vancouver-watching/tree/main/vancouver_watching/ingest",
+        "url": "https://kamangir-public.s3.ca-central-1.amazonaws.com/vanwatch-cache-2024-02-28-21-04-19-26236.tar.gz",
         "thumbnail": f"https://kamangir-public.s3.ca-central-1.amazonaws.com/2024-01-06-20-39-46-73614/2024-01-06-20-39-46-73614-2X.gif?raw=true&random={string.random()}",
     },
 }
