@@ -35,7 +35,7 @@ graph LR
     object2 --> detect
     detect --> object2
 
-    classDef folder fill:#f9f,stroke:#333,stroke-width:2px;
+    classDef folder fill:#999,stroke:#333,stroke-width:2px;
 ```
 
 ---
