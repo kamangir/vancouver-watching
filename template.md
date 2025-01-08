@@ -20,11 +20,11 @@ vanwatch ingest \
 
 ```mermaid
 graph LR
-    discover["vanwatch\ndiscover\ntarget=&lt;target&gt;\n&lt;object-name&gt;"]
+    discover["vanwatch<br>discover<br>target=&lt;target&gt;<br>&lt;object-name&gt;"]
     object1["geojson"]:::folder
-    ingest["vanwatch\ningest\ntarget=&lt;target&gt;\n&lt;object-name&gt;"]
-    detect["vanwatch\ndetect\ngif,publish\n&lt;object-name&gt;"]
-    ingest_detect["vanwatch\ningest\ntarget=&lt;target&gt;\n&lt;object-name&gt;\ndetect,gif,publish"]
+    ingest["vanwatch<br>ingest<br>target=&lt;target&gt;<br>&lt;object-name&gt;"]
+    detect["vanwatch<br>detect<br>gif,publish<br>&lt;object-name&gt;"]
+    ingest_detect["vanwatch<br>ingest<br>target=&lt;target&gt;<br>&lt;object-name&gt;<br>detect,gif,publish"]
     object2["geojson"]:::folder
 
     discover --> object1
