@@ -22,7 +22,7 @@ vanwatch ingest \
 graph LR
     discover["vanwatch\ndiscover\ntarget=\<target\>\n\<object-name\>"]
     object1["geojson"]:::folder
-    ingest["vanwatch\ningest\ntarget=<target>\n<object-name>"]
+    ingest["vanwatch\ningest\ntarget=&lt;target&gt;\n&lt;object-name&gt;"]
     detect["vanwatch\ndetect\ngif,publish\n<object-name>"]
     ingest_detect["vanwatch\ningest\ntarget=<target>\n<object-name>\ndetect,gif,publish"]
     object2["geojson"]:::folder
