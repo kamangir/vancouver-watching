@@ -28,7 +28,7 @@ def help_discover(
             "[-|<object-name>]",
             "[<args>]",
         ],
-        "discover target -> <object-name>.",
+        "discover <target> -> <object-name>.",
         target_details,
         mono=mono,
     )
