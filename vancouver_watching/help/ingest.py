@@ -1,7 +1,6 @@
 from typing import List
 
 from blue_options.terminal import show_usage, xtra
-from abcli.help.generic import help_functions as generic_help_functions
 
 from vancouver_watching.help.discover import target_details
 from vancouver_watching.help.detect import (

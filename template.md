@@ -7,15 +7,28 @@
 pip install vancouver-watching
 ```
 
-```bash
-@select
-vanwatch ingest \
-	area=vancouver,count=4 . \
-	detect,gif,publish
-@open QGIS .
-```
-
 --table--
+
+
+```mermaid
+graph LR
+    discover["vanwatch<br>discover<br>target=&lt;target&gt;<br>&lt;object-name&gt;"]
+    object1["geojson"]:::folder
+    ingest["vanwatch<br>ingest<br>target=&lt;target&gt;<br>&lt;object-name&gt;"]
+    detect["vanwatch<br>detect<br>gif,publish<br>&lt;object-name&gt;"]
+    ingest_detect["vanwatch<br>ingest<br>target=&lt;target&gt;<br>&lt;object-name&gt;<br>detect,gif,publish"]
+    object2["geojson"]:::folder
+
+    discover --> object1
+    object1 -- "#tag" --> ingest
+    object1 -- "#tag" --> ingest_detect
+    ingest --> object2
+    ingest_detect --> object2
+    object2 --> detect
+    detect --> object2
+
+    classDef folder fill:#999,stroke:#333,stroke-width:2px;
+```
 
 ---
 
