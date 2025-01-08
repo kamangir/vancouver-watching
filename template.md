@@ -17,8 +17,8 @@ graph LR
     object2["geojson"]:::folder
 
     discover --> object1
-    object1 -- "#target" --> ingest
-    object1 -- "#target" --> ingest_detect
+    object1 -- "#tag" --> ingest
+    object1 -- "#tag" --> ingest_detect
     ingest --> object2
     ingest_detect --> object2
     object2 --> detect
