@@ -7,17 +7,6 @@
 pip install vancouver-watching
 ```
 
-```bash
-@select
-vanwatch ingest \
-	area=vancouver,count=4 . \
-	detect,gif,publish
-@open QGIS .
-```
-
---table--
-
-
 ```mermaid
 graph LR
     discover["vanwatch<br>discover<br>target=&lt;target&gt;<br>&lt;object-name&gt;"]
@@ -37,6 +26,8 @@ graph LR
 
     classDef folder fill:#999,stroke:#333,stroke-width:2px;
 ```
+
+--table--
 
 ---
 
