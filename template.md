@@ -12,11 +12,11 @@ pip install vancouver-watching
 
 ```mermaid
 graph LR
-    discover["vanwatch<br>discover<br>target=&lt;target&gt;<br>&lt;object-name&gt;"]
+    discover["vanwatch discover target=<target> <object-name>"]
     object1["geojson"]:::folder
-    ingest["vanwatch<br>ingest<br>target=&lt;target&gt;<br>&lt;object-name&gt;"]
-    detect["vanwatch<br>detect<br>gif,publish<br>&lt;object-name&gt;"]
-    ingest_detect["vanwatch<br>ingest<br>target=&lt;target&gt;<br>&lt;object-name&gt;<br>detect,gif,publish"]
+    ingest["vanwatch ingest target=<target> <object-name>"]
+    detect["vanwatch detect gif,publish <object-name>"]
+    ingest_detect["vanwatch ingest target=<target> <object-name> detect,gif,publish"]
     object2["geojson"]:::folder
 
     discover --> object1
