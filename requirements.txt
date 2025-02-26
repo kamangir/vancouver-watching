@@ -1,14 +1,7 @@
 blueness
 abcli
+blue-geo
+
 beautifulsoup4
-boto3
-folium
-matplotlib
-opencv-python
-pymysql
-pyyaml
-pylint
-pytest
-python-dotenv[cli]
+
 requests
-tqdm
