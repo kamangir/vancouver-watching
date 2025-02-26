@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup
 
 from blueness import module
 from blue_objects import file
+from blue_geo.file import load_geodataframe, save_geojson
 
 from vancouver_watching import NAME
 from vancouver_watching.QGIS import label_of_camera
@@ -28,7 +29,7 @@ def discover_cameras_vancouver_style(
         )
     )
 
-    success, gdf = file.load_geodataframe(filename)
+    success, gdf = load_geodataframe(filename)
     if not success:
         return False
 
@@ -82,7 +83,7 @@ def discover_cameras_vancouver_style(
     gdf["cameras"] = (list_of_cameras + [""] * len(gdf))[: len(gdf)]
     gdf["label"] = (list_of_labels + [""] * len(gdf))[: len(gdf)]
 
-    return file.save_geojson(filename, gdf)
+    return save_geojson(filename, gdf)
 
 
 def get_list_of_targets() -> List[str]:

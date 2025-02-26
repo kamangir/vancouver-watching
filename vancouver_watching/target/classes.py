@@ -1,5 +1,7 @@
-from blue_objects import file, path
 from tqdm import tqdm
+
+from blue_objects import file, path
+from blue_geo.file import load_geodataframe, save_geojson
 
 from vancouver_watching.logger import logger
 
@@ -15,7 +17,7 @@ class Target:
 
         self.object_path = file.path(self.map_filename)
         self.object_name = path.name(self.object_path)
-        success, self.gdf = file.load_geodataframe(self.map_filename)
+        success, self.gdf = load_geodataframe(self.map_filename)
         assert success
 
         self.do_dryrun = do_dryrun
@@ -83,7 +85,7 @@ class Target:
         return output
 
     def save_gdf(self) -> bool:
-        return file.save_geojson(
+        return save_geojson(
             self.map_filename,
             self.gdf,
             log=True,
