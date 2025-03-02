@@ -24,11 +24,12 @@ graph LR
     object1 -- "#tag" --> ingest
     ingest --> object2
 
-    object1 -- "#tag" --> ingest_detect
-    ingest_detect --> object2
-
     detect --> object2
     object2 --> detect
+
+    object1 -- "#tag" --> ingest_detect
+    ingest_detect --> ingest
+    ingest_detect --> detect
 
     classDef folder fill:#999,stroke:#333,stroke-width:2px;
 ```
