@@ -20,12 +20,15 @@ graph LR
     object2["📁 object"]:::folder
 
     discover --> object1
+
     object1 -- "#tag" --> ingest
-    object1 -- "#tag" --> ingest_detect
     ingest --> object2
+
+    object1 -- "#tag" --> ingest_detect
     ingest_detect --> object2
-    object2 --> detect
+
     detect --> object2
+    object2 --> detect
 
     classDef folder fill:#999,stroke:#333,stroke-width:2px;
 ```
