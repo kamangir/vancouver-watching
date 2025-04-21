@@ -1,6 +1,5 @@
 import os
 
-from bluer_options import string
 from bluer_objects import file, README
 
 from vancouver_watching import NAME, VERSION, ICON, REPO_NAME
