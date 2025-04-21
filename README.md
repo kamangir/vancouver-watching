@@ -9,7 +9,7 @@ pip install vancouver-watching
 
 |   |   |
 | --- | --- |
-| [`time-series`](https://kamangir-public.s3.ca-central-1.amazonaws.com/vanwatch-cache-2024-02-28-21-04-19-26236.tar.gz) [![image](https://kamangir-public.s3.ca-central-1.amazonaws.com/2024-01-06-20-39-46-73614/2024-01-06-20-39-46-73614-2X.gif?raw=true&random=9v2rf0jgrr0c7llg)](https://kamangir-public.s3.ca-central-1.amazonaws.com/vanwatch-cache-2024-02-28-21-04-19-26236.tar.gz) example: [`2024-03-23-17-11-13-36842`](https://kamangir-public.s3.ca-central-1.amazonaws.com/2024-03-23-17-11-13-36842.tar.gz) | [`last build`](https://kamangir-public.s3.ca-central-1.amazonaws.com/test_vancouver_watching_ingest/animation.gif?raw=true&random=hidh5m7soo180jgn) [![image](https://kamangir-public.s3.ca-central-1.amazonaws.com/test_vancouver_watching_ingest/animation.gif?raw=true&random=8oe9b2kova4oisfg)](https://kamangir-public.s3.ca-central-1.amazonaws.com/test_vancouver_watching_ingest/animation.gif?raw=true&random=hidh5m7soo180jgn)  |
+| [`time-series`](#) [![image](https://github.com/kamangir/assets/blob/main/vanwatch/2024-01-06-20-39-46-73614-QGIS.gif?raw=true)](#)  | [`example output`](#) [![image](https://github.com/kamangir/assets/blob/main/vanwatch/2023-11-12-14-42-23-96479.gif?raw=true)](#)  |
 
 
 ```mermaid
@@ -38,8 +38,12 @@ graph LR
 
 ---
 
+> 🌈 `vancouver-watching 3.x.x` and below are compatible with [`abcli`](https://github.com/kamangir/awesome-bash-cli). Later versions, `4.x.x`, work with [`bluer_ai`](https://github.com/kamangir/bluer-ai), for the [Global South](https://github.com/kamangir/bluer-south).
+
+---
+
 
 [![pylint](https://github.com/kamangir/vancouver-watching/actions/workflows/pylint.yml/badge.svg)](https://github.com/kamangir/vancouver-watching/actions/workflows/pylint.yml) [![pytest](https://github.com/kamangir/vancouver-watching/actions/workflows/pytest.yml/badge.svg)](https://github.com/kamangir/vancouver-watching/actions/workflows/pytest.yml) [![bashtest](https://github.com/kamangir/vancouver-watching/actions/workflows/bashtest.yml/badge.svg)](https://github.com/kamangir/vancouver-watching/actions/workflows/bashtest.yml) [![PyPI version](https://img.shields.io/pypi/v/vancouver-watching.svg)](https://pypi.org/project/vancouver-watching/) [![PyPI - Downloads](https://img.shields.io/pypi/dd/vancouver-watching)](https://pypistats.org/packages/vancouver-watching)
 
-built by 🌀 [`blue_options-4.229.1`](https://github.com/kamangir/awesome-bash-cli), based on 🌈 [`vancouver_watching-3.512.1`](https://github.com/kamangir/vancouver-watching).
+built by 🌀 [`bluer README`](https://github.com/kamangir/bluer-objects/tree/main/bluer_objects/README), based on 🌈 [`vancouver_watching-4.3.1`](https://github.com/kamangir/vancouver-watching).
 
