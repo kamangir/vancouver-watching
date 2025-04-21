@@ -1,7 +1,7 @@
 from tqdm import tqdm
 
-from blue_objects import file, path
-from blue_geo.file import load_geodataframe, save_geojson
+from bluer_objects import file, path
+from bluer_geo.file import load_geodataframe, save_geojson
 
 from vancouver_watching.logger import logger
 

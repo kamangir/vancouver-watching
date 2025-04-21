@@ -36,4 +36,8 @@ graph LR
 
 ---
 
+> 🌈 `vancouver-watching 3.x.x` and below are compatible with [`abcli`](https://github.com/kamangir/awesome-bash-cli). Later versions, `4.x.x`, work with [`bluer_ai`](https://github.com/kamangir/bluer-ai), for the [Global South](https://github.com/kamangir/bluer-south).
+
+---
+
 --signature--

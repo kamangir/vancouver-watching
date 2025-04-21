@@ -6,8 +6,8 @@ from collections import Counter
 from tqdm import tqdm
 
 from blueness import module
-from blue_objects import file
-from blue_objects.graphics.gif import generate_animated_gif
+from bluer_objects import file
+from bluer_objects.graphics.gif import generate_animated_gif
 
 from vancouver_watching import NAME
 from vancouver_watching.ai import Ultralytics_API

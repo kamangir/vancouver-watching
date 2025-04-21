@@ -5,8 +5,8 @@ from tqdm import tqdm
 from bs4 import BeautifulSoup
 
 from blueness import module
-from blue_objects import file
-from blue_geo.file import load_geodataframe, save_geojson
+from bluer_objects import file
+from bluer_geo.file import load_geodataframe, save_geojson
 
 from vancouver_watching import NAME
 from vancouver_watching.QGIS import label_of_camera

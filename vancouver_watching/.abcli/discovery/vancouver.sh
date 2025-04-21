@@ -8,9 +8,9 @@ function vancouver_watching_discover_vancouver() {
         https://opendata.vancouver.ca/explore/dataset/web-cam-url-links/download/?format=geojson \
         >$object_path/detections.geojson
 
-    local count=$(abcli_option_int "$options" count -1)
+    local count=$(bluer_ai_option_int "$options" count -1)
 
-    abcli_eval ,$options \
+    bluer_ai_eval ,$options \
         python3 -m vancouver_watching.discover \
         discover_cameras_vancouver_style \
         --filename $object_path/detections.geojson \

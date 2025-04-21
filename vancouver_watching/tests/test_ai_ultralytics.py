@@ -1,6 +1,6 @@
 import pytest
 
-from blue_objects import objects
+from bluer_objects import objects
 
 from vancouver_watching import env
 from vancouver_watching.ai import Ultralytics_API

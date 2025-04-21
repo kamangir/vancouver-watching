@@ -5,12 +5,13 @@ function test_vancouver_watching_help() {
 
     local module
     for module in \
-        "vancouver_watching detect" \
-        "vancouver_watching discover" \
-        "vancouver_watching ingest" \
-        "vancouver_watching"; do
-        abcli_eval ,$options \
-            abcli_help $module
+        "vanwatch detect" \
+        "vanwatch discover" \
+        "vanwatch ingest" \
+        \
+        "vanwatch"; do
+        bluer_ai_eval ,$options \
+            bluer_ai_help $module
         [[ $? -ne 0 ]] && return 1
     done
 

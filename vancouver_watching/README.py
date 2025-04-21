@@ -1,7 +1,7 @@
 import os
 
-from blue_options import string
-from blue_objects import file, README
+from bluer_options import string
+from bluer_objects import file, README
 
 from vancouver_watching import NAME, VERSION, ICON, REPO_NAME
 
@@ -10,14 +10,11 @@ items = README.Items(
     [
         {
             "name": "time-series",
-            "marquee": f"https://kamangir-public.s3.ca-central-1.amazonaws.com/2024-01-06-20-39-46-73614/2024-01-06-20-39-46-73614-2X.gif?raw=true&random={string.random()}",
-            "description": "example: [`2024-03-23-17-11-13-36842`](https://kamangir-public.s3.ca-central-1.amazonaws.com/2024-03-23-17-11-13-36842.tar.gz)",
-            "url": "https://kamangir-public.s3.ca-central-1.amazonaws.com/vanwatch-cache-2024-02-28-21-04-19-26236.tar.gz",
+            "marquee": "https://github.com/kamangir/assets/blob/main/vanwatch/2024-01-06-20-39-46-73614-QGIS.gif?raw=true",
         },
         {
-            "name": "last build",
-            "marquee": f"https://kamangir-public.s3.ca-central-1.amazonaws.com/test_vancouver_watching_ingest/animation.gif?raw=true&random={string.random()}",
-            "url": f"https://kamangir-public.s3.ca-central-1.amazonaws.com/test_vancouver_watching_ingest/animation.gif?raw=true&random={string.random()}",
+            "name": "example output",
+            "marquee": "https://github.com/kamangir/assets/blob/main/vanwatch/2023-11-12-14-42-23-96479.gif?raw=true",
         },
     ]
 )

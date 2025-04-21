@@ -3,7 +3,7 @@
 function test_vancouver_watching_detect() {
     local options=$1
 
-    local object_name=test_vancouver_watching_detect-$(abcli_string_timestamp_short)
+    local object_name=test_vancouver_watching_detect-$(bluer_ai_string_timestamp_short)
 
     vancouver_watching ingest \
         target=vancouver,count=3,~upload,$2 \

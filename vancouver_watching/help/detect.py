@@ -1,6 +1,6 @@
 from typing import List
 
-from blue_options.terminal import show_usage, xtra
+from bluer_options.terminal import show_usage, xtra
 
 
 args = [
@@ -14,9 +14,7 @@ def options(mono: bool):
         [
             xtra("count=<-1>,~download,dryrun,", mono=mono),
             "gif",
-            xtra(",model=<model-id>,", mono=mono),
-            "publish",
-            xtra(",~upload", mono=mono),
+            xtra(",model=<model-id>,~upload", mono=mono),
         ]
     )
 
