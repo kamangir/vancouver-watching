@@ -9,12 +9,12 @@ from vancouver_watching import NAME, VERSION, ICON, REPO_NAME
 items = README.Items(
     [
         {
-            "name": "time-series",
-            "marquee": "https://github.com/kamangir/assets/blob/main/vanwatch/2024-01-06-20-39-46-73614-QGIS.gif?raw=true",
-        },
-        {
             "name": "example output",
             "marquee": "https://github.com/kamangir/assets/blob/main/vanwatch/2023-11-12-14-42-23-96479.gif?raw=true",
+        },
+        {
+            "name": "time-series",
+            "marquee": "https://github.com/kamangir/assets/blob/main/vanwatch/2024-01-06-20-39-46-73614-QGIS.gif?raw=true",
         },
     ]
 )
