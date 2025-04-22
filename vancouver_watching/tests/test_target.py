@@ -1,6 +1,6 @@
 import pytest
 
-from bluer_objects import path, file, objects
+from bluer_objects import path, file, objects, storage
 
 from vancouver_watching import env
 from vancouver_watching.target import Target
@@ -24,7 +24,7 @@ def test_target(
     object_name,
     model_id,
 ):
-    assert objects.download(object_name)
+    assert storage.download(object_name)
 
     assert path.exists(objects.object_path(object_name))
 

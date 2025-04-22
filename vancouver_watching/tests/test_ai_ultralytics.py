@@ -1,6 +1,6 @@
 import pytest
 
-from bluer_objects import objects
+from bluer_objects import objects, storage
 
 from vancouver_watching import env
 from vancouver_watching.ai import Ultralytics_API
@@ -17,7 +17,7 @@ from vancouver_watching.ai import Ultralytics_API
     ],
 )
 def test_ai_ultralytics(model_id, object_name, filename):
-    assert objects.download(object_name)
+    assert storage.download(object_name)
 
     ultralytics_api = Ultralytics_API(model_id)
 
