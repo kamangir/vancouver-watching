@@ -24,6 +24,12 @@ jobs:
       - name: Run tests
         env:
           ULTRALYTICS_API_KEY: ${{ secrets.ULTRALYTICS_API_KEY }}
+          WEBDAV_HOSTNAME: ${{ secrets.WEBDAV_HOSTNAME }}
+          WEBDAV_LOGIN: ${{ secrets.WEBDAV_LOGIN }}
+          WEBDAV_PASSWORD: ${{ secrets.WEBDAV_PASSWORD }}
         run: |
           echo "ULTRALYTICS_API_KEY: $ULTRALYTICS_API_KEY"
+          echo "WEBDAV_HOSTNAME: $WEBDAV_HOSTNAME"
+          echo "WEBDAV_LOGIN: $WEBDAV_LOGIN"
+          echo "WEBDAV_PASSWORD: $WEBDAV_PASSWORD"
           pytest --verbose
