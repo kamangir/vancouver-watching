@@ -14,7 +14,7 @@ items = README.Items(
         {
             "name": "time-series",
             "marquee": "https://github.com/kamangir/assets/blob/main/vanwatch/2024-01-06-20-39-46-73614-QGIS.gif?raw=true",
-            "url": "https://github.com/kamangir/assets/blob/main/vanwatch/2024-01-06-20-39-46-73614-QGIS.gif?raw=true",
+            "url": "https://github.com/kamangir/assets/blob/main/vanwatch/2024-01-06-20-39-46-73614-QGIS.gif",
         },
     ]
 )
