@@ -2,7 +2,7 @@
 
 function vancouver_watching_discover_template() {
     local options=$1
-    local object_path=$2
+    local object_name=$2
 
-    # generate $object_path/template.geojson \
+    # generate $ABCLI_OBJECT_ROOT/$object_name/detections.geojson
 }

@@ -19,7 +19,7 @@ parser.add_argument(
     help="discover_cameras_vancouver_style|list_of_targets",
 )
 parser.add_argument(
-    "--filename",
+    "--object_name",
     type=str,
     default="",
 )
@@ -49,7 +49,7 @@ if args.task == "list_of_targets":
     success = True
 elif args.task == "discover_cameras_vancouver_style":
     success = discover_cameras_vancouver_style(
-        filename=args.filename,
+        object_name=args.object_name,
         prefix=args.prefix,
         count=args.count,
     )

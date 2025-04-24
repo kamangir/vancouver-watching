@@ -1,15 +1,18 @@
 import os
 
 from bluer_objects import file, README
+from bluer_options.help.functions import get_help
 
 from vancouver_watching import NAME, VERSION, ICON, REPO_NAME
+from vancouver_watching.help.functions import help_functions
 
 
 items = README.Items(
     [
         {
             "name": "example output",
-            "marquee": "https://github.com/kamangir/assets/blob/main/vanwatch/2023-11-12-14-42-23-96479.gif?raw=true",
+            "marquee": "https://github.com/kamangir/assets/blob/main/vanwatch-ingest-example/vanwatch-ingest-example.gif?raw=true",
+            "url": "./vancouver_watching/docs/example.md",
         },
         {
             "name": "time-series",
@@ -21,11 +24,22 @@ items = README.Items(
 
 
 def build():
-    return README.build(
-        items=items,
-        path=os.path.join(file.path(__file__), ".."),
-        ICON=ICON,
-        NAME=NAME,
-        VERSION=VERSION,
-        REPO_NAME=REPO_NAME,
+    return all(
+        README.build(
+            items=readme.get("items", []),
+            path=os.path.join(file.path(__file__), readme["path"]),
+            ICON=ICON,
+            NAME=NAME,
+            VERSION=VERSION,
+            REPO_NAME=REPO_NAME,
+            help_function=lambda tokens: get_help(
+                tokens,
+                help_functions,
+                mono=True,
+            ),
+        )
+        for readme in [
+            {"items": items, "path": ".."},
+            {"path": "./docs/example.md"},
+        ]
     )

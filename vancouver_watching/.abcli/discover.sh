@@ -24,12 +24,12 @@ function vancouver_watching_discover() {
     bluer_ai_eval ,$options \
         $function_name \
         ,$options \
-        $ABCLI_OBJECT_ROOT/$object_name \
+        $object_name \
         "${@:3}"
     local status="$?"
 
     [[ "$do_upload" == 1 ]] &&
-        bluer_ai_upload - $object_name
+        bluer_objects_upload - $object_name
 
     [[ "$status" -ne 0 ]] && return $status
 
