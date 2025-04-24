@@ -8,7 +8,7 @@ function test_vancouver_watching_discover_ingest_and_detect() {
     bluer_ai_eval ,$options \
         vancouver_watching \
         discover \
-        target=vancouver,count=3,~tag,~upload \
+        target=vancouver,count=3,~upload \
         $object_name
     [[ $? -ne 0 ]] && return 1
 
