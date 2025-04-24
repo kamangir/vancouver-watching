@@ -5,8 +5,9 @@ from tqdm import tqdm
 from bs4 import BeautifulSoup
 
 from blueness import module
-from blue_objects import file
-from blue_geo.file import load_geodataframe, save_geojson
+from bluer_objects import file, objects
+from bluer_objects.metadata import post_to_object
+from bluer_geo.file import load_geodataframe, save_geojson
 
 from vancouver_watching import NAME
 from vancouver_watching.QGIS import label_of_camera
@@ -16,7 +17,7 @@ NAME = module.name(__file__, NAME)
 
 
 def discover_cameras_vancouver_style(
-    filename: str,
+    object_name: str,
     prefix: str,
     count: int = -1,
 ) -> bool:
@@ -25,8 +26,13 @@ def discover_cameras_vancouver_style(
             NAME,
             prefix,
             "" if count == -1 else f"count={count}",
-            filename,
+            object_name,
         )
+    )
+
+    filename = objects.path_of(
+        object_name=object_name,
+        filename="detections.geojson",
     )
 
     success, gdf = load_geodataframe(filename)
@@ -83,7 +89,17 @@ def discover_cameras_vancouver_style(
     gdf["cameras"] = (list_of_cameras + [""] * len(gdf))[: len(gdf)]
     gdf["label"] = (list_of_labels + [""] * len(gdf))[: len(gdf)]
 
-    return save_geojson(filename, gdf)
+    if not save_geojson(filename, gdf):
+        return False
+
+    return post_to_object(
+        object_name,
+        "discovery",
+        {
+            "cameras": len(list_of_cameras),
+            "locations": len(gdf),
+        },
+    )
 
 
 def get_list_of_targets() -> List[str]:

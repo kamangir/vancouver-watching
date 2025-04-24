@@ -3,7 +3,7 @@ import os.path
 from tqdm import tqdm
 
 from blueness import module
-from blue_objects import file
+from bluer_objects import file
 
 from vancouver_watching import NAME
 from vancouver_watching.target.classes import Target

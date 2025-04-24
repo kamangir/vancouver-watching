@@ -21,27 +21,15 @@ jobs:
           pip install -e .
           pip install pytest
           pip install -r requirements.txt
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ca-central-1
       - name: Run tests
         env:
           ULTRALYTICS_API_KEY: ${{ secrets.ULTRALYTICS_API_KEY }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          ABCLI_AWS_RDS_HOST: ${{ secrets.ABCLI_AWS_RDS_HOST }}
-          ABCLI_AWS_RDS_PASSWORD: ${{ secrets.ABCLI_AWS_RDS_PASSWORD }}
-          DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
-          DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+          WEBDAV_HOSTNAME: ${{ secrets.WEBDAV_HOSTNAME }}
+          WEBDAV_LOGIN: ${{ secrets.WEBDAV_LOGIN }}
+          WEBDAV_PASSWORD: ${{ secrets.WEBDAV_PASSWORD }}
         run: |
           echo "ULTRALYTICS_API_KEY: $ULTRALYTICS_API_KEY"
-          echo "AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID"
-          echo "AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY"
-          echo "ABCLI_AWS_RDS_HOST: $ABCLI_AWS_RDS_HOST"
-          echo "ABCLI_AWS_RDS_PASSWORD: $ABCLI_AWS_RDS_PASSWORD"
-          echo "DATABRICKS_HOST: $DATABRICKS_HOST"
-          echo "DATABRICKS_TOKEN: $DATABRICKS_TOKEN"
+          echo "WEBDAV_HOSTNAME: $WEBDAV_HOSTNAME"
+          echo "WEBDAV_LOGIN: $WEBDAV_LOGIN"
+          echo "WEBDAV_PASSWORD: $WEBDAV_PASSWORD"
           pytest --verbose

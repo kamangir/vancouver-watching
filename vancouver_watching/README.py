@@ -1,34 +1,45 @@
 import os
 
-from blue_options import string
-from blue_objects import file, README
+from bluer_objects import file, README
+from bluer_options.help.functions import get_help
 
 from vancouver_watching import NAME, VERSION, ICON, REPO_NAME
+from vancouver_watching.help.functions import help_functions
 
 
 items = README.Items(
     [
         {
-            "name": "time-series",
-            "marquee": f"https://kamangir-public.s3.ca-central-1.amazonaws.com/2024-01-06-20-39-46-73614/2024-01-06-20-39-46-73614-2X.gif?raw=true&random={string.random()}",
-            "description": "example: [`2024-03-23-17-11-13-36842`](https://kamangir-public.s3.ca-central-1.amazonaws.com/2024-03-23-17-11-13-36842.tar.gz)",
-            "url": "https://kamangir-public.s3.ca-central-1.amazonaws.com/vanwatch-cache-2024-02-28-21-04-19-26236.tar.gz",
+            "name": "example output",
+            "marquee": "https://github.com/kamangir/assets/blob/main/vanwatch-ingest-example/vanwatch-ingest-example.gif?raw=true",
+            "url": "./vancouver_watching/docs/example.md",
         },
         {
-            "name": "last build",
-            "marquee": f"https://kamangir-public.s3.ca-central-1.amazonaws.com/test_vancouver_watching_ingest/animation.gif?raw=true&random={string.random()}",
-            "url": f"https://kamangir-public.s3.ca-central-1.amazonaws.com/test_vancouver_watching_ingest/animation.gif?raw=true&random={string.random()}",
+            "name": "time-series",
+            "marquee": "https://github.com/kamangir/assets/blob/main/vanwatch/2024-01-06-20-39-46-73614-QGIS.gif?raw=true",
+            "url": "https://github.com/kamangir/assets/blob/main/vanwatch/2024-01-06-20-39-46-73614-QGIS.gif",
         },
     ]
 )
 
 
 def build():
-    return README.build(
-        items=items,
-        path=os.path.join(file.path(__file__), ".."),
-        ICON=ICON,
-        NAME=NAME,
-        VERSION=VERSION,
-        REPO_NAME=REPO_NAME,
+    return all(
+        README.build(
+            items=readme.get("items", []),
+            path=os.path.join(file.path(__file__), readme["path"]),
+            ICON=ICON,
+            NAME=NAME,
+            VERSION=VERSION,
+            REPO_NAME=REPO_NAME,
+            help_function=lambda tokens: get_help(
+                tokens,
+                help_functions,
+                mono=True,
+            ),
+        )
+        for readme in [
+            {"items": items, "path": ".."},
+            {"path": "./docs/example.md"},
+        ]
     )

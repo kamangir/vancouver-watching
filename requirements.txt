@@ -1,7 +1,2 @@
-blueness
-abcli
-blue-geo
-
-beautifulsoup4
-
-requests
+bluer_ai
+bluer_geo

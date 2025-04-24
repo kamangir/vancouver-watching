@@ -1,7 +1,4 @@
-from typing import List
-
-from blue_options.terminal import show_usage, xtra
-from abcli.help.generic import help_functions as generic_help_functions
+from bluer_ai.help.generic import help_functions as generic_help_functions
 
 from vancouver_watching import ALIAS
 from vancouver_watching.help.discover import help_discover
