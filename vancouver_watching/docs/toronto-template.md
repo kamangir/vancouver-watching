@@ -1,14 +1,14 @@
-# 🌈 vancouver-watching
+# 🌈 Toronto 🔥
 
 help::: vancouver_watching discover
 
 ```bash
 @select vanwatch-discover-$(@@timestamp)
-vanwatch discover target=vancouver .
+vanwatch discover target=toronto .
 @assets publish extensions=geojson,push .
 ```
 
-set:::discover_object_name vanwatch-discover-2025-04-23-qdgb5k
+set:::discover_object_name TBA
 
 metadata:::get:::discover_object_name
 
@@ -20,12 +20,12 @@ help::: vancouver_watching ingest
 ```bash
 @select vanwatch-ingest-$(@@timestamp)
 vanwatch ingest \
-  target=vancouver,count=4 . \
+  target=toronto,count=4 . \
   detect,gif
 @assets publish extensions=gif,push . \
-	--asset_name vanwatch-ingest-example
+	--asset_name vanwatch-ingest-toronto
 ```
 
-set:::ingest_object_name vanwatch-ingest-example
+set:::ingest_object_name vanwatch-ingest-toronto
 
 assets:::get:::ingest_object_name/get:::ingest_object_name.gif

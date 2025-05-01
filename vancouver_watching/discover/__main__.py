@@ -4,8 +4,9 @@ from blueness import module
 from blueness.argparse.generic import sys_exit
 
 from vancouver_watching import NAME
-from vancouver_watching.discover.targets import get_list_of_targets
+from vancouver_watching.discover.targets import list_of_targets
 from vancouver_watching.discover.vancouver import discover as discover_vancouver
+from vancouver_watching.discover.toronto import toronto as discover_toronto
 from vancouver_watching.logger import logger
 
 NAME = module.name(__file__, NAME)
@@ -14,7 +15,7 @@ parser = argparse.ArgumentParser(NAME)
 parser.add_argument(
     "task",
     type=str,
-    help="vancouver | list_of_targets",
+    help=" | ".join(["list_of_targets"] + list_of_targets()),
 )
 parser.add_argument(
     "--object_name",
@@ -43,10 +44,16 @@ delim = " " if args.delim == "space" else args.delim
 
 success = False
 if args.task == "list_of_targets":
-    print(delim.join(get_list_of_targets()))
+    print(delim.join(list_of_targets()))
     success = True
 elif args.task == "vancouver":
     success = discover_vancouver(
+        object_name=args.object_name,
+        prefix=args.prefix,
+        count=args.count,
+    )
+elif args.task == "toronto":
+    success = discover_toronto(
         object_name=args.object_name,
         prefix=args.prefix,
         count=args.count,

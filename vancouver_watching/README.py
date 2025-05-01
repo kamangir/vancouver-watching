@@ -4,16 +4,20 @@ from bluer_objects import file, README
 from bluer_options.help.functions import get_help
 
 from vancouver_watching import NAME, VERSION, ICON, REPO_NAME
+from vancouver_watching.discover.targets import list_of_targets
 from vancouver_watching.help.functions import help_functions
 
 
 items = README.Items(
     [
         {
-            "name": "example output",
-            "marquee": "https://github.com/kamangir/assets/blob/main/vanwatch-ingest-example/vanwatch-ingest-example.gif?raw=true",
-            "url": "./vancouver_watching/docs/example.md",
-        },
+            "name": target.title(),
+            "marquee": f"https://github.com/kamangir/assets/blob/main/vanwatch-ingest-{target}/vanwatch-ingest-{target}.gif?raw=true",
+            "url": f"./vancouver_watching/docs/{target}.md",
+        }
+        for target in list_of_targets()
+    ]
+    + [
         {
             "name": "time-series",
             "marquee": "https://github.com/kamangir/assets/blob/main/vanwatch/2024-01-06-20-39-46-73614-QGIS.gif?raw=true",
@@ -40,6 +44,6 @@ def build():
         )
         for readme in [
             {"items": items, "path": ".."},
-            {"path": "./docs/example.md"},
         ]
+        + [{"path": f"./docs/{target}.md"} for target in list_of_targets()]
     )

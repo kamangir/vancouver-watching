@@ -1,4 +1,4 @@
-# 🌈 vancouver-watching
+# 🌈 Toronto 🔥
 
 ```bash
 vanwatch \
@@ -7,24 +7,22 @@ vanwatch \
 	[-|<object-name>] \
 	[<args>]
  . discover <target> -> <object-name>.
-   target: vancouver
+   target: toronto | vancouver
 ```
 
 ```bash
 @select vanwatch-discover-$(@@timestamp)
-vanwatch discover target=vancouver .
+vanwatch discover target=toronto .
 @assets publish extensions=geojson,push .
 ```
 
 
 ```yaml
-discovery:
-  cameras: 196
-  locations: 196
+{}
 
 ```
 
-[detections.geojson](https://github.com/kamangir/assets/blob/main/vanwatch-discover-2025-04-23-qdgb5k/detections.geojson)
+[detections.geojson](https://github.com/kamangir/assets/blob/main/TBA/detections.geojson)
 
 ```bash
 vanwatch \
@@ -35,18 +33,18 @@ vanwatch \
 	[--overwrite 1] \
 	[--verbose 1]
  . ingest <target> -> <object-name>.
-   target: vancouver
+   target: toronto | vancouver
 ```
 
 
 ```bash
 @select vanwatch-ingest-$(@@timestamp)
 vanwatch ingest \
-  target=vancouver,count=4 . \
+  target=toronto,count=4 . \
   detect,gif
 @assets publish extensions=gif,push . \
-	--asset_name vanwatch-ingest-example
+	--asset_name vanwatch-ingest-toronto
 ```
 
 
-![image](https://github.com/kamangir/assets/blob/main/vanwatch-ingest-example/vanwatch-ingest-example.gif?raw=true)
+![image](https://github.com/kamangir/assets/blob/main/vanwatch-ingest-toronto/vanwatch-ingest-toronto.gif?raw=true)
