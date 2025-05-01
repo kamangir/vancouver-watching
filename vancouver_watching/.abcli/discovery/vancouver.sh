@@ -14,7 +14,7 @@ function vancouver_watching_discover_vancouver() {
 
     bluer_ai_eval ,$options \
         python3 -m vancouver_watching.discover \
-        discover_cameras_vancouver_style \
+        vancouver \
         --object_name $object_name \
         --prefix https://trafficcams.vancouver.ca/ \
         --count $count \

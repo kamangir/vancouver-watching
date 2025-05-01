@@ -7,7 +7,7 @@ vanwatch \
 	[-|<object-name>] \
 	[<args>]
  . discover <target> -> <object-name>.
-   target: vancouver | template
+   target: vancouver
 ```
 
 ```bash
@@ -35,7 +35,7 @@ vanwatch \
 	[--overwrite 1] \
 	[--verbose 1]
  . ingest <target> -> <object-name>.
-   target: vancouver | template
+   target: vancouver
 ```
 
 

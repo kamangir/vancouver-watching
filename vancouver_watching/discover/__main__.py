@@ -5,7 +5,7 @@ from blueness.argparse.generic import sys_exit
 
 from vancouver_watching import NAME
 from vancouver_watching.discover.targets import get_list_of_targets
-from vancouver_watching.discover.functions import discover_cameras_vancouver_style
+from vancouver_watching.discover.vancouver import discover as discover_vancouver
 from vancouver_watching.logger import logger
 
 NAME = module.name(__file__, NAME)
@@ -14,7 +14,7 @@ parser = argparse.ArgumentParser(NAME)
 parser.add_argument(
     "task",
     type=str,
-    help="discover_cameras_vancouver_style | list_of_targets",
+    help="vancouver | list_of_targets",
 )
 parser.add_argument(
     "--object_name",
@@ -45,8 +45,8 @@ success = False
 if args.task == "list_of_targets":
     print(delim.join(get_list_of_targets()))
     success = True
-elif args.task == "discover_cameras_vancouver_style":
-    success = discover_cameras_vancouver_style(
+elif args.task == "vancouver":
+    success = discover_vancouver(
         object_name=args.object_name,
         prefix=args.prefix,
         count=args.count,

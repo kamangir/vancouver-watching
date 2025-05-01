@@ -4,7 +4,7 @@ from tqdm import tqdm
 from bs4 import BeautifulSoup
 
 from blueness import module
-from bluer_objects import file, objects
+from bluer_objects import objects
 from bluer_objects.metadata import post_to_object
 from bluer_geo.file import load_geodataframe, save_geojson
 
@@ -15,13 +15,13 @@ from vancouver_watching.logger import logger
 NAME = module.name(__file__, NAME)
 
 
-def discover_cameras_vancouver_style(
+def discover(
     object_name: str,
     prefix: str,
     count: int = -1,
 ) -> bool:
     logger.info(
-        "{}.discover_cameras({}{}) -vancouver-style-> {}".format(
+        "{}.discover({}{}) -> {}".format(
             NAME,
             prefix,
             "" if count == -1 else f"count={count}",
