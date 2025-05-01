@@ -4,10 +4,8 @@ from blueness import module
 from blueness.argparse.generic import sys_exit
 
 from vancouver_watching import NAME
-from vancouver_watching.discover.functions import (
-    discover_cameras_vancouver_style,
-    get_list_of_targets,
-)
+from vancouver_watching.discover.targets import get_list_of_targets
+from vancouver_watching.discover.functions import discover_cameras_vancouver_style
 from vancouver_watching.logger import logger
 
 NAME = module.name(__file__, NAME)
@@ -16,7 +14,7 @@ parser = argparse.ArgumentParser(NAME)
 parser.add_argument(
     "task",
     type=str,
-    help="discover_cameras_vancouver_style|list_of_targets",
+    help="discover_cameras_vancouver_style | list_of_targets",
 )
 parser.add_argument(
     "--object_name",

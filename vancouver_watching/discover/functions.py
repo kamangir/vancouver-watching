@@ -1,4 +1,3 @@
-from typing import List
 import os
 import requests
 from tqdm import tqdm
@@ -100,15 +99,3 @@ def discover_cameras_vancouver_style(
             "locations": len(gdf),
         },
     )
-
-
-def get_list_of_targets() -> List[str]:
-    return [
-        file.name(filename)
-        for filename in file.list_of(
-            os.path.join(
-                file.path(__file__),
-                "../.abcli/discovery/*.sh",
-            )
-        )
-    ]

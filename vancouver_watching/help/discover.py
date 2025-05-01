@@ -2,7 +2,7 @@ from typing import List
 
 from bluer_options.terminal import show_usage, xtra
 
-from vancouver_watching.discover.functions import get_list_of_targets
+from vancouver_watching.discover.targets import get_list_of_targets
 
 target_details = {
     "target: {}".format(" | ".join(get_list_of_targets())): [],
