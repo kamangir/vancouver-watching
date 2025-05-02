@@ -18,7 +18,7 @@ def test(object_name: str) -> bool:
 
     success, gdf = load_geodataframe(filename)
     if not success:
-        logger.error(c"can not load detections.geojson!")
+        logger.error("can not load detections.geojson!")
         return False
     logger.info("✅ loaded detections.geojson.")
 
