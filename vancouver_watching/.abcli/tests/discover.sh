@@ -19,7 +19,8 @@ function test_vancouver_watching_discover() {
             $object_name
         [[ $? -ne 0 ]] && return 1
 
-        python3 -m vancouver_watching.discover \
+        bluer_ai_eval ,$options \
+            python3 -m vancouver_watching.discover \
             test \
             --object_name $object_name
         [[ $? -ne 0 ]] && return 1

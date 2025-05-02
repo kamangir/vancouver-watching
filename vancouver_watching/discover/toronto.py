@@ -1,7 +1,4 @@
-import os
-import requests
 from tqdm import tqdm
-from bs4 import BeautifulSoup
 import geopandas as gpd
 from shapely.geometry import Point
 
