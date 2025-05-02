@@ -8,6 +8,7 @@ function test_vancouver_watching_help() {
         "vanwatch detect" \
         "vanwatch discover" \
         "vanwatch ingest" \
+        "vanwatch list_targets" \
         \
         "vanwatch"; do
         bluer_ai_eval ,$options \

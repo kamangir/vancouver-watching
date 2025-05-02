@@ -57,10 +57,6 @@ class Target:
                 for url in row["cameras"].split(","):
                     filename = file.name_and_extension(url)
 
-                    if file.extension(filename) not in "jpg,jpeg,png".split(","):
-                        logger.error("bad url: {}.".format(url))
-                        continue
-
                     cameras[filename] = {"url": url}
 
                 self.metadata[row["mapid"]] = {"cameras": cameras}

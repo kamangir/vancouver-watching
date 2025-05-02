@@ -1,11 +1,10 @@
-from typing import List
 import os
 import requests
 from tqdm import tqdm
 from bs4 import BeautifulSoup
 
 from blueness import module
-from bluer_objects import file, objects
+from bluer_objects import objects
 from bluer_objects.metadata import post_to_object
 from bluer_geo.file import load_geodataframe, save_geojson
 
@@ -16,13 +15,13 @@ from vancouver_watching.logger import logger
 NAME = module.name(__file__, NAME)
 
 
-def discover_cameras_vancouver_style(
+def discover(
     object_name: str,
     prefix: str,
     count: int = -1,
 ) -> bool:
     logger.info(
-        "{}.discover_cameras({}{}) -vancouver-style-> {}".format(
+        "{}.discover({}{}) -> {}".format(
             NAME,
             prefix,
             "" if count == -1 else f"count={count}",
@@ -96,19 +95,8 @@ def discover_cameras_vancouver_style(
         object_name,
         "discovery",
         {
+            "target": "vancouver",
             "cameras": len(list_of_cameras),
             "locations": len(gdf),
         },
     )
-
-
-def get_list_of_targets() -> List[str]:
-    return [
-        file.name(filename)
-        for filename in file.list_of(
-            os.path.join(
-                file.path(__file__),
-                "../.abcli/discovery/*.sh",
-            )
-        )
-    ]
