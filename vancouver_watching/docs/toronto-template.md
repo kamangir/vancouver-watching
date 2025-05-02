@@ -8,7 +8,7 @@ vanwatch discover target=toronto .
 @assets publish extensions=geojson,push .
 ```
 
-set:::discover_object_name TBA
+set:::discover_object_name vanwatch-discover-2025-05-02-0rg2fh
 
 metadata:::get:::discover_object_name
 

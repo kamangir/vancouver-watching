@@ -18,11 +18,14 @@ vanwatch discover target=toronto .
 
 
 ```yaml
-{}
+discovery:
+  cameras: 1612
+  locations: 909
+  target: toronto
 
 ```
 
-[detections.geojson](https://github.com/kamangir/assets/blob/main/TBA/detections.geojson)
+[detections.geojson](https://github.com/kamangir/assets/blob/main/vanwatch-discover-2025-05-02-0rg2fh/detections.geojson)
 
 ```bash
 vanwatch \
