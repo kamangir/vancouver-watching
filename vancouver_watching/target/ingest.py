@@ -24,7 +24,13 @@ def ingest_target(
 
             if target.do_dryrun:
                 logger.info(url)
-            elif not file.download(url, os.path.join(target.object_path, filename)):
+            elif not file.download(
+                url,
+                os.path.join(
+                    target.object_path,
+                    filename,
+                ),
+            ):
                 logger.error("bad url: {}.".format(url))
 
             counter += 1
