@@ -95,6 +95,7 @@ def discover(
         object_name,
         "discovery",
         {
+            "target": "vancouver",
             "cameras": len(list_of_cameras),
             "locations": len(gdf),
         },

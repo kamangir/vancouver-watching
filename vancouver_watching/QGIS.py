@@ -1,7 +1,10 @@
+from typing import List
+
+
 def label_of_camera(
     location_url: str,
     location_name: str,
-    list_of_cameras: str,
+    list_of_cameras: List[str],
 ) -> str:
     return '<a href="{}">{}</a><br/> {}'.format(
         location_url,

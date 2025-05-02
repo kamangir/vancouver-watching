@@ -43,7 +43,7 @@ args = parser.parse_args()
 delim = " " if args.delim == "space" else args.delim
 
 success = False
-if args.task == "list_of_targets":
+if args.task == "list_targets":
     print(delim.join(list_of_targets()))
     success = True
 elif args.task == "vancouver":

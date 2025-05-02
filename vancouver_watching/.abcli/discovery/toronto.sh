@@ -8,7 +8,7 @@ function vancouver_watching_discover_toronto() {
 
     curl \
         https://511on.ca/api/v2/get/cameras \
-        >$object_path/detections.geojson
+        >$object_path/detections.json
 
     local count=$(bluer_ai_option_int "$options" count -1)
 
