@@ -1,4 +1,4 @@
-# 🌈 Toronto 🔥
+# 🌈 Toronto
 
 ```bash
 vanwatch \

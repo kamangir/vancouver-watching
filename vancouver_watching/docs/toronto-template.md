@@ -1,4 +1,4 @@
-# 🌈 Toronto 🔥
+# 🌈 Toronto
 
 help::: vancouver_watching discover
 
